@@ -1,4 +1,4 @@
-import BlocklyEditor from './Components/BlocklyEditor/BlocklyEditor';
+// import BlocklyEditor from './Components/BlocklyEditor/BlocklyEditor';
 import Editor from './Components/Editor/Editor';
 import MenuBar from './Components/MenuBar/MenuBar';
 

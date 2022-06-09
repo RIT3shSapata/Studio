@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MenuBar = () => {
+const MenuBar = ({ run, handleRun }) => {
     return (
         <div className="flex p-4 bg-blue-500">
             <div className="w-1/2">
@@ -10,7 +10,11 @@ const MenuBar = () => {
                 </span>
             </div>
             <div className="w-1/2 flex justify-end">
-                <Link to="/game">Go to Game</Link>
+                {run ? (
+                    <button onClick={handleRun}>Run</button>
+                ) : (
+                    <Link to="/game">Go to Game</Link>
+                )}
             </div>
         </div>
     );

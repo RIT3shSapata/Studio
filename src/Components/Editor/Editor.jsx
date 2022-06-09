@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 
-const Editor = () => {
+const Editor = ({ code, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
 
@@ -16,7 +16,8 @@ const Editor = () => {
             {
                 kind: 'category',
                 name: 'maze',
-                color: '#6F4F28',
+                color: '120',
+                expanded: 'true',
                 contents: [
                     {
                         kind: 'block',
@@ -40,56 +41,12 @@ const Editor = () => {
                     },
                 ],
             },
-            {
-                kind: 'category',
-                name: 'Logic',
-                colour: '#5C81A6',
-                contents: [
-                    {
-                        kind: 'block',
-                        type: 'controls_if',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'logic_compare',
-                    },
-                ],
-            },
-            {
-                kind: 'category',
-                name: 'Math',
-                colour: '#5CA65C',
-                contents: [
-                    {
-                        kind: 'block',
-                        type: 'math_round',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'math_number',
-                    },
-                ],
-            },
-            {
-                kind: 'category',
-                name: 'Custom',
-                colour: '#5CA699',
-                contents: [
-                    {
-                        kind: 'block',
-                        type: 'new_boundary_function',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'return',
-                    },
-                ],
-            },
         ],
     };
     function workspaceDidChange(workspace) {
-        const code = Blockly.JavaScript.workspaceToCode(workspace);
-        setJavascriptCode(code);
+        const co = Blockly.JavaScript.workspaceToCode(workspace);
+        // setJavascriptCode(code);
+        code.current = co;
     }
 
     return (
@@ -97,7 +54,7 @@ const Editor = () => {
             <BlocklyWorkspace
                 toolboxConfiguration={toolboxCategories}
                 initialXml=""
-                className="fill-height"
+                // className="fill-height"
                 workspaceConfiguration={{
                     grid: {
                         spacing: 20,
@@ -105,16 +62,12 @@ const Editor = () => {
                         colour: '#ccc',
                         snap: true,
                     },
+                    renderer: 'zelos',
                 }}
                 onWorkspaceChange={workspaceDidChange}
                 onXmlChange={setXml}
+                {...props}
             />
-            <pre id="generated-xml">{xml}</pre>
-            <textarea
-                id="code"
-                style={{ height: '200px', width: '400px' }}
-                value={javascriptCode}
-                readOnly></textarea>
         </>
     );
 };
