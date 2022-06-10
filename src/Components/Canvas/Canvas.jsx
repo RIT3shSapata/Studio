@@ -66,112 +66,142 @@ const Canvas = ({ code, run, setRun }) => {
     }, []);
 
     const handleDown = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const target = j.current + 100;
-        const down = () => {
-            if (j.current > target) return;
-            requestIDRef.current = requestAnimationFrame(down);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.beginPath();
-            context.arc(
-                i.current,
-                j.current,
-                canvas.width / 20,
-                0,
-                2 * Math.PI
-            );
-            context.fill();
-            j.current = j.current + 1;
-        };
-        down();
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const target = j.current + 100;
+            const down = () => {
+                if (j.current > target) {
+                    resolve();
+                    return;
+                }
+                requestIDRef.current = requestAnimationFrame(down);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(
+                    i.current,
+                    j.current,
+                    canvas.width / 20,
+                    0,
+                    2 * Math.PI
+                );
+                context.fill();
+                j.current = j.current + 1;
+            };
+            down();
+        });
     };
     const handleUp = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const target = j.current - 100;
-        const up = () => {
-            if (j.current < target) return;
-            requestIDRef.current = requestAnimationFrame(up);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.beginPath();
-            context.arc(
-                i.current,
-                j.current,
-                canvas.width / 20,
-                0,
-                2 * Math.PI
-            );
-            context.fill();
-            j.current = j.current - 1;
-        };
-        up();
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const target = j.current - 100;
+            const up = () => {
+                if (j.current < target) {
+                    resolve();
+                    return;
+                }
+                requestIDRef.current = requestAnimationFrame(up);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(
+                    i.current,
+                    j.current,
+                    canvas.width / 20,
+                    0,
+                    2 * Math.PI
+                );
+                context.fill();
+                j.current = j.current - 1;
+            };
+            up();
+        });
     };
     const handleLeft = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const target = i.current - 100;
-        const left = () => {
-            if (i.current < target) return;
-            requestIDRef.current = requestAnimationFrame(left);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.beginPath();
-            context.arc(
-                i.current,
-                j.current,
-                canvas.width / 20,
-                0,
-                2 * Math.PI
-            );
-            context.fill();
-            i.current = i.current - 1;
-        };
-        left();
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const target = i.current - 100;
+            const left = () => {
+                if (i.current < target) {
+                    resolve();
+                    return;
+                }
+                requestIDRef.current = requestAnimationFrame(left);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(
+                    i.current,
+                    j.current,
+                    canvas.width / 20,
+                    0,
+                    2 * Math.PI
+                );
+                context.fill();
+                i.current = i.current - 1;
+            };
+            left();
+        });
     };
     const handleRight = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const target = i.current + 100;
-        const right = () => {
-            if (i.current > target) return;
-            requestIDRef.current = requestAnimationFrame(right);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.beginPath();
-            context.arc(
-                i.current,
-                j.current,
-                canvas.width / 20,
-                0,
-                2 * Math.PI
-            );
-            context.fill();
-            i.current = i.current + 1;
-        };
-        right();
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const target = i.current + 100;
+            const right = () => {
+                if (i.current > target) {
+                    resolve();
+                    return;
+                }
+                requestIDRef.current = requestAnimationFrame(right);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(
+                    i.current,
+                    j.current,
+                    canvas.width / 20,
+                    0,
+                    2 * Math.PI
+                );
+                context.fill();
+                i.current = i.current + 1;
+            };
+            right();
+        });
     };
 
     useEffect(() => {
         if (run) {
+            console.log(code.current);
             const instructions = code.current.split('\n');
-            instructions.forEach((instruction) => {
-                switch (instruction) {
-                    case 'move_up':
-                        handleUp();
-                        break;
-                    case 'move_down':
-                        handleDown();
-                        break;
-                    case 'move_left':
-                        handleLeft();
-                        break;
-                    case 'move_right':
-                        handleRight();
-                        break;
-                    default:
-                        console.log('maze complete');
+            if (instructions.includes('not_connected')) {
+                console.log('connect all blocks');
+                alert('connect all blocks');
+                code.current = '';
+            }
+            const animate = async () => {
+                for (var idx = 0; idx < instructions.length; idx++) {
+                    var instruction = instructions[idx];
+                    switch (instruction) {
+                        case 'move_up':
+                            await handleUp();
+                            break;
+                        case 'move_down':
+                            await handleDown();
+                            break;
+                        case 'move_left':
+                            await handleLeft();
+                            break;
+                        case 'move_right':
+                            await handleRight();
+                            break;
+                        default:
+                            console.log('maze complete');
+                    }
                 }
-            });
+            };
             // console.log(ins);
+            animate();
             setRun(false);
         }
     }, [code, run]);

@@ -8,8 +8,8 @@ import Game from './Pages/Game';
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />}></Route>
-            <Route path="/game" element={<Game />}></Route>
+            {/* <Route path="/" element={<App />}></Route> */}
+            <Route path="/" element={<Game />}></Route>
         </Routes>
     </BrowserRouter>
 );

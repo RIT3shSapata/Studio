@@ -1,3 +1,4 @@
+import Blockly from 'blockly';
 import React, { useRef, useState } from 'react';
 import BlocklyEditor from '../Components/BlocklyEditor/BlocklyEditor';
 import Canvas from '../Components/Canvas/Canvas';
@@ -8,6 +9,7 @@ const Game = () => {
     const code = useRef(null);
     const [run, setRun] = useState(false);
     const handleRun = () => {
+        console.log(code);
         setRun(true);
     };
     return (

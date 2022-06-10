@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import Blockly, { Block } from 'blockly';
 
 Blockly.Blocks['start_block'] = {
     init: function () {
@@ -8,6 +8,9 @@ Blockly.Blocks['start_block'] = {
         this.setTooltip('Start the game');
         this.setHelpUrl('');
     },
+    // onchange: function () {
+    //     console.log(this.nextConnection.isConnected());
+    // },
 };
 
 Blockly.Blocks['up_block'] = {
