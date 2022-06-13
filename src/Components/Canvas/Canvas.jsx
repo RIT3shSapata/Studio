@@ -149,7 +149,7 @@ const Canvas = ({ code, run, setRun }) => {
             const context = canvas.getContext('2d');
             const target = i.current + 100;
             const right = () => {
-                if (i.current > target) {
+                if (i.current == target) {
                     resolve();
                     return;
                 }
