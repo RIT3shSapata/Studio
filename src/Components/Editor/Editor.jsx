@@ -9,6 +9,7 @@ import Blockly from 'blockly';
 const Editor = ({ code, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
+    const [workspace, setWorkspace] = useState(null);
 
     const toolboxCategories = {
         kind: 'categoryToolbox',
@@ -46,6 +47,7 @@ const Editor = ({ code, ...props }) => {
     function workspaceDidChange(workspace) {
         const co = Blockly.JavaScript.workspaceToCode(workspace);
         // setJavascriptCode(code);
+        setWorkspace(workspace);
         code.current = co;
     }
 

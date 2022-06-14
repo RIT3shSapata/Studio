@@ -32,15 +32,20 @@ const FRAMECOUNT = 8;
 const WIDTH = SPRITE_SHEET_WIDTH / COLS;
 const HEIGHT = SPRITE_SHEET_HEIGHT / ROWS;
 
-const updateFrame = (curFrame, srcX) => {
+const updateFrame = (curFrame, srcX, srcY, right) => {
     curFrame.current = (curFrame.current + 1) % FRAMECOUNT;
     srcX.current = curFrame.current * WIDTH;
+    if (right) {
+        srcY.current = TRACK_RIGHT * HEIGHT;
+    } else {
+        srcY.current = TRACK_LEFT * HEIGHT;
+    }
 };
-const canMove = (x, y) => {
+const canMove = (maze, x, y) => {
     return maze[y][x] !== '#';
 };
 
-const didWin = (x, y) => {
+const didWin = (maze, x, y) => {
     return maze[y][x] === '!';
 };
 const Maze = ({ code, run, setRun }) => {
@@ -203,7 +208,7 @@ const Maze = ({ code, run, setRun }) => {
     };
     const moveRight = () => {
         return new Promise((resolve, reject) => {
-            if (!canMove(sprite_x.current + 1, sprite_y.current)) {
+            if (!canMove(maze, sprite_x.current + 1, sprite_y.current)) {
                 alert('cannot move right');
                 reject();
                 return;
@@ -220,8 +225,8 @@ const Maze = ({ code, run, setRun }) => {
                 }
                 requestIDRef.current = requestAnimationFrame(move);
                 if (!context) return;
-                if (sprite_x_cord.current % 10 === 0) {
-                    updateFrame(curFrame, srcX);
+                if (sprite_x_cord.current % 5 === 0) {
+                    updateFrame(curFrame, srcX, srcY, true);
                 }
                 context.clearRect(
                     sprite_x_cord.current,
@@ -243,17 +248,10 @@ const Maze = ({ code, run, setRun }) => {
                     WIDTH,
                     HEIGHT
                 );
-                // context.fillStyle = 'blue';
-                // context.fillRect(
-                //     sprite_x_cord.current,
-                //     sprite_y_cord.current,
-                //     BLOCK_LENGHT,
-                //     BLOCK_WIDHT
-                // );
             };
             sprite_x.current += 1;
             move();
-            if (didWin(sprite_x.current, sprite_y.current)) {
+            if (didWin(maze, sprite_x.current, sprite_y.current)) {
                 alert('You won');
             }
         });
@@ -261,7 +259,7 @@ const Maze = ({ code, run, setRun }) => {
 
     const moveLeft = () => {
         return new Promise((resolve, reject) => {
-            if (!canMove(sprite_x.current - 1, sprite_y.current)) {
+            if (!canMove(maze, sprite_x.current - 1, sprite_y.current)) {
                 alert('cannot move left');
                 reject();
                 return;
@@ -278,24 +276,33 @@ const Maze = ({ code, run, setRun }) => {
                 }
                 requestIDRef.current = requestAnimationFrame(move);
                 if (!context) return;
+                if (sprite_x_cord.current % 5 === 0) {
+                    updateFrame(curFrame, srcX, srcY, false);
+                }
                 context.clearRect(
                     sprite_x_cord.current,
                     sprite_y_cord.current,
                     BLOCK_LENGHT,
                     BLOCK_WIDHT
                 );
+
                 sprite_x_cord.current -= 1;
-                context.fillStyle = 'blue';
-                context.fillRect(
+
+                context.drawImage(
+                    character,
+                    srcX.current,
+                    srcY.current,
+                    WIDTH,
+                    HEIGHT,
                     sprite_x_cord.current,
                     sprite_y_cord.current,
-                    BLOCK_LENGHT,
-                    BLOCK_WIDHT
+                    WIDTH,
+                    HEIGHT
                 );
             };
             sprite_x.current -= 1;
             move();
-            if (didWin(sprite_x.current, sprite_y.current)) {
+            if (didWin(maze, sprite_x.current, sprite_y.current)) {
                 alert('You won');
             }
         });
@@ -303,7 +310,7 @@ const Maze = ({ code, run, setRun }) => {
 
     const moveDown = () => {
         return new Promise((resolve, reject) => {
-            if (!canMove(sprite_x.current, sprite_y.current + 1)) {
+            if (!canMove(maze, sprite_x.current, sprite_y.current + 1)) {
                 alert('cannot move down');
                 reject();
                 return;
@@ -319,7 +326,12 @@ const Maze = ({ code, run, setRun }) => {
                     return;
                 }
                 requestIDRef.current = requestAnimationFrame(move);
+                if (sprite_y_cord.current % 5 === 0) {
+                    updateFrame(curFrame, srcX, srcY, true);
+                }
+
                 if (!context) return;
+
                 context.clearRect(
                     sprite_x_cord.current,
                     sprite_y_cord.current,
@@ -327,17 +339,22 @@ const Maze = ({ code, run, setRun }) => {
                     BLOCK_WIDHT
                 );
                 sprite_y_cord.current += 1;
-                context.fillStyle = 'blue';
-                context.fillRect(
+
+                context.drawImage(
+                    character,
+                    srcX.current,
+                    srcY.current,
+                    WIDTH,
+                    HEIGHT,
                     sprite_x_cord.current,
                     sprite_y_cord.current,
-                    BLOCK_LENGHT,
-                    BLOCK_WIDHT
+                    WIDTH,
+                    HEIGHT
                 );
             };
             sprite_y.current += 1;
             move();
-            if (didWin(sprite_x.current, sprite_y.current)) {
+            if (didWin(maze, sprite_x.current, sprite_y.current)) {
                 alert('You won');
             }
         });
@@ -345,7 +362,7 @@ const Maze = ({ code, run, setRun }) => {
 
     const moveUp = () => {
         return new Promise((resolve, reject) => {
-            if (!canMove(sprite_x.current, sprite_y.current - 1)) {
+            if (!canMove(maze, sprite_x.current, sprite_y.current - 1)) {
                 alert('cannot move up');
                 reject();
                 return;
@@ -362,24 +379,34 @@ const Maze = ({ code, run, setRun }) => {
                 }
                 requestIDRef.current = requestAnimationFrame(move);
                 if (!context) return;
+
+                if (sprite_y_cord.current % 5 === 0) {
+                    updateFrame(curFrame, srcX, srcY, false);
+                }
                 context.clearRect(
                     sprite_x_cord.current,
                     sprite_y_cord.current,
                     BLOCK_LENGHT,
                     BLOCK_WIDHT
                 );
+
                 sprite_y_cord.current -= 1;
-                context.fillStyle = 'blue';
-                context.fillRect(
+
+                context.drawImage(
+                    character,
+                    srcX.current,
+                    srcY.current,
+                    WIDTH,
+                    HEIGHT,
                     sprite_x_cord.current,
                     sprite_y_cord.current,
-                    BLOCK_LENGHT,
-                    BLOCK_WIDHT
+                    WIDTH,
+                    HEIGHT
                 );
             };
             sprite_y.current -= 1;
             move();
-            if (didWin(sprite_x.current, sprite_y.current)) {
+            if (didWin(maze, sprite_x.current, sprite_y.current)) {
                 alert('You won');
             }
         });
@@ -422,11 +449,6 @@ const Maze = ({ code, run, setRun }) => {
     }, [code, run]);
     return (
         <div className="p-5 flex flex-col justify-around w-3/4 h-screen">
-            <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={changeMaze}>
-                Change Maze
-            </button>
             <canvas
                 ref={canvasRef}
                 className="w-full h-3/4 border-8 border-slate-900"></canvas>
