@@ -2,11 +2,11 @@ import './CutomBlocks';
 import './Custom_Blocks_Def';
 import './Custom_Blocks_Gen';
 import './Editor.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 
-const Editor = ({ code, ...props }) => {
+const Editor = ({ code, resetCanvas, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
@@ -50,6 +50,12 @@ const Editor = ({ code, ...props }) => {
         setWorkspace(workspace);
         code.current = co;
     }
+
+    useEffect(() => {
+        if (resetCanvas) {
+            workspace.clear();
+        }
+    }, [resetCanvas]);
 
     return (
         <>

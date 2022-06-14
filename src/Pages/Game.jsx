@@ -44,7 +44,11 @@ const Game = () => {
                 toggleModal={toggleModal}
             />
             <div className="flex">
-                <Editor className="h-screen w-full" code={code} />
+                <Editor
+                    className="h-screen w-full"
+                    code={code}
+                    resetCanvas={resetCanvas}
+                />
                 {/* <Canvas code={code} run={run} setRun={setRun} /> */}
                 <Maze
                     code={code}
