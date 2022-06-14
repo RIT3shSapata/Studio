@@ -5,9 +5,11 @@ const MenuBar = ({ run, handleRun, toggleModal }) => {
     return (
         <div className="flex p-4 bg-blue-500">
             <div className="w-1/2">
-                <span className="font-bold text-orange-500 text-3xl">
-                    Wiingy Studio
-                </span>
+                <Link to="/">
+                    <span className="font-bold text-orange-500 text-3xl">
+                        Wiingy Studio
+                    </span>
+                </Link>
             </div>
             <div>
                 <button onClick={toggleModal}>Next Level</button>

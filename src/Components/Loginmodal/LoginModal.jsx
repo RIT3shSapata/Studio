@@ -1,10 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import facebookLogo from '../../assets/facebook.svg';
 import FacebookLogo from '../../assets/FacebookLogo';
 import googleLogo from '../../assets/google.svg';
 import GoogleLogo from '../../assets/GoogleLogo';
 
 const LoginModal = ({ toggleModal }) => {
+    const navigate = useNavigate();
+    const handleLogin = () => {
+        toggleModal();
+        navigate('/templates');
+    };
     return (
         <div
             className="bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center z-50 "
@@ -49,7 +55,9 @@ const LoginModal = ({ toggleModal }) => {
                     </form>
                 </div>
                 <div className="mt-3 flex justify-end space-x-3">
-                    <button className="px-3 py-1 bg-blue-500 text-white hover:bg-blue-400 rounded">
+                    <button
+                        className="px-3 py-1 bg-blue-500 text-white hover:bg-blue-400 rounded"
+                        onClick={handleLogin}>
                         Log In
                     </button>
                 </div>
