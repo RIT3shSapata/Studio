@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ toggleModal }) => {
+const Modal = ({ toggleModal, nextLevel }) => {
     return (
         <div
             className="bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center z-50"
@@ -27,7 +27,9 @@ const Modal = ({ toggleModal }) => {
                     <button className="px-3 py-1 rounded hover:bg-red-300 hover:bg-opacity-50 hover:text-red-900">
                         Cancel
                     </button>
-                    <button className="px-3 py-1 bg-green-600 text-gray-200 hover:bg-green-500 rounded">
+                    <button
+                        className="px-3 py-1 bg-green-600 text-gray-200 hover:bg-green-500 rounded"
+                        onClick={nextLevel}>
                         Next Level
                     </button>
                 </div>
