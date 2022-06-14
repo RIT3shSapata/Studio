@@ -31,7 +31,12 @@ const Game = () => {
             <div className="flex">
                 <Editor className="h-screen w-full" code={code} />
                 {/* <Canvas code={code} run={run} setRun={setRun} /> */}
-                <Maze code={code} run={run} setRun={setRun} />
+                <Maze
+                    code={code}
+                    run={run}
+                    setRun={setRun}
+                    togalModal={toggleModal}
+                />
             </div>
             {modal && <Modal toggleModal={toggleModal} />}
         </div>
