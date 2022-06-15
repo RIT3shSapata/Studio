@@ -1,12 +1,12 @@
-import './CutomBlocks';
 import './Custom_Blocks_Def';
 import './Custom_Blocks_Gen';
 import './Editor.css';
 import React, { useState, useEffect } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
+import CustomCategory from './CustomCategory';
 
-const Editor = ({ code, resetCanvas, ...props }) => {
+const Editor = ({ code, resetCanvas, toolbox, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
@@ -57,10 +57,19 @@ const Editor = ({ code, resetCanvas, ...props }) => {
         }
     }, [resetCanvas]);
 
+    useEffect(() => {
+        Blockly.registry.register(
+            Blockly.registry.Type.TOOLBOX_ITEM,
+            Blockly.ToolboxCategory.registrationName,
+            CustomCategory,
+            true
+        );
+    }, []);
+
     return (
         <>
             <BlocklyWorkspace
-                toolboxConfiguration={toolboxCategories}
+                toolboxConfiguration={toolbox}
                 initialXml=""
                 // className="fill-height"
                 workspaceConfiguration={{

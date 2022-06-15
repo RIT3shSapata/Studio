@@ -7,6 +7,7 @@ import MenuBar from '../Components/MenuBar/MenuBar';
 import Maze from '../Components/Maze/Maze';
 import Modal from '../Components/Modal/Modal';
 import { maze1, maze2 } from '../Components/Maze/maze_map';
+import MazeToolbox from '../Toolbox/MazeToolbox';
 
 const MAZE_LEVELS = [maze1, maze2];
 const LEVELS = 2;
@@ -37,7 +38,6 @@ const Game = () => {
     };
     return (
         <div className="h-full">
-            {modal && 'hello'}
             <MenuBar
                 run={true}
                 handleRun={handleRun}
@@ -48,6 +48,7 @@ const Game = () => {
                     className="h-screen w-full"
                     code={code}
                     resetCanvas={resetCanvas}
+                    toolbox={MazeToolbox}
                 />
                 {/* <Canvas code={code} run={run} setRun={setRun} /> */}
                 <Maze
