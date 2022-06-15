@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import { maze1, maze2 } from './maze_map';
 import sprite from './sprite.png';
 
 const getPixelRatio = (context) => {
@@ -125,8 +124,6 @@ const Maze = ({
     const srcY = useRef(0);
     const sprite_x = useRef(0);
     const sprite_y = useRef(0);
-
-    // const [maze, setMaze] = useState(maze1);
 
     //Rendering the maze
     useEffect(() => {
