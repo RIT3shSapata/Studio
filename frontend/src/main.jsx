@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<Landing />}></Route>
             <Route path="/game" element={<Game />}></Route>
             <Route path="/templates" element={<Templates />} />
-            <Route path="/blank" element={<Blank />} />
+            <Route path="/blank" element={<Blank />}></Route>
             <Route path="/custom" element={<Customisation />} />
         </Routes>
     </BrowserRouter>

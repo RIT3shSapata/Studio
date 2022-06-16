@@ -6,7 +6,7 @@ import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 import CustomCategory from './CustomCategory';
 
-const Editor = ({ code, resetCanvas, toolbox, save, ...props }) => {
+const Editor = ({ code, resetCanvas, toolbox, save, initialXML, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
@@ -77,7 +77,7 @@ const Editor = ({ code, resetCanvas, toolbox, save, ...props }) => {
         <>
             <BlocklyWorkspace
                 toolboxConfiguration={toolbox}
-                initialXml=""
+                initialXml={initialXML}
                 // className="fill-height"
                 workspaceConfiguration={{
                     grid: {
