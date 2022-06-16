@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["linux-arm64-openssl-1.1.x", "darwin-arm64"]
 }
 
 datasource db {
@@ -8,7 +9,18 @@ datasource db {
 }
 
 model user {
-  id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(255)
-  email String  @unique(map: "email") @db.VarChar(255)
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String
+  password String
+  project  project[]
+}
+
+model project {
+  id        Int      @id @default(autoincrement())
+  name      String
+  authorId  Int
+  value     String
+  createdAt DateTime
+  author    user     @relation(fields: [authorId], references: [id])
 }

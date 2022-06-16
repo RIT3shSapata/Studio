@@ -1,15 +1,15 @@
 version: '3.8'
 services:
-    backend:
-        build:
-            context: ./backend
-            dockerfile: Dockerfile
-        ports:
-            - '5000:5000'
-        volumes:
-            - ./backend:/app
-        env_file:
-            - ./backend/.env
+    # backend:
+    #     build:
+    #         context: ./backend
+    #         dockerfile: Dockerfile
+    #     ports:
+    #         - '5000:5000'
+    #     volumes:
+    #         - ./backend:/app
+    #     env_file:
+    #         - ./backend/.env
 
     mysql_db:
         image: mysql
