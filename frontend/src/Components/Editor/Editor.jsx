@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 import CustomCategory from './CustomCategory';
+import axios from '../../utils/axios';
 
 const Editor = ({ code, resetCanvas, toolbox, save, initialXML, ...props }) => {
     const [xml, setXml] = useState('');
@@ -61,6 +62,19 @@ const Editor = ({ code, resetCanvas, toolbox, save, initialXML, ...props }) => {
         console.log('XML');
         if (save) {
             console.log(xml);
+            xml.replace('"', "'");
+            const saveProject = async () => {
+                try {
+                    await axios.post('/addProject', {
+                        name: 'test',
+                        value: xml,
+                        authorId: 1,
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
+            };
+            saveProject();
         }
     }, [save]);
 
