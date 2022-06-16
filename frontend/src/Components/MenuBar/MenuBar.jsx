@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MenuBar = ({ run, handleRun, toggleModal }) => {
+const MenuBar = ({ run, handleRun, toggleModal, saveCode }) => {
     return (
         <div className="flex p-4 bg-blue-500">
             <div className="w-1/2">
@@ -13,6 +13,7 @@ const MenuBar = ({ run, handleRun, toggleModal }) => {
             </div>
             <div>
                 <button onClick={toggleModal}>Next Level</button>
+                <button onClick={saveCode}>Save</button>
             </div>
             <div className="w-1/2 flex justify-end">
                 {run ? (

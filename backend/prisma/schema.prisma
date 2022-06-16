@@ -17,10 +17,9 @@ model user {
 }
 
 model project {
-  id        Int      @id @default(autoincrement())
-  name      String
-  authorId  Int
-  value     String
-  createdAt DateTime
-  author    user     @relation(fields: [authorId], references: [id])
+  id       Int    @id @default(autoincrement())
+  name     String
+  authorId Int
+  value    String @db.VarChar(1000)
+  author   user   @relation(fields: [authorId], references: [id])
 }

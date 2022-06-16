@@ -6,7 +6,7 @@ import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 import CustomCategory from './CustomCategory';
 
-const Editor = ({ code, resetCanvas, toolbox, ...props }) => {
+const Editor = ({ code, resetCanvas, toolbox, save, ...props }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
@@ -56,6 +56,13 @@ const Editor = ({ code, resetCanvas, toolbox, ...props }) => {
             workspace.clear();
         }
     }, [resetCanvas]);
+
+    useEffect(() => {
+        console.log('XML');
+        if (save) {
+            console.log(xml);
+        }
+    }, [save]);
 
     useEffect(() => {
         Blockly.registry.register(

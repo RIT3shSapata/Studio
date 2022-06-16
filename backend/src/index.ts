@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import userRouter from './router/router.user';
+import projecRotuer from './router/router.projects';
 import cors from 'cors';
 
 dotenv.config();
@@ -13,6 +14,7 @@ console.log(PORT);
 app.use(cors());
 app.use(express.json());
 app.use(userRouter);
+app.use(projecRotuer);
 app.get('/', (req: Request, res: Response) => {
     res.send('hello!!!');
 });
