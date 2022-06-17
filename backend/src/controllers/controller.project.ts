@@ -24,16 +24,29 @@ const addProject = async (req: Request, res: Response) => {
     }
 };
 
+const getProjects = async (req: Request, res: Response) => {
+    try {
+        const projects = await prisma.project.findMany({
+            where: {
+                authorId: req.body.id,
+            },
+        });
+        res.send(projects);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+};
+
 const getProject = async (req: Request, res: Response) => {
     try {
-        console.log(req.body.id);
         const project = await prisma.project.findFirst({
             where: {
-                id: req.body.id,
+                id: +req.body.id,
             },
         });
         res.send(project);
     } catch (e) {
+        console.log(e);
         res.status(500).send(e);
     }
 };
@@ -43,4 +56,4 @@ const getAllProjects = async (req: Request, res: Response) => {
     res.send(projects);
 };
 
-export { addProject, getProject, getAllProjects };
+export { addProject, getProjects, getAllProjects, getProject };

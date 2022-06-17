@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly/core';
+import logo_only from './logo_only.svg';
 export default class CustomCategory extends Blockly.ToolboxCategory {
     /**
      * Constructor for a custom category.
@@ -55,7 +56,7 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
      */
     createIconDom_() {
         const iconImg = document.createElement('img');
-        iconImg.src = './logo_only.svg';
+        iconImg.src = logo_only;
         iconImg.alt = 'Blockly Logo';
         iconImg.width = '25';
         iconImg.height = '25';

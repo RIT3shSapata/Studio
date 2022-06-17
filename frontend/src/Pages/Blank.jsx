@@ -3,6 +3,7 @@ import Editor from '../Components/Editor/Editor';
 import MenuBar from '../Components/MenuBar/MenuBar';
 import toolbox from '../Toolbox/toolbox';
 import axios from '../utils/axios';
+import { useParams } from 'react-router-dom';
 
 const Blank = () => {
     const code = useRef(null);
@@ -11,12 +12,15 @@ const Blank = () => {
     const [resetCanvas, setResetCanvas] = useState(false);
     const [save, setSave] = useState(false);
     const [initxml, setXml] = useState('');
+    const params = useParams();
+
+    console.log(params);
 
     useEffect(() => {
         const getProject = async () => {
             try {
-                const res = await axios.post('/project', {
-                    id: 1,
+                const res = await axios.post('/getProject', {
+                    id: params.id,
                 });
                 console.log(res.data.value);
                 setXml(res.data.value);
