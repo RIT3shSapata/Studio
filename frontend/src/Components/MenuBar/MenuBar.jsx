@@ -4,7 +4,14 @@ import useMenuBarStore from '../../store/menuBarStore';
 import Menu from './Menu';
 
 const MenuBar = ({ run, handleRun, toggleModal, saveCode }) => {
-    const activePage = useMenuBarStore((state) => state.activePage);
+    const { activePage, share, changeShare } = useMenuBarStore((state) => ({
+        activePage: state.activePage,
+        share: state.share,
+        changeShare: state.changeShare,
+    }));
+    const handleShare = () => {
+        changeShare(!share);
+    };
     return (
         <div className="flex p-4 bg-blue-500">
             <div className="w-1/2">
@@ -20,19 +27,20 @@ const MenuBar = ({ run, handleRun, toggleModal, saveCode }) => {
                 </div>
             ) : (
                 // TODO: Change this to a different page value
-                <>
-                    <div>
+                <div className="flex justify-between">
+                    <div className="flex justify-evenly">
                         <button onClick={toggleModal}>Next Level</button>
                         <button onClick={saveCode}>Save</button>
+                        <button onClick={handleShare}>Share</button>
                     </div>
-                    <div className="w-1/2 flex justify-end">
+                    <div>
                         {run ? (
                             <button onClick={handleRun}>Run</button>
                         ) : (
                             <Link to="/game">Go to Game</Link>
                         )}
                     </div>
-                </>
+                </div>
             )}
             <Menu />
         </div>

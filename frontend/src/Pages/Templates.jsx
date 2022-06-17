@@ -5,8 +5,13 @@ import MenuBar from '../Components/MenuBar/MenuBar';
 import useAuthStore from '../store/authStore';
 import useProjectStore from '../store/projectStore';
 import shallow from 'zustand/shallow';
+import useMenuBarStore from '../store/menuBarStore';
 
 const Templates = () => {
+    const { changePage } = useMenuBarStore((state) => ({
+        changePage: state.changePage,
+    }));
+
     const { user, loggedIn } = useAuthStore(
         (state) => ({
             user: state.user,
@@ -25,7 +30,7 @@ const Templates = () => {
 
     useEffect(() => {
         const _getProjects = async () => {
-            await getProjects();
+            await getProjects(user.id);
         };
         _getProjects();
         console.log(projects);
@@ -33,6 +38,7 @@ const Templates = () => {
 
     const navigate = useNavigate();
     const handleClick = (id) => {
+        changePage('game');
         navigate(`/game/${id}`);
     };
     const blank = () => {

@@ -4,6 +4,7 @@ import MenuBar from '../Components/MenuBar/MenuBar';
 import toolbox from '../Toolbox/toolbox';
 import axios from '../utils/axios';
 import { useParams } from 'react-router-dom';
+import useMenuBarStore from '../store/menuBarStore';
 
 const Blank = () => {
     const code = useRef(null);
@@ -13,8 +14,10 @@ const Blank = () => {
     const [save, setSave] = useState(false);
     const [initxml, setXml] = useState('');
     const params = useParams();
-
-    console.log(params);
+    const { share, changeShare } = useMenuBarStore((state) => ({
+        share: state.share,
+        changeShare: state.changeShare,
+    }));
 
     useEffect(() => {
         const getProject = async () => {
@@ -22,15 +25,22 @@ const Blank = () => {
                 const res = await axios.post('/getProject', {
                     id: params.id,
                 });
-                console.log(res.data.value);
                 setXml(res.data.value);
             } catch (e) {
                 console.log(e);
             }
         };
         getProject();
-    });
+    }, []);
 
+    useEffect(() => {
+        if (share) {
+            const url = `http://localhost:3000/game/${params.id}`;
+            navigator.clipboard.writeText(url);
+            alert('copied to clipboard');
+            changeShare(false);
+        }
+    }, [share]);
     const toggleModal = () => {
         setModal(!modal);
         console.log(modal);

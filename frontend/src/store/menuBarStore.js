@@ -6,9 +6,15 @@ const useMenuBarStore = create(
         persist(
             (set) => ({
                 activePage: 'template',
+                share: false,
                 changePage: (page) => {
                     set({
                         activePage: page,
+                    });
+                },
+                changeShare: (val) => {
+                    set({
+                        share: val,
                     });
                 },
             }),
