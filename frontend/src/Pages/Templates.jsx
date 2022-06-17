@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import mazeImg from '../assets/maze.png';
-import useAuthStore from '../store/authStore';
+import MenuBar from '../Components/MenuBar/MenuBar';
 
 const Templates = () => {
-    const logout = useAuthStore((state) => state.logout);
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/game');
@@ -13,25 +12,9 @@ const Templates = () => {
         navigate('/blank');
     };
 
-    const handleLogout = async () => {
-        await logout();
-        navigate('/');
-    };
     return (
         <div className="h-screen w-screen">
-            <div className="flex p-4 bg-blue-500">
-                <div className="w-1/3">
-                    <span className="font-bold text-orange-500 text-3xl">
-                        Wiingy Studio
-                    </span>
-                </div>
-                <div className="w-1/3 flex justify-center align-middle">
-                    <span>Choose your Templates</span>
-                </div>
-                <div className="w-1/3 flex justify-end">
-                    <button onClick={handleLogout}>Sign Out</button>
-                </div>
-            </div>
+            <MenuBar></MenuBar>
             <div className="w-full h-full bg-gray-900 p-20">
                 <div className="grid grid-cols-4 gap-10">
                     <div
