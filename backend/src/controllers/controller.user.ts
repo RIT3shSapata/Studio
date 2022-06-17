@@ -32,9 +32,14 @@ const signIn = async (req: Request, res: Response) => {
             },
         });
         if (user) {
-            res.send(user);
+            res.send({
+                id: user.id,
+                email: user.email,
+                name: user.name,
+            });
+        } else {
+            res.status(500).send('user not found');
         }
-        res.status(500).send('user not found');
     } catch (e) {
         console.log(e);
         res.status(500).send(e);

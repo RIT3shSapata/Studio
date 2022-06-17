@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import facebookLogo from '../../assets/facebook.svg';
 import FacebookLogo from '../../assets/FacebookLogo';
-import googleLogo from '../../assets/google.svg';
 import GoogleLogo from '../../assets/GoogleLogo';
+import useAuthStore from '../../store/authStore';
+import shallow from 'zustand/shallow';
+import { useEffect } from 'react';
 
 const LoginModal = ({ toggleModal }) => {
     const navigate = useNavigate();
-    const handleLogin = () => {
-        toggleModal();
-        navigate('/templates');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { login, user, loading, loggedIn } = useAuthStore(
+        (state) => ({
+            user: state.user,
+            loading: state.loading,
+            login: state.login,
+            loggedIn: state.loggedIn,
+        }),
+        shallow
+    );
+    const handleLogin = async () => {
+        await login(email, password);
     };
+    useEffect(() => {
+        if (loggedIn) {
+            toggleModal();
+            navigate('/templates');
+        }
+    }, [loggedIn]);
+
     return (
         <div
             className="bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center z-50 "
@@ -41,16 +60,24 @@ const LoginModal = ({ toggleModal }) => {
                     </button>
                 </div>
                 <div className="mt-2 text-sm">
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className="flex flex-col space-y-2">
                             <label className="text-sm font-bold">Email</label>
-                            <input type="email" className="w-full" />
+                            <input
+                                type="email"
+                                className="w-full"
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                         </div>
                         <div className="flex flex-col space-y-2">
                             <label className="text-sm font-bold">
                                 Password
                             </label>
-                            <input type="password" className="w-full" />
+                            <input
+                                type="password"
+                                className="w-full"
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                     </form>
                 </div>

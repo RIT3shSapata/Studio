@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import mazeImg from '../assets/maze.png';
+import useAuthStore from '../store/authStore';
 
 const Templates = () => {
+    const logout = useAuthStore((state) => state.logout);
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/game');
     };
     const blank = () => {
         navigate('/blank');
+    };
+
+    const handleLogout = async () => {
+        await logout();
+        navigate('/');
     };
     return (
         <div className="h-screen w-screen">
@@ -22,11 +29,7 @@ const Templates = () => {
                     <span>Choose your Templates</span>
                 </div>
                 <div className="w-1/3 flex justify-end">
-                    <Link to="/">
-                        <span className="bg-blue-700 p-3 rounded-xl hover:bg-blue-800">
-                            Back
-                        </span>
-                    </Link>
+                    <button onClick={handleLogout}>Sign Out</button>
                 </div>
             </div>
             <div className="w-full h-full bg-gray-900 p-20">
