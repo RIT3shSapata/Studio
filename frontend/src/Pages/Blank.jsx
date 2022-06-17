@@ -5,6 +5,7 @@ import toolbox from '../Toolbox/toolbox';
 import axios from '../utils/axios';
 import { useParams } from 'react-router-dom';
 import useMenuBarStore from '../store/menuBarStore';
+import useAuthStore from '../store/authStore';
 
 const Blank = () => {
     const code = useRef(null);
@@ -13,10 +14,16 @@ const Blank = () => {
     const [resetCanvas, setResetCanvas] = useState(false);
     const [save, setSave] = useState(false);
     const [initxml, setXml] = useState('');
+    const [readOnly, setReadOnly] = useState(false);
     const params = useParams();
+
     const { share, changeShare } = useMenuBarStore((state) => ({
         share: state.share,
         changeShare: state.changeShare,
+    }));
+
+    const { user } = useAuthStore((state) => ({
+        user: state.user,
     }));
 
     useEffect(() => {
@@ -25,6 +32,7 @@ const Blank = () => {
                 const res = await axios.post('/getProject', {
                     id: params.id,
                 });
+                setReadOnly(res.data.authorId != user.id);
                 setXml(res.data.value);
             } catch (e) {
                 console.log(e);
@@ -69,6 +77,7 @@ const Blank = () => {
                     toolbox={toolbox}
                     save={save}
                     initialXML={initxml}
+                    readOnly={readOnly}
                 />
             </div>
         </div>

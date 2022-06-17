@@ -7,7 +7,15 @@ import Blockly from 'blockly';
 import CustomCategory from './CustomCategory';
 import axios from '../../utils/axios';
 
-const Editor = ({ code, resetCanvas, toolbox, save, initialXML, ...props }) => {
+const Editor = ({
+    code,
+    resetCanvas,
+    toolbox,
+    save,
+    initialXML,
+    readOnly,
+    ...props
+}) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
@@ -89,23 +97,45 @@ const Editor = ({ code, resetCanvas, toolbox, save, initialXML, ...props }) => {
 
     return (
         <>
-            <BlocklyWorkspace
-                toolboxConfiguration={toolbox}
-                initialXml={initialXML}
-                // className="fill-height"
-                workspaceConfiguration={{
-                    grid: {
-                        spacing: 20,
-                        length: 3,
-                        colour: '#ccc',
-                        snap: true,
-                    },
-                    renderer: 'zelos',
-                }}
-                onWorkspaceChange={workspaceDidChange}
-                onXmlChange={setXml}
-                {...props}
-            />
+            {readOnly ? (
+                <BlocklyWorkspace
+                    // toolboxConfiguration={toolbox}
+                    initialXml={initialXML}
+                    // className="fill-height"
+                    workspaceConfiguration={{
+                        grid: {
+                            spacing: 20,
+                            length: 3,
+                            colour: '#ccc',
+                            snap: true,
+                        },
+                        renderer: 'zelos',
+                        readOnly: readOnly,
+                    }}
+                    onWorkspaceChange={workspaceDidChange}
+                    onXmlChange={setXml}
+                    {...props}
+                />
+            ) : (
+                <BlocklyWorkspace
+                    toolboxConfiguration={toolbox}
+                    initialXml={initialXML}
+                    // className="fill-height"
+                    workspaceConfiguration={{
+                        grid: {
+                            spacing: 20,
+                            length: 3,
+                            colour: '#ccc',
+                            snap: true,
+                        },
+                        renderer: 'zelos',
+                        readOnly: readOnly,
+                    }}
+                    onWorkspaceChange={workspaceDidChange}
+                    onXmlChange={setXml}
+                    {...props}
+                />
+            )}
         </>
     );
 };
