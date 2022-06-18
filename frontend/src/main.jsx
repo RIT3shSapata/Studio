@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import Blank from './Pages/Blank';
+import Collab from './Pages/Collab';
 import Customisation from './Pages/Customisation';
 import Game from './Pages/Game';
 import Landing from './Pages/Landing';
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/templates" element={<Templates />} />
             <Route path="/blank" element={<Blank />}></Route>
             <Route path="/custom" element={<Customisation />} />
+            <Route path="/collab" element={<Collab />} />
         </Routes>
     </BrowserRouter>
 );
