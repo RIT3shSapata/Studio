@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import MazeToolbox from '../../Toolbox/MazeToolbox';
 import Blockly from 'blockly';
@@ -21,6 +21,7 @@ const CollabEditor = ({ update, setUpdate, xml, setXML, ...props }) => {
     return (
         <BlocklyWorkspace
             toolboxConfiguration={MazeToolbox}
+            initialXml={`<xml xmlns="https://developers.google.com/blockly/xml"></xml>`}
             workspaceConfiguration={{
                 grid: {
                     spacing: 20,
