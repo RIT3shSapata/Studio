@@ -12,14 +12,16 @@ const Blank = () => {
     const [run, setRun] = useState(false);
     const [modal, setModal] = useState(false);
     const [resetCanvas, setResetCanvas] = useState(false);
-    const [save, setSave] = useState(false);
+    // const [save, setSave] = useState(false);
     const [initxml, setXml] = useState('');
     const [readOnly, setReadOnly] = useState(false);
     const params = useParams();
 
-    const { share, changeShare } = useMenuBarStore((state) => ({
+    const { share, changeShare, save, saveCode } = useMenuBarStore((state) => ({
         share: state.share,
+        save: state.save,
         changeShare: state.changeShare,
+        saveCode: state.saveCode,
     }));
 
     const { user } = useAuthStore((state) => ({
@@ -57,17 +59,12 @@ const Blank = () => {
         console.log(code);
         setRun(true);
     };
-    const saveCode = () => {
-        console.log('works');
-        setSave(true);
-    };
     return initxml ? (
         <div className='h-full'>
             <MenuBar
                 run={true}
                 handleRun={handleRun}
                 toggleModal={toggleModal}
-                saveCode={saveCode}
             />
             <div className='flex'>
                 <Editor

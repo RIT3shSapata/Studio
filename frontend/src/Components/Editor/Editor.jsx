@@ -6,53 +6,21 @@ import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 import CustomCategory from './CustomCategory';
 import axios from '../../utils/axios';
+import useMenuBarStore from '../../store/menuBarStore';
 
 const Editor = ({
     code,
     resetCanvas,
-    toolbox,
     save,
+    toolbox,
     initialXML,
     readOnly,
-    ...props
+    className,
 }) => {
     const [xml, setXml] = useState('');
     const [javascriptCode, setJavascriptCode] = useState('');
     const [workspace, setWorkspace] = useState(null);
 
-    const toolboxCategories = {
-        kind: 'categoryToolbox',
-        contents: [
-            {
-                kind: 'category',
-                name: 'maze',
-                color: '120',
-                expanded: 'true',
-                contents: [
-                    {
-                        kind: 'block',
-                        type: 'start_block',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'up_block',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'down_block',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'right_block',
-                    },
-                    {
-                        kind: 'block',
-                        type: 'left_block',
-                    },
-                ],
-            },
-        ],
-    };
     function workspaceDidChange(workspace) {
         const co = Blockly.JavaScript.workspaceToCode(workspace);
         // setJavascriptCode(code);
@@ -67,7 +35,6 @@ const Editor = ({
     }, [resetCanvas]);
 
     useEffect(() => {
-        console.log('XML');
         if (save) {
             console.log(xml);
             xml.replace('"', "'");
@@ -78,6 +45,7 @@ const Editor = ({
                         value: xml,
                         authorId: 1,
                     });
+                    // saveCode(false);
                 } catch (e) {
                     console.log(e);
                 }
@@ -114,7 +82,7 @@ const Editor = ({
                     }}
                     onWorkspaceChange={workspaceDidChange}
                     onXmlChange={setXml}
-                    {...props}
+                    className={className}
                 />
             ) : (
                 <BlocklyWorkspace
@@ -133,7 +101,7 @@ const Editor = ({
                     }}
                     onWorkspaceChange={workspaceDidChange}
                     onXmlChange={setXml}
-                    {...props}
+                    className={className}
                 />
             )}
         </>
