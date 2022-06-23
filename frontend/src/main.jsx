@@ -13,13 +13,13 @@ import Templates from './Pages/Templates';
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Landing />}></Route>
-            <Route path="/game" element={<Game />}></Route>
-            <Route path="/game/:id" element={<Blank />}></Route>
-            <Route path="/templates" element={<Templates />} />
-            <Route path="/blank" element={<Blank />}></Route>
-            <Route path="/custom" element={<Customisation />} />
-            <Route path="/collab" element={<Collab />} />
+            <Route path='/' element={<Landing />}></Route>
+            <Route path='/game' element={<Game />}></Route>
+            <Route path='/game/:id' element={<Blank />}></Route>
+            <Route path='/templates' element={<Templates />} />
+            <Route path='/blank' element={<Blank />}></Route>
+            <Route path='/custom' element={<Customisation />} />
+            <Route path='/collab' element={<Collab />} />
         </Routes>
     </BrowserRouter>
 );

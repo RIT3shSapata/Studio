@@ -49,6 +49,16 @@ const Templates = () => {
         <div className='h-screen w-screen'>
             <MenuBar></MenuBar>
             <div className='w-full h-full bg-gray-900 p-20'>
+                <div className='w-2/12 mb-8 h-11 '>
+                    <ul className='flex text-white w-full h-full'>
+                        <li className='flex w-1/2 justify-around hover:bg-gray-800 align-bottom'>
+                            <span className='flex border-b-2 text-orange-500 border-orange-500 align-baseline'>
+                                My Projects
+                            </span>
+                        </li>
+                        <li className='flex w-1/2 justify-around'>Templates</li>
+                    </ul>
+                </div>
                 <div className='grid grid-cols-4 gap-10'>
                     <div
                         onClick={blank}
