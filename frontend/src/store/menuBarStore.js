@@ -7,6 +7,8 @@ const useMenuBarStore = create(
             (set) => ({
                 activePage: 'template',
                 share: false,
+                run: false,
+                save: false,
                 changePage: (page) => {
                     set({
                         activePage: page,
@@ -15,6 +17,16 @@ const useMenuBarStore = create(
                 changeShare: (val) => {
                     set({
                         share: val,
+                    });
+                },
+                toggleRun: (val) => {
+                    set({
+                        run: val,
+                    });
+                },
+                saveCode: (val) => {
+                    set({
+                        save: val,
                     });
                 },
             }),

@@ -32,8 +32,8 @@ const Templates = () => {
         const _getProjects = async () => {
             await getProjects(user.id);
         };
+        changePage('template');
         _getProjects();
-        console.log(projects);
     }, []);
 
     const navigate = useNavigate();
@@ -46,20 +46,20 @@ const Templates = () => {
     };
 
     return (
-        <div className="h-screen w-screen">
+        <div className='h-screen w-screen'>
             <MenuBar></MenuBar>
-            <div className="w-full h-full bg-gray-900 p-20">
-                <div className="grid grid-cols-4 gap-10">
+            <div className='w-full h-full bg-gray-900 p-20'>
+                <div className='grid grid-cols-4 gap-10'>
                     <div
                         onClick={blank}
-                        className="p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2">
-                        <div className="flex justify-center align-middle h-full">
-                            <div className="flex flex-col justify-center h-full">
-                                <span className="text-white text-5xl">+</span>
+                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2'>
+                        <div className='flex justify-center align-middle h-full'>
+                            <div className='flex flex-col justify-center h-full'>
+                                <span className='text-white text-5xl'>+</span>
                             </div>
                         </div>
-                        <div className="flex justify-center align-middle mt-4">
-                            <span className="text-white">Empty Project</span>
+                        <div className='flex justify-center align-middle mt-4'>
+                            <span className='text-white'>Empty Project</span>
                         </div>
                     </div>
                     {/* <div
@@ -81,18 +81,19 @@ const Templates = () => {
                         projects.map((project) => {
                             return (
                                 <div
+                                    key={project.id}
                                     onClick={() => handleClick(project.id)}
-                                    className="p-6 bg-gray-600 flex flex-col rounded-xl hover:border-blue-500 hover:border-2">
-                                    <div className="flex justify-center">
-                                        <div className="w-96">
+                                    className='p-6 bg-gray-600 flex flex-col rounded-xl hover:border-blue-500 hover:border-2'>
+                                    <div className='flex justify-center'>
+                                        <div className='w-96'>
                                             <img
                                                 src={mazeImg}
-                                                className="max-w-full h-auto"
+                                                className='max-w-full h-auto'
                                             />
                                         </div>
                                     </div>
-                                    <div className="flex justify-center align-middle mt-4">
-                                        <span className="text-white">
+                                    <div className='flex justify-center align-middle mt-4'>
+                                        <span className='text-white'>
                                             {project.name}{' '}
                                         </span>
                                     </div>

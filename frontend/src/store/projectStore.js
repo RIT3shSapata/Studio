@@ -15,7 +15,6 @@ const useProjectStore = create(
                     const res = await axios.post('/project', {
                         id,
                     });
-                    console.log(res.data);
                     set({
                         projects: [...res.data],
                         loading: false,

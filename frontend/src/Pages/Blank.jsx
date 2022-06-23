@@ -62,16 +62,16 @@ const Blank = () => {
         setSave(true);
     };
     return initxml ? (
-        <div className="h-full">
+        <div className='h-full'>
             <MenuBar
                 run={true}
                 handleRun={handleRun}
                 toggleModal={toggleModal}
                 saveCode={saveCode}
             />
-            <div className="flex">
+            <div className='flex'>
                 <Editor
-                    className="h-screen w-full"
+                    className='h-screen w-full'
                     code={code}
                     resetCanvas={resetCanvas}
                     toolbox={toolbox}
