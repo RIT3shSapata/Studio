@@ -9,6 +9,7 @@ import Customisation from './Pages/Customisation';
 import Game from './Pages/Game';
 import Landing from './Pages/Landing';
 import Templates from './Pages/Templates';
+import VM from './Pages/VM';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -19,7 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/templates' element={<Templates />} />
             <Route path='/blank' element={<Blank />}></Route>
             <Route path='/custom' element={<Customisation />} />
-            <Route path='/collab' element={<Collab />} />
+            {/* <Route path='/collab' element={<Collab />} /> */}
+            <Route path='/vm' element={<VM />} />
         </Routes>
     </BrowserRouter>
 );
