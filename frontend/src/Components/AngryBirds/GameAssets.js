@@ -102,4 +102,14 @@ export default {
         srcY: 0,
         scale: 1,
     },
+    10: {
+        name: 'background',
+        type: 'background',
+        height: 250,
+        width: 250,
+        src: background,
+        srcX: 0,
+        srcY: 0,
+        scale: 40,
+    },
 };

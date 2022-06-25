@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import background from './assets/background.png';
-import bird from './assets/move_avatar_1.png';
-import obstacle from './assets/obstacle.png';
-import goal_idle from './assets/goal_idle.gif';
-import tile from './assets/tiles.png';
 import Sprite from './Objects/Sprite';
-import Object from './Objects/Object';
 import useAngryBirdStore from '../../store/angryBirdStore';
 import shallow from 'zustand/shallow';
 
@@ -58,7 +52,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         let img = new Image();
         img.src = properties.src;
         cords.forEach((cord) => {
-            console.log(cord);
             const sprite_obj = new Sprite(
                 img,
                 properties.width,
@@ -70,7 +63,8 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                 context,
                 properties.scale,
                 1,
-                BIRD_FRAMES
+                BIRD_FRAMES,
+                spriteID
             );
             // sprite_obj.draw();
             game.addSprite(sprite_obj);
@@ -86,77 +80,84 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
     }, []);
 
     //Animate Function
-    // const move = () => {
-    //     return new Promise((resolve, reject) => {
-    //         const canvas = canvasRef.current;
-    //         const context = canvas.getContext('2d');
-    //         const animate = () => {
-    //             if (sprite.stopAnimation()) {
-    //                 sprite.changeX = 0;
-    //                 sprite.changeY = 0;
-    //                 resolve();
-    //                 return;
-    //             }
-    //             sprite.requestID = requestAnimationFrame(animate);
-    //             if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
-    //                 sprite.updateFrame();
-    //             } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
-    //                 sprite.updateFrame();
-    //             }
-    //             context.clearRect(
-    //                 sprite.curX,
-    //                 sprite.curY,
-    //                 sprite.width,
-    //                 sprite.height
-    //             );
-    //             sprite.curX = sprite.curX + sprite.changeX;
-    //             sprite.curY = sprite.curY + sprite.changeY;
-    //             sprite.draw();
-    //         };
-    //         sprite.curX = sprite.curX + sprite.changeX;
-    //         sprite.curY = sprite.curY + sprite.changeY;
-    //         animate();
-    //     });
-    // };
+    const move = (sprite) => {
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const animate = () => {
+                if (sprite.stopAnimation()) {
+                    sprite.changeX = 0;
+                    sprite.changeY = 0;
+                    resolve();
+                    return;
+                }
+                sprite.requestID = requestAnimationFrame(animate);
+                if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
+                    sprite.updateFrame();
+                } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
+                    sprite.updateFrame();
+                }
+                context.clearRect(
+                    sprite.curX,
+                    sprite.curY,
+                    sprite.width,
+                    sprite.height
+                );
+                sprite.curX = sprite.curX + sprite.changeX;
+                sprite.curY = sprite.curY + sprite.changeY;
+                sprite.draw();
+            };
+            sprite.curX = sprite.curX + sprite.changeX;
+            sprite.curY = sprite.curY + sprite.changeY;
+            animate();
+        });
+    };
 
-    // useEffect(() => {
-    //     if (run) {
-    //         const instructions = game.run(spriteID);
-    //         console.log(game);
-    //         setGame(game);
-
-    //         const animate = async () => {
-    //             for (var idx = 0; idx < instructions.length; idx++) {
-    //                 var instruction = instructions[idx];
-    //                 switch (instruction) {
-    //                     case 'move_up':
-    //                         sprite.updateDir(2);
-    //                         sprite.updatePos();
-    //                         break;
-    //                     case 'move_down':
-    //                         sprite.updateDir(3);
-    //                         sprite.updatePos();
-    //                         break;
-    //                     case 'move_left':
-    //                         sprite.updateDir(0);
-    //                         sprite.updatePos();
-    //                         break;
-    //                     case 'move_right':
-    //                         sprite.updateDir(1);
-    //                         sprite.updatePos();
-    //                         break;
-    //                 }
-    //                 await move();
-    //             }
-    //         };
-    //         // move();
-    //         animate();
-    //         toggleRun();
-    //     }
-    // }, [run, game]);
+    useEffect(() => {
+        if (run) {
+            const action = game.run(spriteID);
+            console.log(action);
+            if (!action) return;
+            const id = action.spriteID;
+            const instructions = action.instructions;
+            setGame(game);
+            let sprite = game.getSprite(spriteID);
+            if (id == 6) {
+                const animate = async () => {
+                    for (var idx = 0; idx < instructions.length; idx++) {
+                        var instruction = instructions[idx];
+                        switch (instruction) {
+                            case 'move_up':
+                                sprite.updateDir(2);
+                                sprite.updatePos();
+                                break;
+                            case 'move_down':
+                                sprite.updateDir(3);
+                                sprite.updatePos();
+                                break;
+                            case 'move_left':
+                                sprite.updateDir(0);
+                                sprite.updatePos();
+                                break;
+                            case 'move_right':
+                                sprite.updateDir(1);
+                                sprite.updatePos();
+                                break;
+                        }
+                        console.log(sprite);
+                        await move(sprite);
+                    }
+                };
+                // move();
+                animate();
+                toggleRun();
+            }
+        }
+    }, [run, game]);
 
     return (
         <canvas
+            id={spriteID}
             ref={canvasRef}
             className='absolute top-48 left-10 border-4 border-slate-700'
             width='250'

@@ -22,7 +22,8 @@ class Sprite extends Object {
         context,
         scale,
         dir,
-        frames
+        frames,
+        spriteID
     ) {
         super(image, width, height, x, y, srcX, srcY, context, scale);
         this.dir = dir;
@@ -32,6 +33,7 @@ class Sprite extends Object {
         this.target = 0;
         this.changeX = 0;
         this.changeY = 0;
+        this.spriteID = spriteID;
     }
     updateDir(dir) {
         this.dir = dir;

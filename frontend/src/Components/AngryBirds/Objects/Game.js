@@ -13,6 +13,15 @@ class Game {
     addMaze(maze) {
         this.maze = maze;
     }
+    getSprite(spriteID) {
+        let sprite;
+        this.sprites.forEach((item) => {
+            if (item.spriteID === spriteID) {
+                sprite = item;
+            }
+        });
+        return sprite;
+    }
     initMaze() {
         const obj = {};
         const canvas = [];
@@ -25,8 +34,20 @@ class Game {
                 }
             });
         });
+        // canvas.push(
+        //     React.createElement(CanvasComponent, {
+        //         spriteID: 10,
+        //         key: 10,
+        //         cords: [
+        //             {
+        //                 x: 0,
+        //                 y: 0,
+        //             },
+        //         ],
+        //         properties: GameAssets[10],
+        //     })
+        // );
         Object.keys(obj).forEach((key) => {
-            console.log(GameAssets[key]);
             canvas.push(
                 React.createElement(CanvasComponent, {
                     spriteID: key,
@@ -36,6 +57,14 @@ class Game {
                 })
             );
         });
+        // canvas.push(
+        //     React.createElement(CanvasComponent, {
+        //         spriteID: 6,
+        //         key: 6,
+        //         cords: obj[6],
+        //         properties: GameAssets[6],
+        //     })
+        // );
         return canvas;
     }
     addInstructions(spriteID, code) {
@@ -46,14 +75,17 @@ class Game {
         this.queue.push({ spriteID, instructions });
     }
     run(spriteID) {
-        let i;
+        let i = -1;
         this.queue.forEach((item, index) => {
-            if (item.spriteID === spriteID) {
+            console.log(item.spriteID, spriteID);
+            if (item.spriteID == spriteID) {
                 i = index;
             }
         });
+        console.log(i);
+        if (i === -1) return false;
         const action = this.queue.splice(i, 1)[0];
-        return action.instructions;
+        return action;
     }
 }
 
