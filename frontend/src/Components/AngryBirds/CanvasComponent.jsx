@@ -24,7 +24,7 @@ const getPixelRatio = (context) => {
 
 const BIRD_FRAMES = 8;
 
-const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
+const CanvasComponent = ({ spriteID, cords, properties }) => {
     const canvasRef = useRef(null);
     const { run, toggleRun, game, setGame } = useAngryBirdStore(
         (state) => ({
@@ -56,140 +56,111 @@ const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
             canvas.style.height = `${height}px`;
         }
         let img = new Image();
-        let srcX = 0;
-        let srcY = 0;
-        switch (spriteID) {
-            case 0:
-                img.src = tile;
-                srcX = 150;
-                break;
-            case 1:
-                img.src = tile;
-                srcX = 150;
-                break;
-            case 2:
-                img.src = tile;
-                srcX = 150;
-                break;
-            case 3:
-                img.src = tile;
-                srcX = 150;
-                break;
-            case 4:
-                img.src = tile;
-                srcX = 150;
-                break;
-            case 5:
-                img.src = obstacle;
-                break;
-            case 6:
-                img.src = bird;
-                srcX = 150;
-                break;
-            case 7:
-                img.src = goal_idle;
-                break;
-            case 8:
-                img.src = background;
-                break;
-        }
-        const sprite_obj = new Sprite(
-            img,
-            150,
-            192,
-            x,
-            y,
-            srcX,
-            srcY,
-            context,
-            1,
-            BIRD_FRAMES
-        );
+        img.src = properties.src;
+        cords.forEach((cord) => {
+            console.log(cord);
+            const sprite_obj = new Sprite(
+                img,
+                properties.width,
+                properties.height,
+                cord.x,
+                cord.y,
+                properties.srcX,
+                properties.srcY,
+                context,
+                properties.scale,
+                1,
+                BIRD_FRAMES
+            );
+            // sprite_obj.draw();
+            game.addSprite(sprite_obj);
+            setGame(game);
+        });
         img.onload = () => {
-            sprite_obj.draw();
-            console.log(img.src);
+            game.sprites.forEach((sprite) => {
+                sprite.draw();
+            });
+            // game.sprites[0].draw();
         };
-        game.addSprite(sprite_obj);
-        setGame(game);
-        setSprite(sprite_obj);
+        // setSprite(sprite_obj);
     }, []);
 
     //Animate Function
-    const move = () => {
-        return new Promise((resolve, reject) => {
-            const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
-            const animate = () => {
-                if (sprite.stopAnimation()) {
-                    sprite.changeX = 0;
-                    sprite.changeY = 0;
-                    resolve();
-                    return;
-                }
-                sprite.requestID = requestAnimationFrame(animate);
-                if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
-                    sprite.updateFrame();
-                } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
-                    sprite.updateFrame();
-                }
-                context.clearRect(
-                    sprite.curX,
-                    sprite.curY,
-                    sprite.width,
-                    sprite.height
-                );
-                sprite.curX = sprite.curX + sprite.changeX;
-                sprite.curY = sprite.curY + sprite.changeY;
-                sprite.draw();
-            };
-            sprite.curX = sprite.curX + sprite.changeX;
-            sprite.curY = sprite.curY + sprite.changeY;
-            animate();
-        });
-    };
+    // const move = () => {
+    //     return new Promise((resolve, reject) => {
+    //         const canvas = canvasRef.current;
+    //         const context = canvas.getContext('2d');
+    //         const animate = () => {
+    //             if (sprite.stopAnimation()) {
+    //                 sprite.changeX = 0;
+    //                 sprite.changeY = 0;
+    //                 resolve();
+    //                 return;
+    //             }
+    //             sprite.requestID = requestAnimationFrame(animate);
+    //             if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
+    //                 sprite.updateFrame();
+    //             } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
+    //                 sprite.updateFrame();
+    //             }
+    //             context.clearRect(
+    //                 sprite.curX,
+    //                 sprite.curY,
+    //                 sprite.width,
+    //                 sprite.height
+    //             );
+    //             sprite.curX = sprite.curX + sprite.changeX;
+    //             sprite.curY = sprite.curY + sprite.changeY;
+    //             sprite.draw();
+    //         };
+    //         sprite.curX = sprite.curX + sprite.changeX;
+    //         sprite.curY = sprite.curY + sprite.changeY;
+    //         animate();
+    //     });
+    // };
 
-    useEffect(() => {
-        if (run) {
-            const instructions = game.run(spriteID);
-            console.log(game);
-            setGame(game);
+    // useEffect(() => {
+    //     if (run) {
+    //         const instructions = game.run(spriteID);
+    //         console.log(game);
+    //         setGame(game);
 
-            const animate = async () => {
-                for (var idx = 0; idx < instructions.length; idx++) {
-                    var instruction = instructions[idx];
-                    switch (instruction) {
-                        case 'move_up':
-                            sprite.updateDir(2);
-                            sprite.updatePos();
-                            break;
-                        case 'move_down':
-                            sprite.updateDir(3);
-                            sprite.updatePos();
-                            break;
-                        case 'move_left':
-                            sprite.updateDir(0);
-                            sprite.updatePos();
-                            break;
-                        case 'move_right':
-                            sprite.updateDir(1);
-                            sprite.updatePos();
-                            break;
-                    }
-                    await move();
-                }
-            };
-            // move();
-            animate();
-            toggleRun();
-        }
-    }, [run, game]);
+    //         const animate = async () => {
+    //             for (var idx = 0; idx < instructions.length; idx++) {
+    //                 var instruction = instructions[idx];
+    //                 switch (instruction) {
+    //                     case 'move_up':
+    //                         sprite.updateDir(2);
+    //                         sprite.updatePos();
+    //                         break;
+    //                     case 'move_down':
+    //                         sprite.updateDir(3);
+    //                         sprite.updatePos();
+    //                         break;
+    //                     case 'move_left':
+    //                         sprite.updateDir(0);
+    //                         sprite.updatePos();
+    //                         break;
+    //                     case 'move_right':
+    //                         sprite.updateDir(1);
+    //                         sprite.updatePos();
+    //                         break;
+    //                 }
+    //                 await move();
+    //             }
+    //         };
+    //         // move();
+    //         animate();
+    //         toggleRun();
+    //     }
+    // }, [run, game]);
 
     return (
         <canvas
             ref={canvasRef}
-            className='relative top-10 left-10 border-4 border-slate-700'
-            width='400'
-            height='400'></canvas>
+            className='absolute top-48 left-10 border-4 border-slate-700'
+            width='250'
+            height='250'></canvas>
     );
 };
 

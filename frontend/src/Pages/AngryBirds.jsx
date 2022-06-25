@@ -11,6 +11,7 @@ import Game from '../Components/AngryBirds/Objects/Game';
 const AngryBirds = () => {
     const code = useRef(null);
     const [sprite, setSprite] = useState(null);
+    const [ele, setEle] = useState(null);
     const { run, toggleRun, game, setGame, getCode, toggleGetCode } =
         useAngryBirdStore(
             (state) => ({
@@ -25,6 +26,8 @@ const AngryBirds = () => {
         );
     useEffect(() => {
         const newGame = new Game();
+        newGame.addMaze(level1);
+        setEle(newGame.initMaze());
         setGame(newGame);
     }, []);
     // const canvas = [];
@@ -77,7 +80,7 @@ const AngryBirds = () => {
             {/* {canvas} */}
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
                 <div width='400' height='400'>
-                    {game && (
+                    {/* {game && (
                         <CanvasComponent
                             spriteID={6}
                             x={5}
@@ -85,7 +88,8 @@ const AngryBirds = () => {
                             setSprite={setSprite}
                             sprite={sprite}
                         />
-                    )}
+                    )} */}
+                    {ele}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>
                     <button className='btn-primary ' onClick={handleRight}>

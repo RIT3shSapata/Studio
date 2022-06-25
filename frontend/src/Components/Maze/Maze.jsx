@@ -414,28 +414,28 @@ const Maze = ({
         }
     }, [code, run]);
     return (
-        <div className="p-5 flex flex-col justify-around w-3/4 h-screen">
+        <div className='p-5 flex flex-col justify-around w-3/4 h-screen'>
             <canvas
                 ref={canvasRef}
-                className="w-full h-3/4 border-8 border-slate-900"></canvas>
-            <div className="flex justify-between px-5 pt-2">
+                className='w-full h-3/4 border-8 border-slate-900'></canvas>
+            <div className='flex justify-between px-5 pt-2'>
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                     onClick={moveUp}>
                     up
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                     onClick={moveDown}>
                     down
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                     onClick={moveLeft}>
                     left
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                     onClick={moveRight}>
                     right
                 </button>

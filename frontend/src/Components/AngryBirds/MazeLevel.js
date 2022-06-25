@@ -7,6 +7,7 @@
 5-tnt
 6-angry-bird
 7-pig
+8-empty
 */
 const level1 = [
     [0, 0, 0, 0, 0, 0, 0, 0],

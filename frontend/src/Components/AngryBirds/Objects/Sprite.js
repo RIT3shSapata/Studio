@@ -11,8 +11,20 @@ VLAUES OF DIR
 const FRAMEUPDATE = 25;
 
 class Sprite extends Object {
-    constructor(image, width, height, x, y, srcX, srcY, context, dir, frames) {
-        super(image, width, height, x, y, srcX, srcY, context);
+    constructor(
+        image,
+        width,
+        height,
+        x,
+        y,
+        srcX,
+        srcY,
+        context,
+        scale,
+        dir,
+        frames
+    ) {
+        super(image, width, height, x, y, srcX, srcY, context, scale);
         this.dir = dir;
         this.frames = frames;
         this.currFrame = 0;
