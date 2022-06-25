@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import App from './App';
 import './index.css';
+import AngryBirds from './Pages/AngryBirds';
 import Blank from './Pages/Blank';
 import Collab from './Pages/Collab';
 import Customisation from './Pages/Customisation';
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/custom' element={<Customisation />} />
             {/* <Route path='/collab' element={<Collab />} /> */}
             <Route path='/vm' element={<VM />} />
+            <Route path='/bird' element={<AngryBirds />} />
         </Routes>
     </BrowserRouter>
 );
