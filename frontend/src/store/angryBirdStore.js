@@ -3,11 +3,13 @@ import { devtools } from 'zustand/middleware';
 
 const useAngryBirdStore = create(
     devtools((set) => ({
-        sprites: [],
-        addSprite: (sprite) => {
+        run: false,
+        toggleRun: () => {
             set((state) => ({
-                sprites: [...state.sprites, sprite],
+                run: !state.run,
             }));
         },
     }))
 );
+
+export default useAngryBirdStore;

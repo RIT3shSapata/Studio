@@ -4,9 +4,10 @@ import bird from './assets/move_avatar_1.png';
 import obstacle from './assets/obstacle.png';
 import goal_idle from './assets/goal_idle.gif';
 import tile from './assets/tiles.png';
-import { useState } from 'react';
 import Sprite from './Objects/Sprite';
 import Object from './Objects/Object';
+import useAngryBirdStore from '../../store/angryBirdStore';
+import shallow from 'zustand/shallow';
 
 const getPixelRatio = (context) => {
     var backingStore =
@@ -23,16 +24,15 @@ const getPixelRatio = (context) => {
 
 const BIRD_FRAMES = 8;
 
-const CanvasComponent = ({
-    spriteID,
-    x,
-    y,
-    setSprite,
-    sprite,
-    run,
-    setRun,
-}) => {
+const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
     const canvasRef = useRef(null);
+    const { run, toggleRun } = useAngryBirdStore(
+        (state) => ({
+            run: state.run,
+            toggleRun: state.toggleRun,
+        }),
+        shallow
+    );
     // const [sprite, setSprite] = useState(null);
 
     useEffect(() => {
@@ -121,7 +121,9 @@ const CanvasComponent = ({
                 return;
             }
             sprite.requestID = requestAnimationFrame(animate);
-            if (sprite.curX % 8 === 0) {
+            if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
+                sprite.updateFrame();
+            } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
                 sprite.updateFrame();
             }
             context.clearRect(
@@ -142,7 +144,7 @@ const CanvasComponent = ({
     useEffect(() => {
         if (run) {
             move();
-            setRun(false);
+            toggleRun();
         }
     }, [run]);
 

@@ -35,6 +35,7 @@ const Editor = ({
     }, [resetCanvas]);
 
     useEffect(() => {
+        console.log('XML');
         if (save) {
             console.log(xml);
             xml.replace('"', "'");
