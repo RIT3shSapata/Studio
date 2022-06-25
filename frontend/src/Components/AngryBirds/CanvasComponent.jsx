@@ -26,10 +26,12 @@ const BIRD_FRAMES = 8;
 
 const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
     const canvasRef = useRef(null);
-    const { run, toggleRun } = useAngryBirdStore(
+    const { run, toggleRun, game, setGame } = useAngryBirdStore(
         (state) => ({
             run: state.run,
             toggleRun: state.toggleRun,
+            game: state.game,
+            setGame: state.setGame,
         }),
         shallow
     );
@@ -107,6 +109,8 @@ const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
             sprite_obj.draw();
             console.log(img.src);
         };
+        game.addSprite(sprite_obj);
+        setGame(game);
         setSprite(sprite_obj);
     }, []);
 
@@ -142,11 +146,19 @@ const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
     };
 
     useEffect(() => {
-        if (run) {
-            move();
+        if (run && game.queue.length > 0) {
+            console.log(game.queue);
+            let i;
+            game.queue.forEach((instruction, idx) => {
+                if (instruction.spriteID === spriteID) {
+                    i = idx;
+                }
+            });
+            console.log(i);
+            // move();
             toggleRun();
         }
-    }, [run]);
+    }, [run, game]);
 
     return (
         <canvas

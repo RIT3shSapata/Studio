@@ -6,17 +6,27 @@ import { level1 } from '../Components/AngryBirds/MazeLevel';
 import MazeToolbox from '../Toolbox/MazeToolbox';
 import useAngryBirdStore from '../store/angryBirdStore';
 import shallow from 'zustand/shallow';
+import Game from '../Components/AngryBirds/Objects/Game';
 
 const AngryBirds = () => {
     const code = useRef(null);
     const [sprite, setSprite] = useState(null);
-    const { run, toggleRun } = useAngryBirdStore(
-        (state) => ({
-            run: state.run,
-            toggleRun: state.toggleRun,
-        }),
-        shallow
-    );
+    const { run, toggleRun, game, setGame, getCode, toggleGetCode } =
+        useAngryBirdStore(
+            (state) => ({
+                run: state.run,
+                game: state.game,
+                toggleRun: state.toggleRun,
+                setGame: state.setGame,
+                getCode: state.getCode,
+                toggleGetCode: state.toggleGetCode,
+            }),
+            shallow
+        );
+    useEffect(() => {
+        const newGame = new Game();
+        setGame(newGame);
+    }, []);
     // const canvas = [];
     // for (let i = 0; i < level1.length; i++) {
     //     for (let j = 0; j < level1[i].length; j++) {
@@ -32,44 +42,50 @@ const AngryBirds = () => {
     // }
 
     useEffect(() => {
-        if (run) {
-            console.log(code.current);
+        if (getCode) {
+            game.addInstructions(6, code.current);
+            setGame(game);
+            game.run();
+            toggleRun();
+            toggleGetCode();
         }
-    }, [run]);
+    }, [getCode]);
 
     const handleRight = () => {
         sprite.updateDir(1);
         sprite.updatePos();
-        setRun(true);
+        toggleRun();
     };
 
     const handleLeft = () => {
         sprite.updateDir(0);
         sprite.updatePos();
-        setRun(true);
+        toggleRun();
     };
     const handleUp = () => {
         sprite.updateDir(2);
         sprite.updatePos();
-        setRun(true);
+        toggleRun();
     };
     const handleDown = () => {
         sprite.updateDir(3);
         sprite.updatePos();
-        setRun(true);
+        toggleRun();
     };
     return (
         <div className='w-screen h-screen flex justify-between'>
             {/* {canvas} */}
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
                 <div width='400' height='400'>
-                    <CanvasComponent
-                        spriteID={6}
-                        x={5}
-                        y={5}
-                        setSprite={setSprite}
-                        sprite={sprite}
-                    />
+                    {game && (
+                        <CanvasComponent
+                            spriteID={6}
+                            x={5}
+                            y={5}
+                            setSprite={setSprite}
+                            sprite={sprite}
+                        />
+                    )}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>
                     <button className='btn-primary ' onClick={handleRight}>
@@ -88,7 +104,7 @@ const AngryBirds = () => {
                     <button
                         className='btn-primary '
                         onClick={() => {
-                            toggleRun();
+                            toggleGetCode();
                         }}>
                         Run
                     </button>
