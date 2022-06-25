@@ -14,8 +14,15 @@ class Game {
         }
         this.queue.push({ spriteID, instructions });
     }
-    run() {
-        console.log(this.queue);
+    run(spriteID) {
+        let i;
+        this.queue.forEach((item, index) => {
+            if (item.spriteID === spriteID) {
+                i = index;
+            }
+        });
+        const action = this.queue.splice(i, 1)[0];
+        return action.instructions;
     }
 }
 

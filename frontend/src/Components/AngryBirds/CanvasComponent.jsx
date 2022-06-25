@@ -116,46 +116,70 @@ const CanvasComponent = ({ spriteID, x, y, setSprite, sprite }) => {
 
     //Animate Function
     const move = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const animate = () => {
-            if (sprite.stopAnimation()) {
-                sprite.changeX = 0;
-                sprite.changeY = 0;
-                return;
-            }
-            sprite.requestID = requestAnimationFrame(animate);
-            if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
-                sprite.updateFrame();
-            } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
-                sprite.updateFrame();
-            }
-            context.clearRect(
-                sprite.curX,
-                sprite.curY,
-                sprite.width,
-                sprite.height
-            );
+        return new Promise((resolve, reject) => {
+            const canvas = canvasRef.current;
+            const context = canvas.getContext('2d');
+            const animate = () => {
+                if (sprite.stopAnimation()) {
+                    sprite.changeX = 0;
+                    sprite.changeY = 0;
+                    resolve();
+                    return;
+                }
+                sprite.requestID = requestAnimationFrame(animate);
+                if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
+                    sprite.updateFrame();
+                } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
+                    sprite.updateFrame();
+                }
+                context.clearRect(
+                    sprite.curX,
+                    sprite.curY,
+                    sprite.width,
+                    sprite.height
+                );
+                sprite.curX = sprite.curX + sprite.changeX;
+                sprite.curY = sprite.curY + sprite.changeY;
+                sprite.draw();
+            };
             sprite.curX = sprite.curX + sprite.changeX;
             sprite.curY = sprite.curY + sprite.changeY;
-            sprite.draw();
-        };
-        sprite.curX = sprite.curX + sprite.changeX;
-        sprite.curY = sprite.curY + sprite.changeY;
-        animate();
+            animate();
+        });
     };
 
     useEffect(() => {
-        if (run && game.queue.length > 0) {
-            console.log(game.queue);
-            let i;
-            game.queue.forEach((instruction, idx) => {
-                if (instruction.spriteID === spriteID) {
-                    i = idx;
+        if (run) {
+            const instructions = game.run(spriteID);
+            console.log(game);
+            setGame(game);
+
+            const animate = async () => {
+                for (var idx = 0; idx < instructions.length; idx++) {
+                    var instruction = instructions[idx];
+                    switch (instruction) {
+                        case 'move_up':
+                            sprite.updateDir(2);
+                            sprite.updatePos();
+                            break;
+                        case 'move_down':
+                            sprite.updateDir(3);
+                            sprite.updatePos();
+                            break;
+                        case 'move_left':
+                            sprite.updateDir(0);
+                            sprite.updatePos();
+                            break;
+                        case 'move_right':
+                            sprite.updateDir(1);
+                            sprite.updatePos();
+                            break;
+                    }
+                    await move();
                 }
-            });
-            console.log(i);
+            };
             // move();
+            animate();
             toggleRun();
         }
     }, [run, game]);

@@ -43,9 +43,9 @@ const AngryBirds = () => {
 
     useEffect(() => {
         if (getCode) {
+            console.log(code.current);
             game.addInstructions(6, code.current);
             setGame(game);
-            game.run();
             toggleRun();
             toggleGetCode();
         }
