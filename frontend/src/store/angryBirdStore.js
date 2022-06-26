@@ -4,7 +4,13 @@ import { devtools } from 'zustand/middleware';
 const useAngryBirdStore = create(
     devtools((set) => ({
         run: false,
+        win: false,
         getCode: false,
+        toggleWin: () => {
+            set((state) => ({
+                win: !state.win,
+            }));
+        },
         toggleRun: () => {
             set((state) => ({
                 run: !state.run,

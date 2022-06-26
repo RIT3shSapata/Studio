@@ -26,10 +26,12 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun } = useAngryBirdStore(
+    const { run, toggleRun, win, toggleWin } = useAngryBirdStore(
         (state) => ({
             run: state.run,
             toggleRun: state.toggleRun,
+            win: state.win,
+            toggleWin: state.toggleWin,
         }),
         shallow
     );
@@ -147,9 +149,12 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                                 console.log('start_game');
                         }
                         if (game.canMove(sprite)) {
-                            await toggleRun();
+                            toggleRun();
                             sprite.updatePos();
                             await move(sprite);
+                            if (game.didWin(sprite)) {
+                                toggleWin();
+                            }
                         } else {
                             console.log('cant move');
                         }
@@ -161,6 +166,13 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
             }
         }
     }, [run, game]);
+
+    useEffect(() => {
+        if (win) {
+            const goal = game.getSprite(7);
+            goal.erase();
+        }
+    }, [win]);
 
     return (
         <canvas

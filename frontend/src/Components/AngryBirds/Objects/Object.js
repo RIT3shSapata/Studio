@@ -34,4 +34,12 @@ export default class Object {
             this.height * this.scale
         );
     }
+    erase() {
+        this.context.clearRect(
+            this.curX,
+            this.curY,
+            this.width * this.scale,
+            this.height * this.scale
+        );
+    }
 }

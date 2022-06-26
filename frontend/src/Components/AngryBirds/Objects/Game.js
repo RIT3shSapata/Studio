@@ -16,7 +16,7 @@ class Game {
     getSprite(spriteID) {
         let sprite;
         this.sprites.forEach((item) => {
-            if (item.spriteID === spriteID) {
+            if (item.spriteID == spriteID) {
                 sprite = item;
             }
         });

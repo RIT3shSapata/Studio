@@ -8,6 +8,7 @@ import useAngryBirdStore from '../store/angryBirdStore';
 import shallow from 'zustand/shallow';
 import Game from '../Components/AngryBirds/Objects/Game';
 import useGameStore from '../store/gameStore';
+import Modal from '../Components/Modal/Modal';
 
 const AngryBirds = () => {
     const code = useRef(null);
@@ -17,15 +18,18 @@ const AngryBirds = () => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun, getCode, toggleGetCode } = useAngryBirdStore(
-        (state) => ({
-            run: state.run,
-            toggleRun: state.toggleRun,
-            getCode: state.getCode,
-            toggleGetCode: state.toggleGetCode,
-        }),
-        shallow
-    );
+    const { run, toggleRun, getCode, toggleGetCode, win, toggleWin } =
+        useAngryBirdStore(
+            (state) => ({
+                run: state.run,
+                toggleRun: state.toggleRun,
+                getCode: state.getCode,
+                toggleGetCode: state.toggleGetCode,
+                win: state.win,
+                toggleWin: state.toggleWin,
+            }),
+            shallow
+        );
     useEffect(() => {
         const newGame = new Game();
         newGame.addMaze(level1);
@@ -122,6 +126,7 @@ const AngryBirds = () => {
                     className='h-full w-full'
                 />
             </div>
+            {/* {win ? <Modal toggleModal={toggleWin} /> : ''} */}
         </div>
     );
 };
