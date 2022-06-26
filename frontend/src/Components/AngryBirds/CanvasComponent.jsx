@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Sprite from './Objects/Sprite';
 import useAngryBirdStore from '../../store/angryBirdStore';
 import shallow from 'zustand/shallow';
+import useGameStore from '../../store/gameStore';
 
 const getPixelRatio = (context) => {
     var backingStore =
@@ -20,12 +21,15 @@ const BIRD_FRAMES = 8;
 
 const CanvasComponent = ({ spriteID, cords, properties }) => {
     const canvasRef = useRef(null);
-    const { run, toggleRun, game, setGame } = useAngryBirdStore(
+
+    const { game, setGame } = useGameStore(
+        (state) => ({ game: state.game, setGame: state.setGame }),
+        shallow
+    );
+    const { run, toggleRun } = useAngryBirdStore(
         (state) => ({
             run: state.run,
             toggleRun: state.toggleRun,
-            game: state.game,
-            setGame: state.setGame,
         }),
         shallow
     );
@@ -116,11 +120,10 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
     useEffect(() => {
         if (run) {
             const action = game.run(spriteID);
-            console.log(action);
+            setGame(game);
             if (!action) return;
             const id = action.spriteID;
             const instructions = action.instructions;
-            setGame(game);
             let sprite = game.getSprite(spriteID);
             if (id == 6) {
                 const animate = async () => {
@@ -129,28 +132,32 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                         switch (instruction) {
                             case 'move_up':
                                 sprite.updateDir(2);
-                                sprite.updatePos();
                                 break;
                             case 'move_down':
                                 sprite.updateDir(3);
-                                sprite.updatePos();
                                 break;
                             case 'move_left':
                                 sprite.updateDir(0);
-                                sprite.updatePos();
                                 break;
                             case 'move_right':
                                 sprite.updateDir(1);
-                                sprite.updatePos();
                                 break;
+                            default:
+                                continue;
+                                console.log('start_game');
                         }
-                        console.log(sprite);
-                        await move(sprite);
+                        if (game.canMove(sprite)) {
+                            await toggleRun();
+                            sprite.updatePos();
+                            await move(sprite);
+                        } else {
+                            console.log('cant move');
+                        }
                     }
+                    console.log(run, id);
                 };
                 // move();
                 animate();
-                toggleRun();
             }
         }
     }, [run, game]);

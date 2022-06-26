@@ -34,19 +34,19 @@ class Game {
                 }
             });
         });
-        // canvas.push(
-        //     React.createElement(CanvasComponent, {
-        //         spriteID: 10,
-        //         key: 10,
-        //         cords: [
-        //             {
-        //                 x: 0,
-        //                 y: 0,
-        //             },
-        //         ],
-        //         properties: GameAssets[10],
-        //     })
-        // );
+        canvas.push(
+            React.createElement(CanvasComponent, {
+                spriteID: 10,
+                key: 10,
+                cords: [
+                    {
+                        x: 0,
+                        y: 0,
+                    },
+                ],
+                properties: GameAssets[10],
+            })
+        );
         Object.keys(obj).forEach((key) => {
             canvas.push(
                 React.createElement(CanvasComponent, {
@@ -57,14 +57,6 @@ class Game {
                 })
             );
         });
-        // canvas.push(
-        //     React.createElement(CanvasComponent, {
-        //         spriteID: 6,
-        //         key: 6,
-        //         cords: obj[6],
-        //         properties: GameAssets[6],
-        //     })
-        // );
         return canvas;
     }
     addInstructions(spriteID, code) {
@@ -74,15 +66,24 @@ class Game {
         }
         this.queue.push({ spriteID, instructions });
     }
+    canMove(sprite) {
+        const { x, y } = sprite.checkPos();
+        const nextPos = this.maze[y][x];
+        return nextPos === 8 || nextPos === 7;
+    }
+    didWin(sprite) {
+        const x = sprite.x;
+        const y = sprite.y;
+        const nextPos = this.maze[y][x];
+        return nextPos === 7;
+    }
     run(spriteID) {
         let i = -1;
         this.queue.forEach((item, index) => {
-            console.log(item.spriteID, spriteID);
             if (item.spriteID == spriteID) {
                 i = index;
             }
         });
-        console.log(i);
         if (i === -1) return false;
         const action = this.queue.splice(i, 1)[0];
         return action;

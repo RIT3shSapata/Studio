@@ -7,23 +7,25 @@ import MazeToolbox from '../Toolbox/MazeToolbox';
 import useAngryBirdStore from '../store/angryBirdStore';
 import shallow from 'zustand/shallow';
 import Game from '../Components/AngryBirds/Objects/Game';
+import useGameStore from '../store/gameStore';
 
 const AngryBirds = () => {
     const code = useRef(null);
     const [sprite, setSprite] = useState(null);
     const [ele, setEle] = useState(null);
-    const { run, toggleRun, game, setGame, getCode, toggleGetCode } =
-        useAngryBirdStore(
-            (state) => ({
-                run: state.run,
-                game: state.game,
-                toggleRun: state.toggleRun,
-                setGame: state.setGame,
-                getCode: state.getCode,
-                toggleGetCode: state.toggleGetCode,
-            }),
-            shallow
-        );
+    const { game, setGame } = useGameStore(
+        (state) => ({ game: state.game, setGame: state.setGame }),
+        shallow
+    );
+    const { run, toggleRun, getCode, toggleGetCode } = useAngryBirdStore(
+        (state) => ({
+            run: state.run,
+            toggleRun: state.toggleRun,
+            getCode: state.getCode,
+            toggleGetCode: state.toggleGetCode,
+        }),
+        shallow
+    );
     useEffect(() => {
         const newGame = new Game();
         newGame.addMaze(level1);
@@ -48,8 +50,8 @@ const AngryBirds = () => {
         if (getCode) {
             game.addInstructions(6, code.current);
             setGame(game);
-            toggleRun();
             toggleGetCode();
+            toggleRun();
         }
     }, [getCode]);
 

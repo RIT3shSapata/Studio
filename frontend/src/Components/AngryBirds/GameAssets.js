@@ -84,7 +84,7 @@ export default {
     },
     7: {
         name: 'pig',
-        type: 'sprite',
+        type: 'goal',
         height: SPRITE_SIZE,
         width: SPRITE_SIZE,
         src: goal_idle,

@@ -63,6 +63,27 @@ class Sprite extends Object {
                 break;
         }
     }
+    checkPos() {
+        switch (this.dir) {
+            case 0:
+                return { x: this.x - 1, y: this.y };
+            case 1:
+                return {
+                    x: this.x + 1,
+                    y: this.y,
+                };
+            case 2:
+                return {
+                    y: this.y - 1,
+                    x: this.x,
+                };
+            case 3:
+                return {
+                    x: this.x,
+                    y: this.y + 1,
+                };
+        }
+    }
     updatePos() {
         switch (this.dir) {
             case 0:
