@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import AngryBirdEditor from '../Components/AngryBirds/AngryBirdEditor';
 import CanvasComponent from '../Components/AngryBirds/CanvasComponent';
-import { level1 } from '../Components/AngryBirds/MazeLevel';
+import MazeLevels from '../Components/AngryBirds/MazeLevel';
 import MazeToolbox from '../Toolbox/MazeToolbox';
 import useAngryBirdStore from '../store/angryBirdStore';
 import shallow from 'zustand/shallow';
@@ -32,23 +32,10 @@ const AngryBirds = () => {
         );
     useEffect(() => {
         const newGame = new Game();
-        newGame.addMaze(level1);
+        newGame.addMaze(MazeLevels);
         setEle(newGame.initMaze());
         setGame(newGame);
     }, []);
-    // const canvas = [];
-    // for (let i = 0; i < level1.length; i++) {
-    //     for (let j = 0; j < level1[i].length; j++) {
-    //         canvas.push(
-    //             <CanvasComponent
-    //                 key={i + '-' + j}
-    //                 spriteID={level1[i][j]}
-    //                 x={j}
-    //                 y={i}
-    //             />
-    //         );
-    //     }
-    // }
 
     useEffect(() => {
         if (getCode) {
@@ -82,18 +69,8 @@ const AngryBirds = () => {
     };
     return (
         <div className='w-screen h-screen flex justify-between'>
-            {/* {canvas} */}
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
                 <div width='400' height='400'>
-                    {/* {game && (
-                        <CanvasComponent
-                            spriteID={6}
-                            x={5}
-                            y={5}
-                            setSprite={setSprite}
-                            sprite={sprite}
-                        />
-                    )} */}
                     {ele}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>

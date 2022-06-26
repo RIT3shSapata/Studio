@@ -3,15 +3,16 @@ import GameAssets from '../GameAssets';
 import React from 'react';
 class Game {
     constructor() {
-        this.maze = [];
+        this.mazes = [];
+        this.level = 0;
         this.sprites = [];
         this.queue = [];
     }
     addSprite(sprite) {
         this.sprites.push(sprite);
     }
-    addMaze(maze) {
-        this.maze = maze;
+    addMaze(mazes) {
+        this.mazes = mazes;
     }
     getSprite(spriteID) {
         let sprite;
@@ -25,7 +26,7 @@ class Game {
     initMaze() {
         const obj = {};
         const canvas = [];
-        this.maze.forEach((row_item, row_index) => {
+        this.mazes[this.level].forEach((row_item, row_index) => {
             row_item.forEach((col_item, col_index) => {
                 if (obj[col_item]) {
                     obj[col_item].push({ x: col_index, y: row_index });
@@ -68,13 +69,13 @@ class Game {
     }
     canMove(sprite) {
         const { x, y } = sprite.checkPos();
-        const nextPos = this.maze[y][x];
+        const nextPos = this.mazes[this.level][y][x];
         return nextPos === 8 || nextPos === 7;
     }
     didWin(sprite) {
         const x = sprite.x;
         const y = sprite.y;
-        const nextPos = this.maze[y][x];
+        const nextPos = this.mazes[this.level][y][x];
         return nextPos === 7;
     }
     run(spriteID) {
