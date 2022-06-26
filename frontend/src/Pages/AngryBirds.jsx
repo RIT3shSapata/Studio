@@ -18,18 +18,26 @@ const AngryBirds = () => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun, getCode, toggleGetCode, win, toggleWin } =
-        useAngryBirdStore(
-            (state) => ({
-                run: state.run,
-                toggleRun: state.toggleRun,
-                getCode: state.getCode,
-                toggleGetCode: state.toggleGetCode,
-                win: state.win,
-                toggleWin: state.toggleWin,
-            }),
-            shallow
-        );
+    const {
+        run,
+        toggleRun,
+        getCode,
+        toggleGetCode,
+        win,
+        toggleWin,
+        toggleClearCanvas,
+    } = useAngryBirdStore(
+        (state) => ({
+            run: state.run,
+            toggleRun: state.toggleRun,
+            getCode: state.getCode,
+            toggleGetCode: state.toggleGetCode,
+            win: state.win,
+            toggleWin: state.toggleWin,
+            toggleClearCanvas: state.toggleClearCanvas,
+        }),
+        shallow
+    );
     useEffect(() => {
         const newGame = new Game();
         newGame.addMaze(MazeLevels);
@@ -46,47 +54,24 @@ const AngryBirds = () => {
         }
     }, [getCode]);
 
-    const handleRight = () => {
-        sprite.updateDir(1);
-        sprite.updatePos();
-        toggleRun();
+    const nextLevel = () => {
+        game.nextLevel();
+        setEle(game.initMaze());
+        setGame(game);
+        toggleWin();
     };
 
-    const handleLeft = () => {
-        sprite.updateDir(0);
-        sprite.updatePos();
-        toggleRun();
-    };
-    const handleUp = () => {
-        sprite.updateDir(2);
-        sprite.updatePos();
-        toggleRun();
-    };
-    const handleDown = () => {
-        sprite.updateDir(3);
-        sprite.updatePos();
-        toggleRun();
-    };
+    useEffect(() => {
+        console.log(ele);
+    }, [ele]);
     return (
         <div className='w-screen h-screen flex justify-between'>
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
                 <div width='400' height='400'>
+                    {console.log(ele)}
                     {ele}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>
-                    <button className='btn-primary ' onClick={handleRight}>
-                        Move right
-                    </button>
-                    <button className='btn-primary ' onClick={handleLeft}>
-                        Move left
-                    </button>
-                    <button className='btn-primary ' onClick={handleUp}>
-                        Move up
-                    </button>
-                    <button className='btn-primary ' onClick={handleDown}>
-                        Move down
-                    </button>
-
                     <button
                         className='btn-primary '
                         onClick={() => {
@@ -103,7 +88,7 @@ const AngryBirds = () => {
                     className='h-full w-full'
                 />
             </div>
-            {/* {win ? <Modal toggleModal={toggleWin} /> : ''} */}
+            {win ? <Modal toggleModal={toggleWin} nextLevel={nextLevel} /> : ''}
         </div>
     );
 };

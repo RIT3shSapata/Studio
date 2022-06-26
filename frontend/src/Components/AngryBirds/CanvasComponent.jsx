@@ -26,15 +26,18 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun, win, toggleWin } = useAngryBirdStore(
-        (state) => ({
-            run: state.run,
-            toggleRun: state.toggleRun,
-            win: state.win,
-            toggleWin: state.toggleWin,
-        }),
-        shallow
-    );
+    const { run, toggleRun, win, toggleWin, clearCanvas, toggleClearCanvas } =
+        useAngryBirdStore(
+            (state) => ({
+                run: state.run,
+                toggleRun: state.toggleRun,
+                win: state.win,
+                toggleWin: state.toggleWin,
+                clearCanvas: state.clearCanvas,
+                toggleClearCanvas: state.toggleClearCanvas,
+            }),
+            shallow
+        );
     // const [sprite, setSprite] = useState(null);
 
     useEffect(() => {
@@ -58,6 +61,7 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         let img = new Image();
         img.src = properties.src;
         cords.forEach((cord) => {
+            console.log(cord);
             const sprite_obj = new Sprite(
                 img,
                 properties.width,
@@ -146,7 +150,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                                 break;
                             default:
                                 continue;
-                                console.log('start_game');
                         }
                         if (game.canMove(sprite)) {
                             toggleRun();
@@ -154,12 +157,12 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                             await move(sprite);
                             if (game.didWin(sprite)) {
                                 toggleWin();
+                                game.clearLevel();
                             }
                         } else {
                             console.log('cant move');
                         }
                     }
-                    console.log(run, id);
                 };
                 // move();
                 animate();
@@ -176,7 +179,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
 
     return (
         <canvas
-            id={spriteID}
             ref={canvasRef}
             className='absolute top-48 left-10 border-4 border-slate-700'
             width='250'

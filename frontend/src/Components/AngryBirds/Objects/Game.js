@@ -38,7 +38,7 @@ class Game {
         canvas.push(
             React.createElement(CanvasComponent, {
                 spriteID: 10,
-                key: 10,
+                // key: 10,
                 cords: [
                     {
                         x: 0,
@@ -52,13 +52,26 @@ class Game {
             canvas.push(
                 React.createElement(CanvasComponent, {
                     spriteID: key,
-                    key,
+                    // key,
                     cords: obj[key],
                     properties: GameAssets[key],
                 })
             );
         });
         return canvas;
+    }
+    nextLevel() {
+        this.level = this.level + 1;
+    }
+    clearLevel() {
+        this.sprites.forEach((sprite) => {
+            const ele = document.querySelector('canvas');
+            ele.parentElement.removeChild(ele);
+            // sprite.erase();
+        });
+
+        this.sprites = [];
+        this.queue = [];
     }
     addInstructions(spriteID, code) {
         const instructions = code.split('\n');
