@@ -38,7 +38,7 @@ class Game {
         canvas.push(
             React.createElement(CanvasComponent, {
                 spriteID: 10,
-                // key: 10,
+                key: 10,
                 cords: [
                     {
                         x: 0,
@@ -52,7 +52,7 @@ class Game {
             canvas.push(
                 React.createElement(CanvasComponent, {
                     spriteID: key,
-                    // key,
+                    key,
                     cords: obj[key],
                     properties: GameAssets[key],
                 })

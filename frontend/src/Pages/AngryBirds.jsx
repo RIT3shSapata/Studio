@@ -12,7 +12,6 @@ import Modal from '../Components/Modal/Modal';
 
 const AngryBirds = () => {
     const code = useRef(null);
-    const [sprite, setSprite] = useState(null);
     const [ele, setEle] = useState(null);
     const { game, setGame } = useGameStore(
         (state) => ({ game: state.game, setGame: state.setGame }),
