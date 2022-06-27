@@ -12,18 +12,21 @@ const AngryBirdEditor = ({ code, toolbox, className }) => {
     const [xml, setXml] = useState('');
     const [workspace, setWorkspace] = useState(null);
     const initialXML = `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`;
-    const { loading } = useAngryBirdStore(
+    const { loading, clearCanvas, toggleClearCanvas } = useAngryBirdStore(
         (state) => ({
             loading: state.loading,
+            clearCanvas: state.clearCanvas,
+            toggleClearCanvas: state.toggleClearCanvas,
         }),
         shallow
     );
 
     useEffect(() => {
-        if (loading) {
+        if (clearCanvas) {
             workspace.clear();
+            toggleClearCanvas();
         }
-    }, [loading]);
+    }, [clearCanvas]);
 
     function workspaceDidChange(workspace) {
         const co = Blockly.JavaScript.workspaceToCode(workspace);

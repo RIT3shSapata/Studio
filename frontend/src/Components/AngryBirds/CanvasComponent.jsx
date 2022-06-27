@@ -121,7 +121,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
 
     useEffect(() => {
         if (run) {
-            console.log(game);
             const action = game.run(spriteID);
             setGame(game);
             if (!action) return;
@@ -160,6 +159,10 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                         } else {
                             console.log('cant move');
                         }
+                    }
+                    if (!game.didWin(sprite)) {
+                        toggleRun();
+                        alert('Continue coding');
                     }
                 };
                 // move();

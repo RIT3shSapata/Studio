@@ -50,6 +50,7 @@ const AngryBirds = () => {
 
     useEffect(() => {
         if (getCode) {
+            console.log(code.current);
             game.addInstructions(6, code.current);
             setGame(game);
             toggleGetCode();
@@ -59,6 +60,7 @@ const AngryBirds = () => {
 
     const nextLevel = () => {
         toggleLoading();
+        toggleClearCanvas();
         // game.clearLevel();
         game.nextLevel();
         setEle(game.initMaze());
@@ -67,6 +69,15 @@ const AngryBirds = () => {
             toggleLoading();
         }, 3000);
         toggleWin();
+    };
+
+    const handleReset = () => {
+        toggleLoading();
+        // game.clearLevel();
+        setEle(game.initMaze());
+        setTimeout(() => {
+            toggleLoading();
+        }, 1000);
     };
 
     return (
@@ -82,6 +93,9 @@ const AngryBirds = () => {
                             toggleGetCode();
                         }}>
                         Run
+                    </button>
+                    <button className='btn-primary' onClick={handleReset}>
+                        Reset
                     </button>
                 </div>
             </div>
