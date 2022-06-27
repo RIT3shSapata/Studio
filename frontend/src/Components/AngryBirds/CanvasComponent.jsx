@@ -187,7 +187,7 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
     return (
         <canvas
             ref={canvasRef}
-            className='absolute top-48 left-10 border-4 border-slate-700'
+            className='absolute top-48 right-14 border-4 border-slate-700'
             width='250'
             height='250'></canvas>
     );

@@ -87,6 +87,13 @@ const AngryBirds = () => {
 
     return (
         <div className='w-screen h-screen flex justify-between'>
+            <div id='editor' className='w-4/6 h-full'>
+                <AngryBirdEditor
+                    code={code}
+                    toolbox={MazeToolbox}
+                    className='h-full w-full'
+                />
+            </div>
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
                 <div id='canvas_container' width='400' height='400'>
                     {loading ? 'loading' : ele}
@@ -106,13 +113,6 @@ const AngryBirds = () => {
                         </button>
                     )}
                 </div>
-            </div>
-            <div id='editor' className='w-4/6 h-full'>
-                <AngryBirdEditor
-                    code={code}
-                    toolbox={MazeToolbox}
-                    className='h-full w-full'
-                />
             </div>
             {win ? <Modal toggleModal={toggleWin} nextLevel={nextLevel} /> : ''}
         </div>
