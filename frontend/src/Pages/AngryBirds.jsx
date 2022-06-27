@@ -86,32 +86,41 @@ const AngryBirds = () => {
     };
 
     return (
-        <div className='w-screen h-screen flex justify-between'>
-            <div id='editor' className='w-4/6 h-full'>
-                <AngryBirdEditor
-                    code={code}
-                    toolbox={MazeToolbox}
-                    className='h-full w-full'
-                />
-            </div>
-            <div className='w-2/6 h-full border-r-2 border-slate-500'>
-                <div id='canvas_container' width='400' height='400'>
-                    {loading ? 'loading' : ele}
+        <div className='w-screen h-screen'>
+            <div className='w-full h-20 bg-[#f2f2f2] flex flex-col justify-around border-4'>
+                <div className='bg-white h-[3rem] mr-20 w-10/12 ml-4 pt-2 rounded-lg'>
+                    <span className='font-bold ml-7'>Studio</span>
                 </div>
-                <div className='mt-20 flex gap-2 flex-wrap '>
-                    {reset ? (
-                        <button className='btn-primary' onClick={handleReset}>
-                            Reset
-                        </button>
-                    ) : (
-                        <button
-                            className='btn-primary '
-                            onClick={() => {
-                                toggleGetCode();
-                            }}>
-                            Run
-                        </button>
-                    )}
+            </div>
+            <div className='flex justify-between h-full w-full'>
+                <div id='editor' className='w-4/6 h-full'>
+                    <AngryBirdEditor
+                        code={code}
+                        toolbox={MazeToolbox}
+                        className='h-full w-full'
+                    />
+                </div>
+                <div className='w-2/6 h-full border-r-2 border-slate-500'>
+                    <div id='canvas_container' width='400' height='400'>
+                        {loading ? 'loading' : ele}
+                    </div>
+                    <div className='mt-20 flex gap-2 flex-wrap '>
+                        {reset ? (
+                            <button
+                                className='btn-primary'
+                                onClick={handleReset}>
+                                Reset
+                            </button>
+                        ) : (
+                            <button
+                                className='btn-primary '
+                                onClick={() => {
+                                    toggleGetCode();
+                                }}>
+                                Run
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
             {win ? <Modal toggleModal={toggleWin} nextLevel={nextLevel} /> : ''}

@@ -7,6 +7,7 @@ import { BlocklyWorkspace } from 'react-blockly';
 import Blockly from 'blockly';
 import useAngryBirdStore from '../../store/angryBirdStore';
 import shallow from 'zustand/shallow';
+import './Styles.css';
 
 const AngryBirdEditor = ({ code, toolbox, className }) => {
     const [xml, setXml] = useState('');
