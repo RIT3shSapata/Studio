@@ -71,4 +71,4 @@ const level6 = [
     [3, 5, 5, 5, 5, 5, 2, 2],
     [0, 4, 2, 4, 4, 3, 0, 3],
 ];
-export default [level1, level2, level3];
+export default [level1, level2, level3, level4, level5, level6];

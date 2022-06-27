@@ -121,6 +121,7 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
 
     useEffect(() => {
         if (run) {
+            console.log(game);
             const action = game.run(spriteID);
             setGame(game);
             if (!action) return;
@@ -148,10 +149,10 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                                 continue;
                         }
                         if (game.canMove(sprite)) {
-                            toggleRun();
                             sprite.updatePos();
                             await move(sprite);
                             if (game.didWin(sprite)) {
+                                toggleRun();
                                 const goal = game.getSprite(7);
                                 goal.erase();
                                 toggleWin();
