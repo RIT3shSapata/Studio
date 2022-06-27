@@ -26,12 +26,13 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun, win, toggleWin } = useAngryBirdStore(
+    const { run, toggleRun, win, toggleWin, toggleReset } = useAngryBirdStore(
         (state) => ({
             run: state.run,
             toggleRun: state.toggleRun,
             win: state.win,
             toggleWin: state.toggleWin,
+            toggleReset: state.toggleReset,
         }),
         shallow
     );
@@ -127,6 +128,7 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
             const id = action.spriteID;
             const instructions = action.instructions;
             let sprite = game.getSprite(spriteID);
+            let ins_count = 0;
             if (id == 6) {
                 const animate = async () => {
                     for (var idx = 0; idx < instructions.length; idx++) {
@@ -150,6 +152,16 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                         if (game.canMove(sprite)) {
                             sprite.updatePos();
                             await move(sprite);
+                            ins_count++;
+                            if (
+                                game.didWin(sprite) &&
+                                ins_count < instructions.length - 2
+                            ) {
+                                toggleRun();
+                                toggleReset();
+                                alert('Continue coding');
+                                break;
+                            }
                             if (game.didWin(sprite)) {
                                 toggleRun();
                                 const goal = game.getSprite(7);
@@ -162,6 +174,7 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                     }
                     if (!game.didWin(sprite)) {
                         toggleRun();
+                        toggleReset();
                         alert('Continue coding');
                     }
                 };

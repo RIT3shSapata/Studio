@@ -27,6 +27,8 @@ const AngryBirds = () => {
         toggleClearCanvas,
         loading,
         toggleLoading,
+        reset,
+        toggleReset,
     } = useAngryBirdStore(
         (state) => ({
             run: state.run,
@@ -38,6 +40,8 @@ const AngryBirds = () => {
             toggleClearCanvas: state.toggleClearCanvas,
             loading: state.loading,
             toggleLoading: state.toggleLoading,
+            reset: state.reset,
+            toggleReset: state.toggleReset,
         }),
         shallow
     );
@@ -67,7 +71,7 @@ const AngryBirds = () => {
         setGame(game);
         setTimeout(() => {
             toggleLoading();
-        }, 3000);
+        }, 500);
         toggleWin();
     };
 
@@ -76,8 +80,9 @@ const AngryBirds = () => {
         // game.clearLevel();
         setEle(game.initMaze());
         setTimeout(() => {
+            toggleReset();
             toggleLoading();
-        }, 1000);
+        }, 500);
     };
 
     return (
@@ -87,16 +92,19 @@ const AngryBirds = () => {
                     {loading ? 'loading' : ele}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>
-                    <button
-                        className='btn-primary '
-                        onClick={() => {
-                            toggleGetCode();
-                        }}>
-                        Run
-                    </button>
-                    <button className='btn-primary' onClick={handleReset}>
-                        Reset
-                    </button>
+                    {reset ? (
+                        <button className='btn-primary' onClick={handleReset}>
+                            Reset
+                        </button>
+                    ) : (
+                        <button
+                            className='btn-primary '
+                            onClick={() => {
+                                toggleGetCode();
+                            }}>
+                            Run
+                        </button>
+                    )}
                 </div>
             </div>
             <div id='editor' className='w-4/6 h-full'>
