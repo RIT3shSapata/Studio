@@ -64,12 +64,14 @@ class Game {
         this.level = this.level + 1;
     }
     clearLevel() {
-        this.sprites.forEach((sprite) => {
-            const ele = document.querySelector('canvas');
-            ele.parentElement.removeChild(ele);
-            // sprite.erase();
-        });
-
+        const container = document.getElementById('canvas_container');
+        try {
+            while (container.hasChildNodes && container.lastChild) {
+                container.removeChild(container.lastChild);
+            }
+        } catch (e) {
+            console.log(e);
+        }
         this.sprites = [];
         this.queue = [];
     }

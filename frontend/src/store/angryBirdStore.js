@@ -6,6 +6,7 @@ const useAngryBirdStore = create(
         run: false,
         win: false,
         getCode: false,
+        loading: false,
         clearCanvas: false,
         toggleWin: () => {
             set((state) => ({
@@ -25,6 +26,11 @@ const useAngryBirdStore = create(
         toggleClearCanvas: () => {
             set((state) => ({
                 clearCanvas: !state.clearCanvas,
+            }));
+        },
+        toggleLoading: () => {
+            set((state) => ({
+                loading: !state.loading,
             }));
         },
     }))

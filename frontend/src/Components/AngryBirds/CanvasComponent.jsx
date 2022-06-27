@@ -26,18 +26,15 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         (state) => ({ game: state.game, setGame: state.setGame }),
         shallow
     );
-    const { run, toggleRun, win, toggleWin, clearCanvas, toggleClearCanvas } =
-        useAngryBirdStore(
-            (state) => ({
-                run: state.run,
-                toggleRun: state.toggleRun,
-                win: state.win,
-                toggleWin: state.toggleWin,
-                clearCanvas: state.clearCanvas,
-                toggleClearCanvas: state.toggleClearCanvas,
-            }),
-            shallow
-        );
+    const { run, toggleRun, win, toggleWin } = useAngryBirdStore(
+        (state) => ({
+            run: state.run,
+            toggleRun: state.toggleRun,
+            win: state.win,
+            toggleWin: state.toggleWin,
+        }),
+        shallow
+    );
     // const [sprite, setSprite] = useState(null);
 
     useEffect(() => {
@@ -61,7 +58,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
         let img = new Image();
         img.src = properties.src;
         cords.forEach((cord) => {
-            console.log(cord);
             const sprite_obj = new Sprite(
                 img,
                 properties.width,
@@ -156,8 +152,9 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
                             sprite.updatePos();
                             await move(sprite);
                             if (game.didWin(sprite)) {
+                                const goal = game.getSprite(7);
+                                goal.erase();
                                 toggleWin();
-                                game.clearLevel();
                             }
                         } else {
                             console.log('cant move');
@@ -169,13 +166,6 @@ const CanvasComponent = ({ spriteID, cords, properties }) => {
             }
         }
     }, [run, game]);
-
-    useEffect(() => {
-        if (win) {
-            const goal = game.getSprite(7);
-            goal.erase();
-        }
-    }, [win]);
 
     return (
         <canvas

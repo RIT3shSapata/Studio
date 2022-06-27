@@ -26,6 +26,8 @@ const AngryBirds = () => {
         win,
         toggleWin,
         toggleClearCanvas,
+        loading,
+        toggleLoading,
     } = useAngryBirdStore(
         (state) => ({
             run: state.run,
@@ -35,6 +37,8 @@ const AngryBirds = () => {
             win: state.win,
             toggleWin: state.toggleWin,
             toggleClearCanvas: state.toggleClearCanvas,
+            loading: state.loading,
+            toggleLoading: state.toggleLoading,
         }),
         shallow
     );
@@ -55,21 +59,22 @@ const AngryBirds = () => {
     }, [getCode]);
 
     const nextLevel = () => {
+        toggleLoading();
+        // game.clearLevel();
         game.nextLevel();
         setEle(game.initMaze());
         setGame(game);
+        setTimeout(() => {
+            toggleLoading();
+        }, 3000);
         toggleWin();
     };
 
-    useEffect(() => {
-        console.log(ele);
-    }, [ele]);
     return (
         <div className='w-screen h-screen flex justify-between'>
             <div className='w-2/6 h-full border-r-2 border-slate-500'>
-                <div width='400' height='400'>
-                    {console.log(ele)}
-                    {ele}
+                <div id='canvas_container' width='400' height='400'>
+                    {loading ? 'loading' : ele}
                 </div>
                 <div className='mt-20 flex gap-2 flex-wrap '>
                     <button
