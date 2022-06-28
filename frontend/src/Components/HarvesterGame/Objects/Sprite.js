@@ -39,27 +39,27 @@ class Sprite extends Object {
         this.dir = dir;
         switch (this.dir) {
             case 0:
-                this.srcX = 450;
+                // this.srcX = 450;
                 this.target = this.convertToCord(this.x - 1);
                 this.changeX = -1;
                 break;
             case 1:
-                this.srcX = 150;
+                // this.srcX = 150;
                 this.target = this.convertToCord(this.x + 1);
                 this.changeX = 1;
                 break;
             case 2:
-                this.srcX = 0;
+                // this.srcX = 0;
                 this.target = this.convertToCord(this.y - 1);
                 this.changeY = -1;
                 break;
             case 3:
-                this.srcX = 300;
+                // this.srcX = 300;
                 this.target = this.convertToCord(this.y + 1);
                 this.changeY = 1;
                 break;
             default:
-                this.srcX = 150;
+                // this.srcX = 150;
                 break;
         }
     }
@@ -140,30 +140,6 @@ class Sprite extends Object {
                 changeY = 1;
                 break;
         }
-        const curX_ = this.curX;
-        const curY_ = this.curY;
-        const stopAnimation_ = this.stopAnimation;
-
-        function animate() {
-            console.log(target, 'animate');
-            this.stopAnimation(target);
-            this.requestID = requestAnimationFrame(animate);
-            if (changeX === 0 && this.curY % FRAMEUPDATE === 0) {
-                this.updateFrame();
-            } else if (changeY === 0 && this.curX % FRAMEUPDATE === 0) {
-                this.updateFrame();
-            }
-            this.context.clearRect(
-                this.curX,
-                this.curY,
-                this.width,
-                this.height
-            );
-            this.draw();
-        }
-        this.curX += changeX;
-        this.curY += changeY;
-        animate();
     }
 }
 

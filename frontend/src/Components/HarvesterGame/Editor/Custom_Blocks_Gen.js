@@ -53,9 +53,18 @@ Blockly.JavaScript['loop'] = function (block) {
     if (block.previousConnection.isConnected()) {
         code = '';
         for (let i = 0; i < Number(dropdown_times); i++) {
-            code += statements_name;
+            code += statements_name.replaceAll(' ', '');
         }
     }
     // TODO: Assemble JavaScript into code variable.
+    return code;
+};
+
+Blockly.JavaScript['pick_corn'] = function (block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'not_connected';
+    if (block.previousConnection.isConnected()) {
+        code = 'pick_corn\n';
+    }
     return code;
 };

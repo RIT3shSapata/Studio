@@ -7,7 +7,6 @@ export default {
             color: '120',
             expanded: 'true',
             contents: [
-                { kind: 'block', type: 'loop' },
                 {
                     kind: 'block',
                     type: 'start_block',
@@ -28,6 +27,8 @@ export default {
                     kind: 'block',
                     type: 'left_block',
                 },
+                { kind: 'block', type: 'loop' },
+                { kind: 'block', type: 'pick_corn' },
             ],
         },
     ],

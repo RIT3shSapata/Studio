@@ -86,14 +86,16 @@ class Game {
     }
     canMove(sprite) {
         const { x, y } = sprite.checkPos();
+        console.log(x, y);
         const nextPos = this.mazes[this.level][y][x];
-        return nextPos === 8 || nextPos === 7;
+        return nextPos === 1 || nextPos === 3;
+        // return nextPos === 0 || nextPos === 3;
     }
     didWin(sprite) {
         const x = sprite.x;
         const y = sprite.y;
         const nextPos = this.mazes[this.level][y][x];
-        return nextPos === 7;
+        return nextPos === 3;
     }
     run(spriteID) {
         let i = -1;

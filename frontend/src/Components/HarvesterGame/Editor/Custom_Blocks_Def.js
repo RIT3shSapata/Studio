@@ -1,4 +1,6 @@
 import Blockly, { Block } from 'blockly';
+import repeat from '../assets/repeat-arrows.png';
+import corn from '../assets/corn.png';
 
 Blockly.Blocks['start_block'] = {
     init: function () {
@@ -79,12 +81,28 @@ Blockly.Blocks['loop'] = {
             .setCheck(null)
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField(
-                new Blockly.FieldImage(
-                    'https://studio.code.org/blockly/media/common_images/repeat-arrows.png',
-                    30,
-                    30,
-                    { alt: '*', flipRtl: 'FALSE' }
-                )
+                new Blockly.FieldImage(repeat, 30, 30, {
+                    alt: '*',
+                    flipRtl: 'FALSE',
+                })
+            );
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(300);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    },
+};
+
+Blockly.Blocks['pick_corn'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField('pick')
+            .appendField(
+                new Blockly.FieldImage(corn, 30, 30, {
+                    alt: '*',
+                    flipRtl: 'FALSE',
+                })
             );
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
