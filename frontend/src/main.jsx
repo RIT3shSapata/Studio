@@ -8,6 +8,7 @@ import Blank from './Pages/Blank';
 import Collab from './Pages/Collab';
 import Customisation from './Pages/Customisation';
 import Game from './Pages/Game';
+import HarvesterGame from './Pages/HarvesterGame';
 import Landing from './Pages/Landing';
 import Templates from './Pages/Templates';
 import VM from './Pages/VM';
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* <Route path='/collab' element={<Collab />} /> */}
             <Route path='/vm' element={<VM />} />
             <Route path='/bird' element={<AngryBirds />} />
+            <Route path='/harvest' element={<HarvesterGame />} />
         </Routes>
     </BrowserRouter>
 );

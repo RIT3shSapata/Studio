@@ -1,7 +1,6 @@
-.blocklyToolboxDiv {
+/* .blocklyToolboxDiv {
     background-color: #ffffff;
     height: 27.5rem !important;
-    /* width: 4rem !important; */
     margin-left: 0.5rem !important;
     position: absolute !important;
     top: 10rem !important;
@@ -20,7 +19,7 @@
 }
 .blocklyFlyoutBackground {
     fill: #ffffff !important;
-}
+} */
 .blocklyScrollbarVertical {
     display: none !important;
 }
