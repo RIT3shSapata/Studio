@@ -29,17 +29,37 @@ class Game {
         });
         return sprite;
     }
+    getGoal(spriteID, x, y) {
+        let goal;
+        let i;
+        this.sprites.forEach((item, index) => {
+            if (item.spriteID == spriteID && item.x == x && item.y == y) {
+                goal = item;
+                i = index;
+            }
+        });
+        this.sprites.splice(i, 1);
+        return goal;
+    }
     initMaze() {
         const obj = {};
         const canvas = [];
         this.mazes[this.level].forEach((row_item, row_index) => {
             row_item.forEach((col_item, col_index) => {
                 if (col_item === 3) {
-                    obj[1].push({ x: col_index, y: row_index });
+                    if (obj[1]) {
+                        obj[1].push({ x: col_index, y: row_index });
+                    } else {
+                        obj[1] = [{ x: col_index, y: row_index }];
+                    }
                     this.maxScore++;
                 }
                 if (col_item === 2) {
-                    obj[1].push({ x: col_index, y: row_index });
+                    if (obj[1]) {
+                        obj[1].push({ x: col_index, y: row_index });
+                    } else {
+                        obj[1] = [{ x: col_index, y: row_index }];
+                    }
                 }
                 if (obj[col_item]) {
                     obj[col_item].push({ x: col_index, y: row_index });
@@ -107,7 +127,6 @@ class Game {
         // const y = sprite.y;
         // const nextPos = this.mazes[this.level][y][x];
         // return nextPos === 3;
-        console.log(this.score === this.maxScore);
         return this.score === this.maxScore;
     }
     run(spriteID) {

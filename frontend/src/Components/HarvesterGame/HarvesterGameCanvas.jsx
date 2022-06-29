@@ -106,7 +106,7 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                 };
             }
         });
-    });
+    }, []);
 
     const move = (sprite) => {
         return new Promise((resolve, reject) => {
@@ -139,7 +139,6 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
     useEffect(() => {
         if (run) {
             const action = game.run(spriteID);
-            console.log(action);
             setGame(game);
             if (!action) return;
             const id = action.spriteID;
@@ -150,8 +149,6 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                 const animate = async () => {
                     for (var idx = 0; idx < instructions.length; idx++) {
                         var instruction = instructions[idx];
-                        instruction.trim();
-                        console.log(instruction);
                         switch (instruction) {
                             case 'move_up':
                                 sprite.updateDir(2);
@@ -165,9 +162,29 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                             case 'move_right':
                                 sprite.updateDir(1);
                                 break;
+                            case 'pick_corn':
+                                const { x, y } = sprite.getCords();
+                                const goal = game.getGoal(3, x, y);
+                                if (goal) {
+                                    goal.erase();
+                                    game.score = game.score + 1;
+                                    setGame(game);
+                                } else {
+                                    toggleRun();
+                                    toggleReset();
+                                    alert('Continue coding');
+                                    return;
+                                }
+                                if (game.didWin(sprite)) {
+                                    toggleRun();
+                                    // const goal = game.getSprite(7);
+                                    // goal.erase();
+                                    toggleWin();
+                                }
                             default:
                                 continue;
                         }
+                        console.log(instruction, idx);
                         if (game.canMove(sprite)) {
                             sprite.updatePos();
                             await move(sprite);
@@ -180,12 +197,6 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                                 toggleReset();
                                 alert('Continue coding');
                                 break;
-                            }
-                            if (game.didWin(sprite)) {
-                                toggleRun();
-                                // const goal = game.getSprite(7);
-                                // goal.erase();
-                                toggleWin();
                             }
                         } else {
                             console.log('cant move');

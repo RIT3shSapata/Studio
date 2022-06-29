@@ -141,6 +141,9 @@ class Sprite extends Object {
                 break;
         }
     }
+    getCords() {
+        return { x: this.x, y: this.y };
+    }
 }
 
 export default Sprite;
