@@ -6,11 +6,16 @@ class Game {
         this.mazes = [];
         this.level = 0;
         this.sprites = [];
+        this.objects = [];
         this.queue = [];
         this.maxScore = 0;
+        this.score = 0;
     }
     addSprite(sprite) {
         this.sprites.push(sprite);
+    }
+    addObject(object) {
+        this.objects.push(object);
     }
     addMaze(mazes) {
         this.mazes = mazes;
@@ -29,6 +34,13 @@ class Game {
         const canvas = [];
         this.mazes[this.level].forEach((row_item, row_index) => {
             row_item.forEach((col_item, col_index) => {
+                if (col_item === 3) {
+                    obj[1].push({ x: col_index, y: row_index });
+                    this.maxScore++;
+                }
+                if (col_item === 2) {
+                    obj[1].push({ x: col_index, y: row_index });
+                }
                 if (obj[col_item]) {
                     obj[col_item].push({ x: col_index, y: row_index });
                 } else {
@@ -86,16 +98,17 @@ class Game {
     }
     canMove(sprite) {
         const { x, y } = sprite.checkPos();
-        console.log(x, y);
         const nextPos = this.mazes[this.level][y][x];
         return nextPos === 1 || nextPos === 3;
         // return nextPos === 0 || nextPos === 3;
     }
-    didWin(sprite) {
-        const x = sprite.x;
-        const y = sprite.y;
-        const nextPos = this.mazes[this.level][y][x];
-        return nextPos === 3;
+    didWin() {
+        // const x = sprite.x;
+        // const y = sprite.y;
+        // const nextPos = this.mazes[this.level][y][x];
+        // return nextPos === 3;
+        console.log(this.score === this.maxScore);
+        return this.score === this.maxScore;
     }
     run(spriteID) {
         let i = -1;
