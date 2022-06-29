@@ -76,6 +76,8 @@ const HarvesterGame = () => {
     const handleReset = () => {
         toggleLoading();
         // game.clearLevel();
+        game.reset();
+        setGame(game);
         setEle(game.initMaze());
         setTimeout(() => {
             toggleReset();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Custom_Blocks_Def';
 import './Custom_Blocks_Gen';
 import { BlocklyWorkspace } from 'react-blockly';
@@ -11,14 +11,21 @@ const HarvesterGameEditor = ({ className, code, toolbox }) => {
     const [workspace, setWorkspace] = useState(null);
     const initialXML = `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`;
 
-    const { run, toggleRun } = useHarvesterGameStore(
+    const { loading, clearCanvas, toggleClearCanvas } = useHarvesterGameStore(
         (state) => ({
-            run: state.run,
-            toggleRun: state.toggleRun,
+            loading: state.loading,
+            clearCanvas: state.clearCanvas,
+            toggleClearCanvas: state.toggleClearCanvas,
         }),
         shallow
     );
 
+    useEffect(() => {
+        if (clearCanvas) {
+            workspace.clear();
+            toggleClearCanvas();
+        }
+    }, [clearCanvas]);
     function workspaceDidChange(workspace) {
         const co = Blockly.JavaScript.workspaceToCode(workspace);
         setWorkspace(workspace);

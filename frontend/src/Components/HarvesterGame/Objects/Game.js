@@ -98,6 +98,7 @@ class Game {
         this.level = this.level + 1;
     }
     clearLevel() {
+        this.reset();
         const container = document.getElementById('canvas_container');
         try {
             while (container.hasChildNodes && container.lastChild) {
@@ -106,8 +107,6 @@ class Game {
         } catch (e) {
             console.log(e);
         }
-        this.sprites = [];
-        this.queue = [];
     }
     addInstructions(spriteID, code) {
         const instructions = code.split('\n');
@@ -128,6 +127,12 @@ class Game {
         // const nextPos = this.mazes[this.level][y][x];
         // return nextPos === 3;
         return this.score === this.maxScore;
+    }
+    reset() {
+        this.score = 0;
+        this.maxScore = 0;
+        this.sprites = [];
+        this.queue = [];
     }
     run(spriteID) {
         let i = -1;

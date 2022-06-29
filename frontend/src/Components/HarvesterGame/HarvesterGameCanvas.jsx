@@ -184,7 +184,6 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                             default:
                                 continue;
                         }
-                        console.log(instruction, idx);
                         if (game.canMove(sprite)) {
                             sprite.updatePos();
                             await move(sprite);
