@@ -4,6 +4,8 @@ import { ToolBox, INITIAL_XML } from '../../types/ToolBoxTypes';
 import Blockly, { WorkspaceSvg } from 'blockly';
 import './CustomBlocks/Custom_Blocks_Def';
 import './CustomBlocks/Custom_Blocks_Gen';
+import './CustomBlocks/CustomCategory.ts';
+import './Editor.css';
 
 type Props = {
     toolBox: ToolBox;

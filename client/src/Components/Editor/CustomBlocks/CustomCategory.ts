@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly/core';
-import logo_only from './logo_only.svg';
+import logo_only from '../../../assets/logo_only.svg';
 export default class CustomCategory extends Blockly.ToolboxCategory {
     /**
      * Constructor for a custom category.
