@@ -81,7 +81,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: obstacle,
         srcX: 0,
         srcY: 0,
-        scale: 0.8,
+        scale: 0.65,
     },
     7: {
         name: 'angry-bird',
@@ -91,7 +91,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: bird,
         srcX: 150,
         srcY: 0,
-        scale: 0.4,
+        scale: 0.3,
     },
     8: {
         name: 'pig',
@@ -101,7 +101,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: goal_idle,
         srcX: 0,
         srcY: 0,
-        scale: 0.4,
+        scale: 0.3,
     },
     9: {
         name: 'empty',

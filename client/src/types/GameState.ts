@@ -7,12 +7,12 @@ export default interface GameState {
     loading: boolean;
     clearCanvas: boolean;
     reset: boolean;
-    game: GameType | null;
+    game: GameType;
     toggleRun: () => void;
     toggleWin: () => void;
     toggleGetCode: () => void;
     toggleLoading: () => void;
     toggleClearCanvas: () => void;
     toggleReset: () => void;
-    setGame: (newGame: GameType | null) => void;
+    setGame: (newGame: GameType) => void;
 }

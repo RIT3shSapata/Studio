@@ -1,5 +1,6 @@
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import Game from '../GameEngine/Game';
 import GameState from '../types/GameState';
 
 const useGameStore = create<GameState>()(
@@ -10,7 +11,7 @@ const useGameStore = create<GameState>()(
         loading: false,
         clearCanvas: false,
         reset: false,
-        game: null,
+        game: new Game(),
         toggleWin: () => {
             set((state) => ({
                 win: !state.win,

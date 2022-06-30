@@ -40,12 +40,9 @@ const AngryBirds = (props: Props) => {
     );
 
     useEffect(() => {
-        const newGame: AngryBirdsGameType = new AngryBirdsGame(
-            AngryBirdsLevels,
-            AngryBirdsGameAssets,
-            AngryBirdsCanvas
-        );
-        setEle(newGame.initMaze());
+        const newGame: AngryBirdsGameType = new AngryBirdsGame();
+        newGame.addMazes(AngryBirdsLevels);
+        setEle(newGame.initMaze(AngryBirdsCanvas, AngryBirdsGameAssets));
         setGame(newGame);
     }, []);
 

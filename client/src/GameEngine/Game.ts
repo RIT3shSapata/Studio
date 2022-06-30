@@ -11,35 +11,25 @@ class Game implements GameType {
     sprites;
     objects;
     queue;
-    assets;
-    canvasElement;
     score;
     maxScore;
 
-    constructor(
-        mazes: number[][][],
-        assets: GameAssetsType,
-        canvasElement: FunctionComponent<CanvasPropsType>
-    ) {
-        this.mazes = mazes;
+    constructor() {
+        this.mazes = new Array<Array<Array<number>>>;
         this.level = 0;
         this.sprites = new Array<SpriteType>();
         this.queue = new Array<actionType>();
         this.objects = new Array<ObjectType>();
-        this.assets = assets;
-        this.canvasElement = canvasElement;
         this.score = 0;
         this.maxScore = 0;
     }
 
-    addAssets(assets: GameAssetsType): void {
-        this.assets = assets;
+    addMazes(mazes: number[][][]) {
+        this.mazes = mazes;
     }
 
     addSprite(sprite: SpriteType) {
-        if (!sprite) {
             this.sprites.push(sprite);
-        }
     }
 
     addObject(object: ObjectType) {
@@ -60,7 +50,10 @@ class Game implements GameType {
         });
     }
 
-    initMaze() {
+    initMaze(
+        canvasElement: FunctionComponent<CanvasPropsType>,
+        assets: GameAssetsType
+    ) {
         const obj: AssetCords = {};
         const canvas = [];
         this.mazes[this.level].forEach(
@@ -83,17 +76,17 @@ class Game implements GameType {
                     y: 0,
                 },
             ],
-            properties: this.assets[0],
+            properties: assets[0],
         };
-        canvas.push(React.createElement(this.canvasElement, backGroundProps));
+        canvas.push(React.createElement(canvasElement, backGroundProps));
         Object.keys(obj).forEach((key) => {
             const props: CanvasPropsType = {
                 spriteID: +key,
                 key: +key,
                 cords: obj[+key],
-                properties: this.assets[+key],
+                properties: assets[+key],
             };
-            canvas.push(React.createElement(this.canvasElement, props));
+            canvas.push(React.createElement(canvasElement, props));
         });
         return canvas;
     }

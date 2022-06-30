@@ -76,13 +76,11 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                 spriteID
             );
             // sprite_obj.draw();
-            if (game) {
-                game.addSprite(sprite_obj);
-                setGame(game);
-            }
+            game.addSprite(sprite_obj);
+            setGame(game);
         });
         img.onload = () => {
-            game?.sprites.forEach((sprite) => {
+            game.sprites.forEach((sprite) => {
                 sprite.draw();
             });
         };
@@ -92,8 +90,8 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
         <canvas
             ref={canvasRef}
             className='absolute top-48 right-14 border-4 border-slate-700'
-            width='250'
-            height='250'></canvas>
+            width='400'
+            height='400'></canvas>
     );
 };
 

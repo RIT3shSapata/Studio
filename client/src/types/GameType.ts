@@ -15,16 +15,18 @@ export interface GameType {
     sprites: SpriteType[];
     objects: ObjectType[];
     queue: actionType[];
-    assets: GameAssetsType;
-    canvasElement?: FunctionComponent<CanvasPropsType>;
     score: number;
     maxScore: number;
 
+    addMazes(mazes: number[][][]): void;
     addSprite(sprite: SpriteType): void;
     addObject(object: ObjectType): void;
     getSprite(spriteID: number): SpriteType | undefined;
     getGoal(spriteID: number, x: number, y: number): SpriteType | undefined;
-    initMaze(): React.ReactElement[];
+    initMaze(
+        canvasElement: FunctionComponent<CanvasPropsType>,
+        assets: GameAssetsType
+    ): React.ReactElement | React.ReactElement[];
     nextLevel(): void;
     clearLevel(): void;
     addInstructions(spriteID: number, code: string): void;
