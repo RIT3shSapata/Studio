@@ -1,6 +1,6 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent } from 'react';
 import { GameAssetsType, AssetCords } from '../types/AssetType';
-import { CanvasPropsType } from '../types/CanvasProptTypes';
+import { CanvasPropsType } from '../types/CanvasPropsTypes';
 import { GameType, actionType } from '../types/GameType';
 import { ObjectType } from '../types/ObjectType';
 import { SpriteType } from '../types/SpriteType';
@@ -19,7 +19,7 @@ class Game implements GameType {
     constructor(
         mazes: number[][][],
         assets: GameAssetsType,
-        canvasElement: FunctionComponent
+        canvasElement: FunctionComponent<CanvasPropsType>
     ) {
         this.mazes = mazes;
         this.level = 0;
@@ -34,10 +34,6 @@ class Game implements GameType {
 
     addAssets(assets: GameAssetsType): void {
         this.assets = assets;
-    }
-
-    addCanvasElement(canvasElement: FunctionComponent): void {
-        this.canvasElement = canvasElement;
     }
 
     addSprite(sprite: SpriteType) {

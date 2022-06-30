@@ -1,12 +1,12 @@
-import background from './assets/background.png';
-import bird from './assets/move_avatar_1.png';
-import obstacle from './assets/obstacle_1.png';
-import goal_idle from './assets/goal_idle.gif';
-import wooden_tile from './assets/wooden_tile.png';
-import stone_square from './assets/stone_square.png';
-import stone_triangle from './assets/stone_square.png';
-import glass_triangle from './assets/glass_triangle.png';
-import wooden_triangle from './assets/wood_triangle.png';
+import background from '../assets/background.png';
+import bird from '../assets/move_avatar_1.png';
+import obstacle from '../assets/obstacle_1.png';
+import goal_idle from '../assets/goal_idle.gif';
+import wooden_tile from '../assets/wooden_tile.png';
+import stone_square from '../assets/stone_square.png';
+import stone_triangle from '../assets/stone_square.png';
+import glass_triangle from '../assets/glass_triangle.png';
+import wooden_triangle from '../assets/wood_triangle.png';
 import { GameAssetsType } from '../../../types/AssetType';
 
 const GRID_SIZE = 64;

@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { GameAssetsType } from './AssetType';
+import { CanvasPropsType } from './CanvasPropsTypes';
 import { ObjectType } from './ObjectType';
 import { SpriteType } from './SpriteType';
 
@@ -15,12 +16,10 @@ export interface GameType {
     objects: ObjectType[];
     queue: actionType[];
     assets: GameAssetsType;
-    canvasElement: FunctionComponent;
+    canvasElement?: FunctionComponent<CanvasPropsType>;
     score: number;
     maxScore: number;
 
-    addAssets(assets: GameAssetsType): void;
-    addCanvasElement(canvasElement: FunctionComponent): void;
     addSprite(sprite: SpriteType): void;
     addObject(object: ObjectType): void;
     getSprite(spriteID: number): SpriteType | undefined;
