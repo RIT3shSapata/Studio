@@ -152,7 +152,7 @@ class Game implements GameType {
                 i = index;
             }
         });
-        if (i === -1) return false;
+        if (i === -1) return undefined;
         const action = this.queue.splice(i, 1)[0];
         return action;
     }

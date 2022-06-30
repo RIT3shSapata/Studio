@@ -33,5 +33,5 @@ export interface GameType {
     canMove(sprite: SpriteType): boolean;
     didWin(): boolean;
     reset(): void;
-    run(spriteID: number): actionType | undefined | boolean;
+    run(spriteID: number): actionType | undefined;
 }

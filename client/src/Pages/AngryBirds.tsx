@@ -10,6 +10,7 @@ import AngryBirdsGame, {
     AngryBirdsGameType,
 } from '../Components/AngryBirds/config/AngryBirdsGame';
 import GameState from '../types/GameState';
+import Modal from '../Components/Modal/Modal';
 
 type Props = {};
 
@@ -49,18 +50,41 @@ const AngryBirds = (props: Props) => {
     useEffect(() => {
         if (getCode) {
             console.log('works');
-            game?.addInstructions(6, code.current);
+            game?.addInstructions(7, code.current);
             setGame(game);
             toggleGetCode();
             toggleRun();
         }
     }, [getCode]);
 
+    const nextLevel = () => {
+        toggleLoading();
+        toggleClearCanvas();
+        // game.clearLevel();
+        game.nextLevel();
+        setEle(game.initMaze(AngryBirdsCanvas, AngryBirdsGameAssets));
+        setGame(game);
+        setTimeout(() => {
+            toggleLoading();
+        }, 500);
+        toggleWin();
+    };
+
+    const handleReset = () => {
+        toggleLoading();
+        // game.clearLevel();
+        setEle(game.initMaze(AngryBirdsCanvas, AngryBirdsGameAssets));
+        setTimeout(() => {
+            toggleReset();
+            toggleLoading();
+        }, 500);
+    };
     return (
         <div className='h-screen w-screen'>
             <div className='flex justify-between h-full w-full'>
                 <div id='angry_birds_editor' className='h-full w-4/6'>
                     <Editor
+                        code={code}
                         toolBox={AngryBirdsToolBox}
                         className='h-full w-full'
                     />
@@ -69,8 +93,26 @@ const AngryBirds = (props: Props) => {
                     <div id='canvas_container' className='w-[400px] h-[400px]'>
                         {loading ? 'loading' : ele}
                     </div>
+                    <div className='mt-20 flex gap-2 flex-wrap '>
+                        {reset ? (
+                            <button
+                                className='btn-primary'
+                                onClick={handleReset}>
+                                Reset
+                            </button>
+                        ) : (
+                            <button
+                                className='btn-primary '
+                                onClick={() => {
+                                    toggleGetCode();
+                                }}>
+                                Run
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
+            {win ? <Modal toggleModal={toggleWin} nextLevel={nextLevel} /> : ''}
         </div>
     );
 };

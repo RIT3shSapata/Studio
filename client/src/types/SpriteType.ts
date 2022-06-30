@@ -14,4 +14,5 @@ export interface SpriteType extends ObjectType {
     updatePos(): void;
     updateFrame(): void;
     getCords(): { x: number; y: number };
+    stopAnimation(): boolean | undefined;
 }
