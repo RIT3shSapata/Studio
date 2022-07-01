@@ -79,6 +79,26 @@ const AngryBirds = (props: Props) => {
             toggleLoading();
         }, 500);
     };
+    const handleRight = () => {
+        game.addInstructions(7, 'move_right');
+        setGame(game);
+        toggleRun();
+    };
+    const handleLeft = () => {
+        game.addInstructions(7, 'move_left');
+        setGame(game);
+        toggleRun();
+    };
+    const handleUp = () => {
+        game.addInstructions(7, 'move_up');
+        setGame(game);
+        toggleRun();
+    };
+    const handleDown = () => {
+        game.addInstructions(7, 'move_down');
+        setGame(game);
+        toggleRun();
+    };
     return (
         <div className='h-screen w-screen'>
             <Navbar />
@@ -94,22 +114,46 @@ const AngryBirds = (props: Props) => {
                     <div id='canvas_container' className='w-[400px] h-[400px]'>
                         {loading ? 'loading' : ele}
                     </div>
-                    <div className='mt-20 flex gap-2 flex-wrap '>
+                    <div className='mt-20 ml-56 2xl:mt-56 2xl:ml-64 flex gap-2 flex-wrap '>
                         {reset ? (
                             <button
-                                className='btn-primary'
+                                className='btn-wiingy-primary'
                                 onClick={handleReset}>
                                 Reset
                             </button>
                         ) : (
                             <button
-                                className='btn-primary '
+                                className='btn-wiingy-primary '
                                 onClick={() => {
                                     toggleGetCode();
                                 }}>
                                 Run
                             </button>
                         )}
+                    </div>
+                    <div className=' p-10 xl:ml-64flex gap-2 flex-wrap '>
+                        <div className='grid grid-cols-4 gap-2 h-24'>
+                            <button
+                                className='btn-wiingy-primary h-1/2'
+                                onClick={handleUp}>
+                                Up
+                            </button>
+                            <button
+                                className='btn-wiingy-primary h-1/2'
+                                onClick={handleDown}>
+                                Down
+                            </button>
+                            <button
+                                className='btn-wiingy-primary h-1/2'
+                                onClick={handleLeft}>
+                                Left
+                            </button>
+                            <button
+                                className='btn-wiingy-primary h-1/2'
+                                onClick={handleRight}>
+                                Right
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

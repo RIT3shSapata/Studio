@@ -179,7 +179,8 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                                 goal?.erase();
                             }
                         } else {
-                            console.log('cant move');
+                            alert('You can not move there');
+                            // console.log('cant move');
                         }
                     }
                     if (!game.didWin()) {
