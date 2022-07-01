@@ -170,12 +170,13 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                                 break;
                             }
                             if (game.didWin()) {
-                                toggle();
+                                toggle().then(() => {
+                                    toggleWin();
+                                });
                                 toggleRun();
                                 const goal: SpriteType | undefined =
                                     game.getSprite(8);
                                 goal?.erase();
-                                toggleWin();
                             }
                         } else {
                             console.log('cant move');

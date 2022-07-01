@@ -185,7 +185,6 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                                 const goal: SpriteType | undefined =
                                     game.getGoal(4, pos.x, pos.y);
                                 if (goal) {
-                                    toggle();
                                     goal.erase();
                                     game.score = game.score + 1;
                                     setGame(game);
@@ -196,8 +195,10 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                                     return;
                                 }
                                 if (game.didWin()) {
+                                    toggle().then(() => {
+                                        toggleWin();
+                                    });
                                     toggleRun();
-                                    toggleWin();
                                 }
                             default:
                                 continue;

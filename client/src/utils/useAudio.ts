@@ -8,14 +8,21 @@ const useAudio = ({ url }: Props) => {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
 
-    const toggle: () => void = () => setPlaying(!playing);
+    const toggle = () => {
+        setPlaying(!playing);
+        return new Promise((resolve, reject) => {
+            audio.addEventListener('ended', () => resolve(() => {}));
+        });
+    };
 
     useEffect(() => {
         playing ? audio.play() : audio.pause();
     }, [playing]);
 
     useEffect(() => {
-        audio.addEventListener('ended', () => setPlaying(false));
+        audio.addEventListener('ended', () => {
+            setPlaying(false);
+        });
         return () => {
             audio.removeEventListener('ended', () => setPlaying(false));
         };
