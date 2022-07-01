@@ -45,3 +45,26 @@ Blockly.JavaScript['right_block'] = function (block: Block) {
     }
     return code;
 };
+
+Blockly.JavaScript['loop'] = function (block: Block) {
+    var dropdown_times = block.getFieldValue('times');
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+    var code = 'not_connected';
+    if (block.previousConnection.isConnected()) {
+        code = '';
+        for (let i = 0; i < Number(dropdown_times); i++) {
+            code += statements_name.replaceAll(' ', '');
+        }
+    }
+    // TODO: Assemble JavaScript into code variable.
+    return code;
+};
+
+Blockly.JavaScript['pick_corn'] = function (block: Block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'not_connected';
+    if (block.previousConnection.isConnected()) {
+        code = 'pick_corn\n';
+    }
+    return code;
+};
