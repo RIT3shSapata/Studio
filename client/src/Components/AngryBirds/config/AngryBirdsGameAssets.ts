@@ -12,6 +12,10 @@ import { GameAssetsType } from '../../../types/AssetType';
 const GRID_SIZE = 64;
 const SPRITE_SIZE = 150;
 
+var scale = 1;
+if (window.innerWidth < 1536) {
+    scale = 0.8;
+}
 const AngryBirdsGameAssets: GameAssetsType = {
     0: {
         name: 'background',
@@ -21,7 +25,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: background,
         srcX: 0,
         srcY: 0,
-        scale: 40,
+        scale: 1.8 * scale,
     },
     1: {
         name: 'wooden-square',
@@ -31,7 +35,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: wooden_tile,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     2: {
         name: 'stone-triangle',
@@ -41,7 +45,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: stone_triangle,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     3: {
         name: 'glass-triangle',
@@ -51,7 +55,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: glass_triangle,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     4: {
         name: 'stone-square',
@@ -61,7 +65,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: stone_square,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     5: {
         name: 'wooden-triangle',
@@ -71,7 +75,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: wooden_triangle,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     6: {
         name: 'tnt',
@@ -81,7 +85,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: obstacle,
         srcX: 0,
         srcY: 0,
-        scale: 0.65,
+        scale: 0.65 * scale,
     },
     7: {
         name: 'angry-bird',
@@ -91,7 +95,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: bird,
         srcX: 150,
         srcY: 0,
-        scale: 0.3,
+        scale: 0.3 * scale,
     },
     8: {
         name: 'pig',
@@ -101,7 +105,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: goal_idle,
         srcX: 0,
         srcY: 0,
-        scale: 0.3,
+        scale: 0.3 * scale,
     },
     9: {
         name: 'empty',
@@ -111,7 +115,7 @@ const AngryBirdsGameAssets: GameAssetsType = {
         src: '',
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
 };
 
