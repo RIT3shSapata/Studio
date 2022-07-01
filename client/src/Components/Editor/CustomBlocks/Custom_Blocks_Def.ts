@@ -6,7 +6,7 @@ Blockly.Blocks['start_block'] = {
     init: function () {
         this.appendDummyInput().appendField('Start');
         this.setNextStatement(true, null);
-        this.setColour(120);
+        this.setColour('#3b82f6');
         this.setTooltip('Start the game');
         this.setHelpUrl('');
     },
@@ -20,7 +20,7 @@ Blockly.Blocks['up_block'] = {
         this.appendDummyInput().appendField('Move up');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(120);
+        this.setColour('#3b82f6');
         this.setTooltip('Move the sprite up');
         this.setHelpUrl('');
     },
@@ -31,7 +31,7 @@ Blockly.Blocks['down_block'] = {
         this.appendDummyInput().appendField('Move down');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(120);
+        this.setColour('#3b82f6');
         this.setTooltip('Move the sprite down');
         this.setHelpUrl('');
     },
@@ -42,7 +42,7 @@ Blockly.Blocks['left_block'] = {
         this.appendDummyInput().appendField('Move left');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(120);
+        this.setColour('#3b82f6');
         this.setTooltip('Move the sprite left');
         this.setHelpUrl('');
     },
@@ -53,7 +53,7 @@ Blockly.Blocks['right_block'] = {
         this.appendDummyInput().appendField('Move right');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(120);
+        this.setColour('#3b82f6');
         this.setTooltip('Move the sprite right');
         this.setHelpUrl('');
     },
@@ -83,7 +83,7 @@ Blockly.Blocks['loop'] = {
             .appendField(new Blockly.FieldImage(repeat, 30, 30));
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(300);
+        this.setColour('#f97316');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -96,7 +96,7 @@ Blockly.Blocks['pick_corn'] = {
             .appendField(new Blockly.FieldImage(corn, 30, 30));
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(300);
+        this.setColour('#f87171');
         this.setTooltip('');
         this.setHelpUrl('');
     },

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as Blockly from 'blockly/core';
 import logo_only from '../../../assets/logo_only.svg';
 export default class CustomCategory extends Blockly.ToolboxCategory {
@@ -14,9 +15,10 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
      * This is called on category creation and whenever the theme changes.
      * @override
      */
-    addColourBorder_(colour: any) {
+    addColourBorder_(colour: string) {
         //@ts-ignore
         this.rowDiv_.style.backgroundColor = colour;
+        console.log(colour);
     }
 
     /**
@@ -65,14 +67,34 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
      * @override
      */
     createIconDom_() {
-        const iconImg = document.createElement('img');
-        iconImg.src = logo_only;
-        iconImg.alt = 'Blockly Logo';
-        //@ts-ignore
-        iconImg.width = '25';
-        //@ts-ignore
-        iconImg.height = '25';
-        return iconImg;
+        console.log(this.toolboxItemDef_);
+        const div = document.createElement('div');
+        switch (this.toolboxItemDef_.name) {
+            case 'motion':
+                div.className =
+                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600';
+                break;
+            case 'loop':
+                div.className =
+                    'bg-orange-500 h-5 w-5 rounded-full border-2 border-orange-600';
+                break;
+            case 'actions':
+                div.className =
+                    'bg-red-400 h-5 w-5 rounded-full border-2 border-red-500';
+                break;
+            default:
+                div.className =
+                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600';
+        }
+        return div;
+        // const iconImg = document.createElement('img');
+        // iconImg.src = logo_only;
+        // iconImg.alt = 'Blockly Logo';
+        // //@ts-ignore
+        // iconImg.width = '25';
+        // //@ts-ignore
+        // iconImg.height = '25';
+        // return iconImg;
     }
 }
 
