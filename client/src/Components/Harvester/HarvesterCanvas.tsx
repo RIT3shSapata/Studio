@@ -9,6 +9,8 @@ import Object from '../../GameEngine/Object';
 import { SpriteType } from '../../types/SpriteType';
 import { actionType } from '../../types/GameType';
 import { ObjectType } from '../../types/ObjectType';
+import leaf from './assets/leaf.wav';
+import useAudio from '../../utils/useAudio';
 
 type Props = {};
 
@@ -41,6 +43,8 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
         }),
         shallow
     );
+
+    const { toggle } = useAudio({ url: leaf });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -181,6 +185,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                                 const goal: SpriteType | undefined =
                                     game.getGoal(4, pos.x, pos.y);
                                 if (goal) {
+                                    toggle();
                                     goal.erase();
                                     game.score = game.score + 1;
                                     setGame(game);

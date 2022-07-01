@@ -7,6 +7,8 @@ import getPixelRatio from '../../utils/GetPixelRatio';
 import Sprite from '../../GameEngine/Sprite';
 import { SpriteType } from '../../types/SpriteType';
 import { actionType } from '../../types/GameType';
+import angry_birds_win from './assets/Angry_Birds_Level_Complete_Sound_Effect.mp3';
+import useAudio from '../../utils/useAudio';
 
 const BIRD_FRAMES = 8;
 const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
@@ -36,6 +38,8 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
         }),
         shallow
     );
+
+    const { toggle } = useAudio({ url: angry_birds_win });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -166,6 +170,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                                 break;
                             }
                             if (game.didWin()) {
+                                toggle();
                                 toggleRun();
                                 const goal: SpriteType | undefined =
                                     game.getSprite(8);
