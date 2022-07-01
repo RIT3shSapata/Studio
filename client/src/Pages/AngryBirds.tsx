@@ -49,8 +49,7 @@ const AngryBirds = (props: Props) => {
 
     useEffect(() => {
         if (getCode) {
-            console.log('works');
-            game?.addInstructions(7, code.current);
+            game.addInstructions(7, code.current);
             setGame(game);
             toggleGetCode();
             toggleRun();
@@ -60,7 +59,7 @@ const AngryBirds = (props: Props) => {
     const nextLevel = () => {
         toggleLoading();
         toggleClearCanvas();
-        // game.clearLevel();
+        game.clearLevel();
         game.nextLevel();
         setEle(game.initMaze(AngryBirdsCanvas, AngryBirdsGameAssets));
         setGame(game);
@@ -72,7 +71,7 @@ const AngryBirds = (props: Props) => {
 
     const handleReset = () => {
         toggleLoading();
-        // game.clearLevel();
+        game.clearLevel();
         setEle(game.initMaze(AngryBirdsCanvas, AngryBirdsGameAssets));
         setTimeout(() => {
             toggleReset();

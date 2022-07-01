@@ -104,15 +104,6 @@ class Game implements GameType {
     }
 
     clearLevel() {
-        const container: HTMLElement | null =
-            document.getElementById('canvas_container');
-        try {
-            while (container?.hasChildNodes && container?.lastChild) {
-                container.removeChild(container.lastChild);
-            }
-        } catch (e) {
-            console.log(e);
-        }
         this.reset();
     }
 
@@ -122,7 +113,7 @@ class Game implements GameType {
             //TODO: Handle Error in a better manner
             alert('Connect all blocks');
         }
-        const action: actionType | null = {
+        const action: actionType = {
             spriteID,
             instructions,
         };
@@ -137,12 +128,12 @@ class Game implements GameType {
     }
 
     didWin() {
-        const sprite: SpriteType | undefined = this.getSprite(6);
+        const sprite: SpriteType | undefined = this.getSprite(7);
         if (!sprite) return false;
         const x = sprite.x;
         const y = sprite.y;
         const nextPos = this.mazes[this.level][y][x];
-        return nextPos === 7;
+        return nextPos === 8;
     }
 
     run(spriteID: number) {

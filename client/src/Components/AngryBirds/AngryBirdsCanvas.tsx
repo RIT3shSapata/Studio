@@ -100,6 +100,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                     resolve(() => {});
                     return;
                 }
+                requestAnimationFrame(animate);
                 if (sprite.changeX === 0 && sprite.curY % 8 === 0) {
                     sprite.updateFrame();
                 } else if (sprite.changeY === 0 && sprite.curX % 8 === 0) {
@@ -175,6 +176,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                         }
                     }
                     if (!game.didWin()) {
+                        console.log('works');
                         toggleRun();
                         toggleReset();
                         alert('Continue coding');
@@ -186,11 +188,9 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
         }
     }, [run, game]);
     return (
-        <canvas
-            ref={canvasRef}
-            className='absolute top-48 right-14 border-4 border-slate-700'
-            width='400'
-            height='400'></canvas>
+        <div className='absolute top-48 right-14 border-4 border-slate-700'>
+            <canvas ref={canvasRef} width='400' height='400'></canvas>
+        </div>
     );
 };
 
