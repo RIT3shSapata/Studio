@@ -4,7 +4,7 @@ const AngryBirdsToolbox: ToolBox = {
     contents: [
         {
             kind: 'category',
-            name: 'motion',
+            name: 'Motion',
             color: '120',
             expanded: 'true',
             contents: [

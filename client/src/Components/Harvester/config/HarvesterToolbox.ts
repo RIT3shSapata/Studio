@@ -5,7 +5,7 @@ const HarvesterToolbox: ToolBox = {
     contents: [
         {
             kind: 'category',
-            name: 'motion',
+            name: 'Motion',
             color: '120',
             expanded: 'true',
             contents: [
@@ -38,7 +38,7 @@ const HarvesterToolbox: ToolBox = {
         },
         {
             kind: 'category',
-            name: 'loop',
+            name: 'Loop',
             color: '300',
             expanded: 'true',
             contents: [
@@ -48,7 +48,7 @@ const HarvesterToolbox: ToolBox = {
         },
         {
             kind: 'category',
-            name: 'actions',
+            name: 'Actions',
             color: '250',
             expanded: 'true',
             contents: [

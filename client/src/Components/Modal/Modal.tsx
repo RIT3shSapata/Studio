@@ -10,7 +10,7 @@ const Modal = ({ toggleModal, nextLevel }: Props) => {
         <div
             className='bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center z-50'
             id='overlay'>
-            <div className='bg-gray-200 py-2 px-3 rounded shadow-xl text-gray-800 h-48 w-80 flex flex-col justify-center items-center'>
+            <div className='bg-gray-200 py-2 px-3 rounded-xl shadow-xl text-gray-800 h-48 w-80 flex flex-col justify-center items-center'>
                 <div className='flex justify-between items-center'>
                     <h4 className='text-3xl font-bold'>Congratulations!!!!</h4>
                     {/* <svg

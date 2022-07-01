@@ -11,6 +11,7 @@ import AngryBirdsGame, {
 } from '../Components/AngryBirds/config/AngryBirdsGame';
 import GameState from '../types/GameState';
 import Modal from '../Components/Modal/Modal';
+import Navbar from '../Components/Navbar/Navbar';
 
 type Props = {};
 
@@ -80,6 +81,7 @@ const AngryBirds = (props: Props) => {
     };
     return (
         <div className='h-screen w-screen'>
+            <Navbar />
             <div className='flex justify-between h-full w-full'>
                 <div id='angry_birds_editor' className='h-full w-4/6'>
                     <Editor

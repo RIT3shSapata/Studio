@@ -36,7 +36,7 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
         if (isSelected) {
             // Change the background color of the div to white.
             //@ts-ignore
-            this.rowDiv_.style.backgroundColor = 'white';
+            this.rowDiv_.style.backgroundColor = this.colour_;
             // Set the colour of the text to the colour of the category.
             //@ts-ignore
             labelDom.style.color = this.colour_;
@@ -67,24 +67,23 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
      * @override
      */
     createIconDom_() {
-        console.log(this.toolboxItemDef_);
         const div = document.createElement('div');
         switch (this.toolboxItemDef_.name) {
-            case 'motion':
+            case 'Motion':
                 div.className =
-                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600';
+                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600 mb-2';
                 break;
-            case 'loop':
+            case 'Loop':
                 div.className =
-                    'bg-orange-500 h-5 w-5 rounded-full border-2 border-orange-600';
+                    'bg-orange-500 h-5 w-5 rounded-full border-2 border-orange-600 mb-2';
                 break;
-            case 'actions':
+            case 'Actions':
                 div.className =
-                    'bg-red-400 h-5 w-5 rounded-full border-2 border-red-500';
+                    'bg-red-400 h-5 w-5 rounded-full border-2 border-red-500 mb-2';
                 break;
             default:
                 div.className =
-                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600';
+                    'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600 mb-2';
         }
         return div;
         // const iconImg = document.createElement('img');
