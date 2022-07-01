@@ -24,7 +24,7 @@ const Landing = (props: Props) => {
                 <div className='grid grid-cols-4 gap-10'>
                     <div
                         // onClick={blank}
-                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2'>
+                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2 hover:cursor-pointer'>
                         <div className='flex justify-center align-middle h-full'>
                             <div className='flex flex-col justify-center h-full'>
                                 <span className='text-white text-5xl'>+</span>
@@ -36,7 +36,7 @@ const Landing = (props: Props) => {
                     </div>
                     <div
                         onClick={() => handleClick('/angry-birds')}
-                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2'>
+                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2 hover:cursor-pointer'>
                         <div className='flex justify-center align-middle h-full'>
                             <div className='flex flex-col justify-center h-full'>
                                 <span className='text-white text-5xl'>+</span>
@@ -48,7 +48,7 @@ const Landing = (props: Props) => {
                     </div>
                     <div
                         onClick={() => handleClick('/harvester')}
-                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2'>
+                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2 hover:cursor-pointer'>
                         <div className='flex justify-center align-middle h-full'>
                             <div className='flex flex-col justify-center h-full'>
                                 <span className='text-white text-5xl'>+</span>

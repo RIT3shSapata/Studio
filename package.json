@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "react-router-dom": "^6.3.0"
+    "@tippyjs/react": "^4.2.6",
+    "react-router-dom": "^6.3.0",
+    "react-tooltip": "^4.2.21"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3"

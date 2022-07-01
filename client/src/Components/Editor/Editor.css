@@ -31,6 +31,7 @@
 
 .blocklyToolboxDiv {
     background-color: #ffffff;
+    width: 5rem;
 }
 .blocklyMainBackground {
     fill: #f2f2f2 !important;

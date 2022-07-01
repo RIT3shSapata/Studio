@@ -232,7 +232,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
         }
     }, [run, game]);
     return (
-        <div className='absolute xl:top-48 xl:right-12 2xl:top-48 2xl:right-28 border-4 border-slate-700'>
+        <div className='absolute xl:top-28 xl:right-12 2xl:top-48 2xl:right-28 border-4 border-slate-700'>
             <canvas
                 ref={canvasRef}
                 className='xl:h-[20rem] xl:w-[20rem] 2xl:h-[25rem] 2xl:w-[25rem] '></canvas>

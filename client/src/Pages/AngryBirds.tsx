@@ -101,8 +101,8 @@ const AngryBirds = (props: Props) => {
     };
     return (
         <div className='h-screen w-screen'>
-            <Navbar />
-            <div className='flex justify-between h-full w-full'>
+            <Navbar className='h-[10%] w-full' />
+            <div className='flex justify-between h-[90%] w-full'>
                 <div id='angry_birds_editor' className='h-full w-4/6'>
                     <Editor
                         code={code}
