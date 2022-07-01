@@ -151,6 +151,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                             default:
                                 continue;
                         }
+                        console.log(sprite);
                         if (sprite && game.canMove(sprite)) {
                             sprite.updatePos();
                             await move(sprite);

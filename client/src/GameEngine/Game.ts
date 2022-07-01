@@ -122,9 +122,10 @@ class Game implements GameType {
 
     canMove(sprite: SpriteType) {
         const pos: { x: number; y: number } | undefined = sprite.checkPos();
+        console.log(pos)
         if (!pos) return false;
         const nextPos = this.mazes[this.level][pos.y][pos.x];
-        return nextPos === 8 || nextPos === 7;
+        return nextPos === 8 || nextPos === 9;
     }
 
     didWin() {
