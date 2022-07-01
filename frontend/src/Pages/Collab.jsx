@@ -3,14 +3,14 @@ import CollabEditor from '../Components/CollabEditor/CollabEditor';
 import io from 'socket.io-client';
 
 const PROJECT_ID = 1;
-const socket = io('ws://localhost:5000', {
-    transports: ['websocket'],
-});
 
 const Collab = () => {
     const [xml, setXml] = useState('');
     const [update, setUpdate] = useState(false);
 
+    const socket = io('ws://localhost:5000', {
+        transports: ['websocket'],
+    });
     useEffect(() => {
         socket.on('CODE_UPDATED', (xml) => {
             setXml(xml);
@@ -33,17 +33,17 @@ const Collab = () => {
         socket.emit('CODE_CHANGED', { PROJECT_ID, xml });
     };
     return (
-        <div className="h-screen w-screen flex ">
+        <div className='h-screen w-screen flex '>
             <CollabEditor
                 setXML={setXml}
-                className="h-full w-10/12"
+                className='h-full w-10/12'
                 update={update}
                 setUpdate={setUpdate}
                 xml={xml}
             />
             <button
                 onClick={handleUpdate}
-                className="bg-blue-600 text-white px-8 py-5 h-20 rounded-lg hover:bg-blue-400">
+                className='bg-blue-600 text-white px-8 py-5 h-20 rounded-lg hover:bg-blue-400'>
                 Update
             </button>
             {/* <form

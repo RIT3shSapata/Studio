@@ -11,6 +11,15 @@ class Game {
         this.maxScore = 0;
         this.score = 0;
     }
+    copyGame(newGame) {
+        this.mazes = newGame.mazes;
+        this.level = newGame.level;
+        this.sprites = newGame.sprites;
+        this.objects = newGame.objects;
+        this.queue = newGame.queue;
+        this.maxScore = newGame.maxScore;
+        this.score = newGame.score;
+    }
     addSprite(sprite) {
         this.sprites.push(sprite);
     }

@@ -32,7 +32,10 @@ io.on('connection', function (socket) {
     });
     socket.on('CODE_CHANGED', ({ PROJECT_ID, xml }) => {
         console.log('sending update');
-        socket.to(PROJECT_ID).emit('CODE_UPDATED', xml);
+        io.to(PROJECT_ID).emit('CODE_UPDATED', xml);
+    });
+    socket.on('RUN', (prop) => {
+        io.to(prop.PROJECT_ID).emit('RUN_CODE', prop.code_);
     });
 });
 // socket_init(app);

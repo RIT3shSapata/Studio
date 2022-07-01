@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/templates' element={<Templates />} />
             <Route path='/blank' element={<Blank />}></Route>
             <Route path='/custom' element={<Customisation />} />
-            {/* <Route path='/collab' element={<Collab />} /> */}
+            <Route path='/collab' element={<Collab />} />
             <Route path='/vm' element={<VM />} />
             <Route path='/bird' element={<AngryBirds />} />
             <Route path='/harvest' element={<HarvesterGame />} />

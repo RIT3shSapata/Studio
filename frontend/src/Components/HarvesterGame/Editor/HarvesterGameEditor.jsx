@@ -6,8 +6,16 @@ import Blockly from 'blockly';
 import shallow from 'zustand/shallow';
 import useHarvesterGameStore from '../../../store/harvesterGameStore';
 
-const HarvesterGameEditor = ({ className, code, toolbox }) => {
-    const [xml, setXml] = useState('');
+const HarvesterGameEditor = ({
+    className,
+    code,
+    toolbox,
+    xml,
+    setXML,
+    update,
+    setUpdate,
+}) => {
+    // const [xml, setXml] = useState('');
     const [workspace, setWorkspace] = useState(null);
     const initialXML = `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`;
 
@@ -19,6 +27,16 @@ const HarvesterGameEditor = ({ className, code, toolbox }) => {
         }),
         shallow
     );
+
+    useEffect(() => {
+        if (update) {
+            console.log('update');
+            const xmlElement = Blockly.Xml.textToDom(xml);
+            workspace.clear();
+            Blockly.Xml.domToWorkspace(xmlElement, workspace);
+            setUpdate(false);
+        }
+    }, [update]);
 
     useEffect(() => {
         if (clearCanvas) {
@@ -47,7 +65,7 @@ const HarvesterGameEditor = ({ className, code, toolbox }) => {
                     renderer: 'zelos',
                 }}
                 onWorkspaceChange={workspaceDidChange}
-                onXmlChange={setXml}
+                onXmlChange={setXML}
                 className={className}
             />
         </>

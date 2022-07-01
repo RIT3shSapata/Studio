@@ -101,7 +101,11 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                 setGame(game);
                 img.onload = () => {
                     game.objects.forEach((object) => {
-                        object.draw();
+                        try {
+                            object.draw();
+                        } catch (e) {
+                            console.log(e);
+                        }
                     });
                 };
             }
@@ -139,6 +143,7 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
     useEffect(() => {
         if (run) {
             const action = game.run(spriteID);
+            console.log(action);
             setGame(game);
             if (!action) return;
             const id = action.spriteID;
