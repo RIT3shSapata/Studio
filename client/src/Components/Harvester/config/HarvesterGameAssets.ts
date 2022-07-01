@@ -4,6 +4,11 @@ import corn from '../assets/corn.png';
 import tile from '../assets/tiles.png';
 import { GameAssetsType } from '../../../types/AssetType';
 
+var scale = 1;
+if (window.innerWidth < 1536) {
+    scale = 0.8;
+}
+
 const HarvesterGameAssets: GameAssetsType = {
     0: {
         name: 'background',
@@ -13,7 +18,7 @@ const HarvesterGameAssets: GameAssetsType = {
         src: background,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     2: {
         name: 'tile',
@@ -23,7 +28,7 @@ const HarvesterGameAssets: GameAssetsType = {
         src: tile,
         srcX: 0,
         srcY: 0,
-        scale: 1.05,
+        scale: 1.05 * scale,
     },
     3: {
         name: 'avatar',
@@ -33,7 +38,7 @@ const HarvesterGameAssets: GameAssetsType = {
         src: avatar,
         srcX: 198,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
     4: {
         name: 'corn',
@@ -43,7 +48,7 @@ const HarvesterGameAssets: GameAssetsType = {
         src: corn,
         srcX: 0,
         srcY: 0,
-        scale: 1,
+        scale: 1 * scale,
     },
 };
 

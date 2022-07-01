@@ -5,7 +5,7 @@ const HarvesterToolbox: ToolBox = {
     contents: [
         {
             kind: 'category',
-            name: 'maze',
+            name: 'motion',
             color: '120',
             expanded: 'true',
             contents: [

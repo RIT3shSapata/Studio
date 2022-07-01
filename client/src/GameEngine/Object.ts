@@ -1,5 +1,8 @@
 import { ObjectType } from '../types/ObjectType';
-const GRID_SIZE = 50;
+var GRID_SIZE = 40;
+if (window.innerWidth > 1536) {
+    GRID_SIZE = 50;
+}
 export default class Object implements ObjectType {
     image;
     width;

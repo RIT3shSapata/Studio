@@ -179,7 +179,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                                       } = sprite?.getCords();
                                 if (!pos) return;
                                 const goal: SpriteType | undefined =
-                                    game.getGoal(3, pos.x, pos.y);
+                                    game.getGoal(4, pos.x, pos.y);
                                 if (goal) {
                                     goal.erase();
                                     game.score = game.score + 1;
@@ -226,8 +226,10 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
         }
     }, [run, game]);
     return (
-        <div className='absolute top-48 right-14 border-4 border-slate-700'>
-            <canvas ref={canvasRef} width='400' height='400'></canvas>
+        <div className='absolute xl:top-48 xl:right-12 2xl:top-48 2xl:right-28 border-4 border-slate-700'>
+            <canvas
+                ref={canvasRef}
+                className='xl:h-[20rem] xl:w-[20rem] 2xl:h-[25rem] 2xl:w-[25rem] '></canvas>
         </div>
     );
 };
