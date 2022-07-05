@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import AngryBirds from './Pages/AngryBirds';
+import Blank from './Pages/Blank';
 import HarvesterGamePage from './Pages/HarvesterGamePage';
 import Landing from './Pages/Landing';
 
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <Route path='/' element={<Landing />} />
                 <Route path='/angry-birds' element={<AngryBirds />} />
                 <Route path='/harvester' element={<HarvesterGamePage />} />
+                <Route path='/blank' element={<Blank />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

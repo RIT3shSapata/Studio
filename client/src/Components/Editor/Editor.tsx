@@ -5,6 +5,8 @@ import Blockly, { WorkspaceSvg } from 'blockly';
 import './CustomBlocks/Custom_Blocks_Def';
 import './CustomBlocks/Custom_Blocks_Gen';
 import './CustomBlocks/CustomCategory.ts';
+import './studio_blocks_def';
+import './studio_blocks_gen';
 import './Editor.css';
 import useGameStore from '../../Store/gameStore';
 import shallow from 'zustand/shallow';
@@ -45,12 +47,6 @@ const Editor = ({ code, toolBox, className }: Props) => {
                 toolboxConfiguration={toolBox}
                 initialXml={INITIAL_XML}
                 workspaceConfiguration={{
-                    grid: {
-                        spacing: 20,
-                        length: 3,
-                        colour: '#ccc',
-                        snap: true,
-                    },
                     renderer: 'zelos',
                 }}
                 onWorkspaceChange={handleWorkspaceChange}
