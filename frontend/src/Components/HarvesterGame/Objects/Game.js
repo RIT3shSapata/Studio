@@ -1,6 +1,8 @@
 import HarvesterGameCanvas from '../HarvesterGameCanvas';
 import React from 'react';
 import HarvesterGameAssets from '../HarvesterGameAssets';
+import HarvesterGameCanvas2 from '../HarvesterGameCanvas2';
+import GameObject from './Object';
 class Game {
     constructor() {
         this.mazes = [];
@@ -20,6 +22,48 @@ class Game {
         this.maxScore = newGame.maxScore;
         this.score = newGame.score;
     }
+    initGame() {
+        const obj = {};
+        const canvas = [];
+        this.objects.forEach((object) => {
+            if (obj[object.assetID]) {
+                obj[object.assetID].push({ x: object.x, y: object.y });
+            } else {
+                obj[object.assetID] = [{ x: object.x, y: object.y }];
+            }
+        });
+        this.sprites.forEach((sprite) => {
+            obj[1].push({ x: sprite.x, y: sprite.y });
+            if (obj[sprite.assetID]) {
+                obj[sprite.assetID].push({ x: sprite.x, y: sprite.y });
+            } else {
+                obj[sprite.assetID] = [{ x: sprite.x, y: sprite.y }];
+            }
+        });
+        this.objects = [];
+        this.sprites = [];
+        console.log(obj);
+        canvas.push(
+            React.createElement(HarvesterGameCanvas, {
+                spriteID: 10,
+                key: 10,
+                cords: obj[10],
+                properties: HarvesterGameAssets[10],
+            })
+        );
+        Object.keys(obj).forEach((key) => {
+            if (key == 0 || key == 10) return;
+            canvas.push(
+                React.createElement(HarvesterGameCanvas, {
+                    spriteID: key,
+                    key,
+                    cords: obj[key],
+                    properties: HarvesterGameAssets[key],
+                })
+            );
+        });
+        return canvas;
+    }
     addSprite(sprite) {
         this.sprites.push(sprite);
     }
@@ -32,7 +76,7 @@ class Game {
     getSprite(spriteID) {
         let sprite;
         this.sprites.forEach((item) => {
-            if (item.spriteID == spriteID) {
+            if (item.spriteID == 3) {
                 sprite = item;
             }
         });

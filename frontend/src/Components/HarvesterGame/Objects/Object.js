@@ -1,6 +1,17 @@
 const GRID_SIZE = 50;
 export default class Object {
-    constructor(image, width, height, x, y, srcX, srcY, context, scale) {
+    constructor(
+        image,
+        width,
+        height,
+        x,
+        y,
+        srcX,
+        srcY,
+        context,
+        scale,
+        assetID
+    ) {
         this.image = image;
         this.width = width;
         this.height = height;
@@ -12,6 +23,7 @@ export default class Object {
         this.curX = this.convertToCord(this.x);
         this.curY = this.convertToCord(this.y);
         this.scale = scale;
+        this.assetID = assetID;
 
         // default num frames is 1
         this.frames = this.frames || 1;

@@ -23,7 +23,7 @@ const getPixelRatio = (context) => {
 
 const AVATAR_FRAMES = 8;
 
-const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
+const HarvesterGameCanvas2 = ({ spriteID, cords, properties }) => {
     const canvasRef = useRef(null);
     const { game, setGame } = useGameStore(
         (state) => ({ game: state.game, setGame: state.setGame }),
@@ -62,7 +62,6 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
         }
         let img = new Image();
         img.src = properties.src;
-        console.log(cords);
         cords.forEach((cord) => {
             if (properties.type === 'sprite' || properties.type === 'goal') {
                 const sprite_obj = new Sprite(
@@ -79,8 +78,8 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                     AVATAR_FRAMES,
                     spriteID
                 );
-                game.addSprite(sprite_obj);
-                setGame(game);
+                // game.addSprite(sprite_obj);
+                // setGame(game);
                 img.onload = () => {
                     game.sprites.forEach((sprite) => {
                         sprite.draw();
@@ -99,8 +98,8 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
                     properties.scale,
                     spriteID
                 );
-                game.addObject(obj);
-                setGame(game);
+                // game.addObject(obj);
+                // setGame(game);
                 img.onload = () => {
                     game.objects.forEach((object) => {
                         try {
@@ -228,4 +227,4 @@ const HarvesterGameCanvas = ({ spriteID, cords, properties }) => {
     );
 };
 
-export default HarvesterGameCanvas;
+export default HarvesterGameCanvas2;

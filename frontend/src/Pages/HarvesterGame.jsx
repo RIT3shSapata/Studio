@@ -8,6 +8,9 @@ import useGameStore from '../store/gameStore';
 import Game from '../Components/HarvesterGame/Objects/Game';
 import Modal from '../Components/Modal/Modal';
 import io from 'socket.io-client';
+import { useParams } from 'react-router-dom';
+import axios from '../utils/axios';
+import useAuthStore from '../store/authStore';
 
 const PROJECT_ID = 1;
 
@@ -19,8 +22,13 @@ const HarvesterGame = () => {
     const [xml, setXml] = useState('');
     const [update, setUpdate] = useState(false);
 
-    const { game, setGame } = useGameStore(
-        (state) => ({ game: state.game, setGame: state.setGame }),
+    const { game, setGame, initGame, toggleNewGame } = useGameStore(
+        (state) => ({
+            game: state.game,
+            setGame: state.setGame,
+            initGame: state.initGame,
+            toggleNewGame: state.toggleNewGame,
+        }),
         shallow
     );
     const {
@@ -51,14 +59,38 @@ const HarvesterGame = () => {
         }),
         shallow
     );
+
+    const { user } = useAuthStore((state) => ({
+        user: state.user,
+    }));
+
     const socket = io('ws://localhost:5000', {
         transports: ['websocket'],
     });
+
+    const params = useParams();
+
     useEffect(() => {
-        const newGame = new Game();
-        newGame.addMaze(GameLevels);
-        setEle(newGame.initMaze());
-        setGame(newGame);
+        const gameID = params.id;
+        if (gameID) {
+            const getGame = async () => {
+                const res = await axios.post('/getGame', {
+                    authorID: user.id,
+                    name: 'harvester',
+                });
+                const game_ = JSON.parse(res.data.game);
+                const newGame = new Game();
+                newGame.copyGame(game_);
+                setGame(newGame);
+                // console.log(newGame.initGame());
+                setEle(newGame.initGame());
+                // console.log(newGame);
+                // newGame.addMaze(GameLevels);
+                // setEle(newGame.initMaze());
+                // setGame(newGame);
+            };
+            getGame();
+        }
     }, []);
 
     useEffect(() => {
@@ -130,6 +162,24 @@ const HarvesterGame = () => {
         socket.emit('RUN', { PROJECT_ID, code_: co });
     };
 
+    const handleSave = () => {
+        const saveGame = async () => {
+            console.log(game);
+            try {
+                const res = await axios.post('http://localhost:5000/saveGame', {
+                    authorID: user.id,
+                    id: params.id,
+                    name: 'harvester',
+                    code: xml,
+                    game,
+                });
+                console.log(res);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        saveGame();
+    };
     return (
         <div className='h-screen w-screen flex justify-between'>
             <div id='editor' className='w-4/6 h-full'>
@@ -166,6 +216,9 @@ const HarvesterGame = () => {
                         <button className='btn-primary' onClick={handleUpdate}>
                             {' '}
                             update
+                        </button>
+                        <button className='btn-primary' onClick={handleSave}>
+                            Save
                         </button>
                     </div>
                 </div>

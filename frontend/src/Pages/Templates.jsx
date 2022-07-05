@@ -72,6 +72,20 @@ const Templates = () => {
                             <span className='text-white'>Empty Project</span>
                         </div>
                     </div>
+                    <div
+                        onClick={() => {
+                            navigate('/harvest');
+                        }}
+                        className='p-6 bg-gray-600 flex flex-col rounded-xl justify-between hover:border-blue-500 hover:border-2'>
+                        <div className='flex justify-center align-middle h-full'>
+                            <div className='flex flex-col justify-center h-full'>
+                                <span className='text-white text-5xl'>+</span>
+                            </div>
+                        </div>
+                        <div className='flex justify-center align-middle mt-4'>
+                            <span className='text-white'>Harvester Game</span>
+                        </div>
+                    </div>
                     {/* <div
                         onClick={handleClick}
                         className="p-6 bg-gray-600 flex flex-col rounded-xl hover:border-blue-500 hover:border-2">
@@ -87,7 +101,7 @@ const Templates = () => {
                             <span className="text-white">Maze Game</span>
                         </div>
                     </div> */}
-                    {projects &&
+                    {/* {projects &&
                         projects.map((project) => {
                             return (
                                 <div
@@ -109,7 +123,7 @@ const Templates = () => {
                                     </div>
                                 </div>
                             );
-                        })}
+                        })} */}
                 </div>
             </div>
         </div>
