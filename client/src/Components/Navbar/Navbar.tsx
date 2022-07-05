@@ -9,7 +9,7 @@ const Navbar = ({ className }: Props) => {
     return (
         <div className={className}>
             <div className='w-full h-full bg-[#f2f2f2] flex flex-col justify-around border-4'>
-                <div className='bg-white h-[3rem] mr-20 w-11/12 ml-4 px-8 rounded-lg flex justify-between'>
+                <div className='bg-white h-12 mr-20 w-11/12 ml-4 px-8 rounded-lg flex justify-between'>
                     <div className='flex flex-col justify-center'>
                         <span className='font-bold '>Studio</span>
                     </div>
