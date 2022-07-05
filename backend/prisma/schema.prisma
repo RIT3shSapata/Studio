@@ -23,3 +23,11 @@ model project {
   value    String @db.VarChar(1000)
   author   user   @relation(fields: [authorId], references: [id])
 }
+
+model game{
+  id Int @id @default(autoincrement())
+  name String
+  authorID Int
+  code String @db.VarChar(1000)
+  game String @db.VarChar(10000)
+}

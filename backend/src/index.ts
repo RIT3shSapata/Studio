@@ -1,7 +1,8 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import userRouter from './router/router.user';
-import projecRotuer from './router/router.projects';
+import projectRotuer from './router/router.projects';
+import gameRouter from './router/router.game';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -17,7 +18,8 @@ console.log(PORT);
 app.use(cors());
 app.use(express.json());
 app.use(userRouter);
-app.use(projecRotuer);
+app.use(projectRotuer);
+app.use(gameRouter);
 app.get('/', (req: Request, res: Response) => {
     res.send('hello!!!');
 });
