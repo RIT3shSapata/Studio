@@ -16,6 +16,7 @@ export default class Object implements ObjectType {
     curY;
     scale;
     frames;
+    assetID;
 
     constructor(
         image: HTMLImageElement,
@@ -27,7 +28,8 @@ export default class Object implements ObjectType {
         srcY: number,
         context: CanvasRenderingContext2D,
         scale: number,
-        frames: number
+        frames: number,
+        assetID: number
     ) {
         this.image = image;
         this.width = width;
@@ -40,6 +42,7 @@ export default class Object implements ObjectType {
         this.curX = this.convertToCord(this.x);
         this.curY = this.convertToCord(this.y);
         this.scale = scale;
+        this.assetID = assetID;
 
         // default num frames is 1
         this.frames = frames || 1;

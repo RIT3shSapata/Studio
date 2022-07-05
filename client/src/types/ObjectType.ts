@@ -11,6 +11,7 @@ export interface ObjectType {
     curY: number;
     scale: number;
     frames: number;
+    assetID: number;
 
     convertToCord(val: number): number;
     getPixelRatio(): number;

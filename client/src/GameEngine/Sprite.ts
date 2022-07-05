@@ -33,7 +33,19 @@ class Sprite extends Object implements SpriteType {
         frames: number,
         spriteID: number
     ) {
-        super(image, width, height, x, y, srcX, srcY, context, scale, frames);
+        super(
+            image,
+            width,
+            height,
+            x,
+            y,
+            srcX,
+            srcY,
+            context,
+            scale,
+            frames,
+            spriteID
+        );
         this.dir = dir;
         this.frames = frames;
         this.currFrame = 0;

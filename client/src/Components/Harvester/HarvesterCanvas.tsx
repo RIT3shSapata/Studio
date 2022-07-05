@@ -106,7 +106,8 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                     properties.srcY,
                     context,
                     properties.scale,
-                    AVATAR_FRAMES
+                    AVATAR_FRAMES,
+                    spriteID
                 );
                 game.addObject(obj);
                 setGame(game);
