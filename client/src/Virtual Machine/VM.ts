@@ -1,6 +1,8 @@
 import VMType from '../types/VMType';
 import SpriteType from '../types/SpriteType';
 import { actionType } from '../GameEngine/types/GameType';
+import CanvasComponent from '../Components/CanvasComponent/CanvasComponent';
+import { createElement, ReactElement, RefObject } from 'react';
 
 export default class VM implements VMType {
     sprites;
@@ -12,6 +14,18 @@ export default class VM implements VMType {
     }
     addSprite(sprite: SpriteType) {
         this.sprites.push(sprite);
+    }
+    initVM(): ReactElement[] {
+        const canvas = new Array<ReactElement>();
+        this.sprites.forEach(async (sprite: SpriteType) => {
+            canvas.push(
+                createElement(CanvasComponent, {
+                    sprite,
+                    key: sprite.spriteID,
+                })
+            );
+        });
+        return canvas;
     }
     addInstructions(spriteID: number, code: string) {
         console.log(spriteID, code);

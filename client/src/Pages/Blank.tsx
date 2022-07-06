@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import Editor from '../Components/Editor/Editor';
 import StudioToolBox from '../Components/Editor/config/Toolbox';
 import Navbar from '../Components/Navbar/Navbar';
@@ -9,8 +9,13 @@ import JSONToObject from '../Virtual Machine/utils/JSONToObject';
 type Props = {};
 
 const Blank = (props: Props) => {
+    const [ele, setEle] = useState<ReactElement[]>([]);
+    const renderOnce = useRef<boolean>(false);
     useEffect(() => {
-        JSONToObject(JSON.stringify(defaultGame));
+        if (renderOnce.current) return;
+        renderOnce.current = true;
+        const vm = JSONToObject(JSON.stringify(defaultGame));
+        setEle(vm.initVM());
     }, []);
 
     const code = useRef<string>('');
@@ -29,10 +34,7 @@ const Blank = (props: Props) => {
                     <div
                         id='canvas_container'
                         className='h-full w-full border-2 border-sky-300'>
-                        <CanvasComponent />
-                        <CanvasComponent />
-                        <CanvasComponent />
-                        <CanvasComponent />
+                        {ele}
                     </div>
                 </div>
             </div>

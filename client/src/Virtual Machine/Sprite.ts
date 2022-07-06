@@ -1,6 +1,9 @@
 import CostumeType from '../types/CostumeType';
 import SoundType from '../types/SoundType';
 import SpriteType from '../types/SpriteType';
+import getPixelRatio from '../utils/GetPixelRatio';
+
+const imagePath = '../assets/';
 
 export default class Sprite implements SpriteType {
     name: string;
@@ -64,7 +67,13 @@ export default class Sprite implements SpriteType {
         this.context = context;
     }
     draw(): void {
-        console.log('draw');
+        // if (!this.context) return;
+        const ratio = getPixelRatio(this.context);
+        const img = new Image();
+        img.src = imagePath + this.costumes[this.currentCostume].md5ext;
+        img.onload = () => {
+            this.context?.drawImage(img, 0, 0, 25 * ratio, 25 * ratio);
+        };
     }
     erase(): void {
         console.log('erase');

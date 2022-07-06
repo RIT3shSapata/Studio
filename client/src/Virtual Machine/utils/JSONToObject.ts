@@ -11,7 +11,7 @@ import Sound from '../Sound';
 import Sprite from '../Sprite';
 import VM from '../VM';
 
-const JSONToObject: (json: string) => void = (json) => {
+const JSONToObject: (json: string) => VMType = (json) => {
     const { sprites, blocks }: json_obj = JSON.parse(json);
     const newVM: VMType = new VM();
     newVM.blocks = blocks;
@@ -53,7 +53,7 @@ const JSONToObject: (json: string) => void = (json) => {
         });
         newVM.addSprite(newSprite);
     });
-    console.log(newVM);
+    return newVM;
 };
 
 export default JSONToObject;
