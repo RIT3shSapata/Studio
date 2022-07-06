@@ -1,12 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Editor from '../Components/Editor/Editor';
 import StudioToolBox from '../Components/Editor/config/Toolbox';
 import Navbar from '../Components/Navbar/Navbar';
 import CanvasComponent from '../Components/CanvasComponent/CanvasComponent';
+import defaultGame from '../Virtual Machine/config/DefaultProject.json';
+import JSONToObject from '../Virtual Machine/utils/JSONToObject';
 
 type Props = {};
 
 const Blank = (props: Props) => {
+    useEffect(() => {
+        JSONToObject(JSON.stringify(defaultGame));
+    }, []);
+
     const code = useRef<string>('');
     return (
         <div className='h-screen w-screen'>

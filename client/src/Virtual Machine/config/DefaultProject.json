@@ -3,7 +3,6 @@
         {
             "isStage": true,
             "name": "Sprite1",
-            "blocks": "",
             "currentCostume": 0,
             "costumes": [
                 {
@@ -23,5 +22,6 @@
             "size": 100,
             "direction": 90
         }
-    ]
+    ],
+    "blocks": ""
 }

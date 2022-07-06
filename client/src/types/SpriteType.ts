@@ -3,7 +3,6 @@ import SoundType from './SoundType';
 
 export default interface SpriteType {
     name: string;
-    blocks: string;
     currentCostume: number;
     costumes: CostumeType[];
     sounds: SoundType[];
@@ -14,10 +13,22 @@ export default interface SpriteType {
     x: number;
     y: number;
     direction: number;
-    context: CanvasRenderingContext2D;
+    isStage: boolean;
+    context?: CanvasRenderingContext2D;
     spriteID: number;
     addCostume(costume: CostumeType): void;
     addSound(sound: SoundType): void;
+    addContext(context: CanvasRenderingContext2D): void;
+    loadSprite(
+        isStage: boolean,
+        currentCostume: number,
+        volume: number,
+        visible: boolean,
+        x: number,
+        y: number,
+        direction: number,
+        size: number
+    ): void;
     draw(): void;
     erase(): void;
     save(): string;
