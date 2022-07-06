@@ -29,6 +29,7 @@ export default interface SpriteType {
         direction: number,
         size: number
     ): void;
+    move(steps: number): void;
     draw(): void;
     erase(): void;
     save(): string;

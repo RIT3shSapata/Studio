@@ -40,8 +40,9 @@ const Blank = (props: Props) => {
 
     useEffect(() => {
         if (getCode) {
-            console.log(code.current);
-            console.log(vm.sprites[0].spriteID);
+            const id = vm.sprites[0].spriteID;
+            vm.addInstructions(id, code.current);
+            vm.execute();
             toggleGetCode();
         }
     }, [getCode]);

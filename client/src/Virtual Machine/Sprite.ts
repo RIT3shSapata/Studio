@@ -66,17 +66,33 @@ export default class Sprite implements SpriteType {
     addContext(context: CanvasRenderingContext2D): void {
         this.context = context;
     }
+    move(steps: number): void {
+        const x = Math.cos(((90 - this.direction) * Math.PI) / 180) * steps;
+        const y = Math.sin(((90 - this.direction) * Math.PI) / 180) * steps;
+        console.log(Math.ceil(x), Math.ceil(y));
+        this.erase();
+        this.x += x;
+        this.y += y;
+        this.draw();
+    }
     draw(): void {
         // if (!this.context) return;
         const ratio = getPixelRatio(this.context);
         const img = new Image();
         img.src = imagePath + this.costumes[this.currentCostume].md5ext;
         img.onload = () => {
-            this.context?.drawImage(img, 0, 0, 25 * ratio, 25 * ratio);
+            this.context?.drawImage(
+                img,
+                this.x,
+                this.y,
+                25 * ratio,
+                25 * ratio
+            );
         };
     }
     erase(): void {
-        console.log('erase');
+        const ratio = getPixelRatio(this.context);
+        this.context?.clearRect(this.x, this.y, 25 * ratio, 25 * ratio);
     }
     save(): string {
         return 'works';
