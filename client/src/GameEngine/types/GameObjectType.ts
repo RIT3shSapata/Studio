@@ -1,4 +1,4 @@
-export interface ObjectType {
+export default interface GameObjectType {
     image: HTMLImageElement;
     width: number;
     height: number;

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { actionType } from './GameType';
+import { actionType } from '../GameEngine/types/GameType';
 import StudioSpriteType from './StudioSpriteType';
 
 export default interface VMType {

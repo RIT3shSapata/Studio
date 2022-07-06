@@ -1,5 +1,5 @@
 import Game from '../../../GameEngine/Game';
-import { GameType } from '../../../types/GameType';
+import { GameType } from '../../../GameEngine/types/GameType';
 
 export interface AngryBirdsGameType extends GameType {}
 

@@ -1,4 +1,4 @@
-import { GameType } from './GameType';
+import { GameType } from '../GameEngine/types/GameType';
 
 export default interface GameState {
     run: boolean;

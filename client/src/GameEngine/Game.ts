@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import { GameAssetsType, AssetCords } from '../types/AssetType';
-import { CanvasPropsType } from '../types/CanvasPropsTypes';
-import { GameType, actionType } from '../types/GameType';
-import { ObjectType } from '../types/ObjectType';
-import { SpriteType } from '../types/SpriteType';
+import { GameAssetsType, AssetCords } from './types/AssetType';
+import { CanvasPropsType } from './types/CanvasPropsTypes';
+import { GameType, actionType } from './types/GameType';
+import  GameObjectType from './types/GameObjectType';
+import  GameSpriteType  from './types/GameSpriteType';
 
 class Game implements GameType {
     mazes;
@@ -17,9 +17,9 @@ class Game implements GameType {
     constructor() {
         this.mazes = new Array<Array<Array<number>>>;
         this.level = 0;
-        this.sprites = new Array<SpriteType>();
+        this.sprites = new Array<GameSpriteType>();
         this.queue = new Array<actionType>();
-        this.objects = new Array<ObjectType>();
+        this.objects = new Array<GameObjectType>();
         this.score = 0;
         this.maxScore = 0;
     }
@@ -28,22 +28,22 @@ class Game implements GameType {
         this.mazes = mazes;
     }
 
-    addSprite(sprite: SpriteType) {
+    addSprite(sprite: GameSpriteType) {
             this.sprites.push(sprite);
     }
 
-    addObject(object: ObjectType) {
+    addObject(object: GameObjectType) {
         this.objects.push(object);
     }
 
     getSprite(spriteID: number) {
-        return this.sprites.find((sprite: SpriteType) => {
+        return this.sprites.find((sprite: GameSpriteType) => {
             return sprite.spriteID === spriteID;
         });
     }
 
     getGoal(spriteID: number, x: number, y: number) {
-        return this.sprites.find((sprite: SpriteType) => {
+        return this.sprites.find((sprite: GameSpriteType) => {
             return (
                 sprite.spriteID === spriteID && sprite.x === x && sprite.y === y
             );
@@ -96,9 +96,9 @@ class Game implements GameType {
     }
 
     reset() {
-        this.sprites = new Array<SpriteType>();
+        this.sprites = new Array<GameSpriteType>();
         this.queue = new Array<actionType>();
-        this.objects = new Array<ObjectType>();
+        this.objects = new Array<GameObjectType>();
         this.score = 0;
         this.maxScore = 0;
     }
@@ -120,7 +120,7 @@ class Game implements GameType {
         this.queue.push(action);
     }
 
-    canMove(sprite: SpriteType) {
+    canMove(sprite: GameSpriteType) {
         const pos: { x: number; y: number } | undefined = sprite.checkPos();
         console.log(pos)
         if (!pos) return false;
@@ -129,7 +129,7 @@ class Game implements GameType {
     }
 
     didWin() {
-        const sprite: SpriteType | undefined = this.getSprite(7);
+        const sprite: GameSpriteType | undefined = this.getSprite(7);
         if (!sprite) return false;
         const x = sprite.x;
         const y = sprite.y;

@@ -1,6 +1,6 @@
-import { SpriteType } from '../types/SpriteType';
+import GameSpriteType from './types/GameSpriteType';
 import Object from './Object';
-import { cords } from '../types/AssetType';
+import { cords } from './types/AssetType';
 /* 
 VLAUES OF DIR
 0 = left
@@ -11,7 +11,7 @@ VLAUES OF DIR
 
 const FRAMEUPDATE = 25;
 
-class Sprite extends Object implements SpriteType {
+class Sprite extends Object implements GameSpriteType {
     dir;
     currFrame;
     target;

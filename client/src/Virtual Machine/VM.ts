@@ -1,6 +1,6 @@
 import VMType from '../types/VMType';
-import StudioSpriteType from '../types/StudioSpriteType';
-import { actionType } from '../types/GameType';
+import SpriteType from '../types/SpriteType';
+import { actionType } from '../GameEngine/types/GameType';
 
 export default class VM implements VMType {
     backdropID;
@@ -9,10 +9,10 @@ export default class VM implements VMType {
 
     constructor() {
         this.backdropID = 0;
-        this.sprites = new Array<StudioSpriteType>();
+        this.sprites = new Array<SpriteType>();
         this.queue = new Array<actionType>();
     }
-    addSprite(sprite: StudioSpriteType) {
+    addSprite(sprite: SpriteType) {
         this.sprites.push(sprite);
     }
     updateBackdrop(backdropID: number) {
@@ -24,8 +24,8 @@ export default class VM implements VMType {
     execute(spriteID: number): void {
         console.log(this.queue);
     }
-    getSprite(spriteID: number): StudioSpriteType | undefined {
-        return this.sprites.find((sprite: StudioSpriteType) => {
+    getSprite(spriteID: number): SpriteType | undefined {
+        return this.sprites.find((sprite: SpriteType) => {
             return sprite.spriteID === spriteID;
         });
     }

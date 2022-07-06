@@ -1,9 +1,9 @@
-import { ObjectType } from '../types/ObjectType';
+import GameObjectType from './types/GameObjectType';
 var GRID_SIZE = 40;
 if (window.innerWidth > 1536) {
     GRID_SIZE = 50;
 }
-export default class Object implements ObjectType {
+export default class Object implements GameObjectType {
     image;
     width;
     height;
