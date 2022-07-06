@@ -1,6 +1,6 @@
 import GameSpriteType from './types/GameSpriteType';
 import Object from './Object';
-import { cords } from './types/AssetType';
+import { cords } from './types/GameAssetType';
 /* 
 VLAUES OF DIR
 0 = left

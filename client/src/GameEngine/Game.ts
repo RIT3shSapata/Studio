@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { GameAssetsType, AssetCords } from './types/AssetType';
+import { GameAssetsType, AssetCords } from './types/GameAssetType';
 import { CanvasPropsType } from './types/CanvasPropsTypes';
 import { GameType, actionType } from './types/GameType';
 import  GameObjectType from './types/GameObjectType';

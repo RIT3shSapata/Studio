@@ -1,4 +1,4 @@
-import { cords, AssetType } from './AssetType';
+import { cords, AssetType } from './GameAssetType';
 
 export type CanvasPropsType = {
     spriteID: number;

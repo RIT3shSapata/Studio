@@ -3,7 +3,7 @@ import Game from '../../../GameEngine/Game';
 import {
     AssetCords,
     GameAssetsType,
-} from '../../../GameEngine/types/AssetType';
+} from '../../../GameEngine/types/GameAssetType';
 import { CanvasPropsType } from '../../../GameEngine/types/CanvasPropsTypes';
 import { GameType } from '../../../GameEngine/types/GameType';
 import GameSpriteType from '../../../GameEngine/types/GameSpriteType';

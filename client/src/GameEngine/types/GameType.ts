@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { GameAssetsType } from './AssetType';
+import { GameAssetsType } from './GameAssetType';
 import { CanvasPropsType } from './CanvasPropsTypes';
 import GameObjectType from './GameObjectType';
 import GameSpriteType from './GameSpriteType';

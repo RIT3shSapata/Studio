@@ -1,0 +1,27 @@
+{
+    "sprites": [
+        {
+            "isStage": true,
+            "name": "Sprite1",
+            "blocks": "",
+            "currentCostume": 0,
+            "costumes": [
+                {
+                    "name": "Sprite1",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetID": "bcf454acf82e4504149f7ffe07081dbc",
+                    "md5ext": "bcf454acf82e4504149f7ffe07081dbc.svg"
+                }
+            ],
+            "sounds": [],
+            "volume": 100,
+            "layerOrder": 0,
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "size": 100,
+            "direction": 90
+        }
+    ]
+}
