@@ -1,19 +1,16 @@
 import Blockly, { Block } from 'blockly';
+import play from '../../assets/play-button.png';
+import left from '../../assets/rotate-left.svg';
+import right from '../../assets/rotate-right.svg';
 
 Blockly.Blocks['start_event'] = {
     init: function () {
         this.appendDummyInput()
             .appendField('When')
-            .appendField(
-                new Blockly.FieldImage(
-                    'https://static.vecteezy.com/system/resources/previews/000/576/395/original/play-button-icon-vector-illustration.jpg',
-                    20,
-                    20
-                )
-            )
+            .appendField(new Blockly.FieldImage(play, 20, 20))
             .appendField('Clicked');
         this.setNextStatement(true, null);
-        this.setColour(60);
+        this.setColour('#facc15');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -23,11 +20,11 @@ Blockly.Blocks['move'] = {
     init: function () {
         this.appendDummyInput()
             .appendField('move')
-            .appendField(new Blockly.FieldNumber(0), 'steps')
+            .appendField(new Blockly.FieldNumber(10), 'steps')
             .appendField('steps');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -37,18 +34,12 @@ Blockly.Blocks['turn_left'] = {
     init: function () {
         this.appendDummyInput()
             .appendField('turn')
-            .appendField(
-                new Blockly.FieldImage(
-                    'https://scratch.mit.edu/static/blocks-media/rotate-left.svg',
-                    15,
-                    15
-                )
-            )
+            .appendField(new Blockly.FieldImage(left, 15, 15))
             .appendField(new Blockly.FieldAngle(90), 'left')
             .appendField('degrees');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -58,18 +49,12 @@ Blockly.Blocks['turn_right'] = {
     init: function () {
         this.appendDummyInput()
             .appendField('turn')
-            .appendField(
-                new Blockly.FieldImage(
-                    'https://scratch.mit.edu/static/blocks-media/rotate-right.svg',
-                    15,
-                    15
-                )
-            )
+            .appendField(new Blockly.FieldImage(right, 15, 15))
             .appendField(new Blockly.FieldAngle(90), 'right')
             .appendField('degrees');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -88,7 +73,7 @@ Blockly.Blocks['goto_1'] = {
             );
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -103,7 +88,7 @@ Blockly.Blocks['goto_2'] = {
             .appendField(new Blockly.FieldNumber(0), 'y');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -124,7 +109,7 @@ Blockly.Blocks['glide_1'] = {
             );
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -141,7 +126,7 @@ Blockly.Blocks['glide_2'] = {
             .appendField(new Blockly.FieldNumber(0), 'y');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -154,7 +139,7 @@ Blockly.Blocks['point_1'] = {
             .appendField(new Blockly.FieldAngle(90), 'angle');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -170,7 +155,7 @@ Blockly.Blocks['point_2'] = {
             );
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -183,7 +168,7 @@ Blockly.Blocks['change_x'] = {
             .appendField(new Blockly.FieldNumber(0), 'x');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -196,7 +181,7 @@ Blockly.Blocks['change_y'] = {
             .appendField(new Blockly.FieldNumber(0), 'y');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -209,7 +194,7 @@ Blockly.Blocks['set_x'] = {
             .appendField(new Blockly.FieldNumber(0), 'x');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },
@@ -222,7 +207,7 @@ Blockly.Blocks['set_y'] = {
             .appendField(new Blockly.FieldNumber(0), 'y');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(225);
+        this.setColour('#3b82f6');
         this.setTooltip('');
         this.setHelpUrl('');
     },

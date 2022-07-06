@@ -1,4 +1,4 @@
-import create from 'zustand/react';
+import create from 'zustand';
 import { devtools } from 'zustand/middleware';
 import VM from '../Virtual Machine/VM';
 import VMState from '../types/VMState';
@@ -23,3 +23,5 @@ const useVMStore = create<VMState>()(
         },
     }))
 );
+
+export default useVMStore;

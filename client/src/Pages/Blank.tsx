@@ -5,20 +5,47 @@ import Navbar from '../Components/Navbar/Navbar';
 import CanvasComponent from '../Components/CanvasComponent/CanvasComponent';
 import defaultGame from '../Virtual Machine/config/DefaultProject.json';
 import JSONToObject from '../Virtual Machine/utils/JSONToObject';
+import useVMStore from '../Store/vmStore';
+import VMState from '../types/VMState';
+import shallow from 'zustand/shallow';
 
 type Props = {};
 
 const Blank = (props: Props) => {
     const [ele, setEle] = useState<ReactElement[]>([]);
     const renderOnce = useRef<boolean>(false);
+    const code = useRef<string>('');
+
+    const {
+        vm,
+        setVm,
+        getCode,
+        toggleGetCode,
+        execute,
+        toggleExecute,
+    }: VMState = useVMStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+
     useEffect(() => {
         if (renderOnce.current) return;
         renderOnce.current = true;
-        const vm = JSONToObject(JSON.stringify(defaultGame));
-        setEle(vm.initVM());
+        const newVM = JSONToObject(JSON.stringify(defaultGame));
+        setVm(newVM);
+        setEle(newVM.initVM());
     }, []);
 
-    const code = useRef<string>('');
+    useEffect(() => {
+        if (getCode) {
+            console.log(code.current);
+            console.log(vm.sprites[0].spriteID);
+            toggleGetCode();
+        }
+    }, [getCode]);
+
     return (
         <div className='h-screen w-screen'>
             <Navbar className='h-[10%] w-full' />

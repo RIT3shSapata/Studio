@@ -2,14 +2,20 @@ import Blockly, { Block } from 'blockly';
 
 Blockly.JavaScript['start_event'] = function (block: Block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.nextConnection.isConnected()) {
+        code = 'start\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['move'] = function (block: Block) {
     var number_steps = block.getFieldValue('steps');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'move,' + number_steps + '\n';
+    }
     return code;
 };
 

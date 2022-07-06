@@ -1,7 +1,7 @@
 {
     "sprites": [
         {
-            "isStage": true,
+            "isStage": false,
             "name": "Sprite1",
             "currentCostume": 0,
             "costumes": [

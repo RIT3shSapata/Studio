@@ -1,17 +1,33 @@
 import React from 'react';
 import Tippy from '@tippyjs/react';
+import VMState from '../../types/VMState';
+import useVMStore from '../../Store/vmStore';
+import shallow from 'zustand/shallow';
 
 type Props = {
     className: string;
 };
 
 const Navbar = ({ className }: Props) => {
+    const { toggleGetCode }: VMState = useVMStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
     return (
         <div className={className}>
             <div className='w-full h-full bg-[#f2f2f2] flex flex-col justify-around border-4'>
                 <div className='bg-white h-12 mr-20 w-11/12 ml-4 px-8 rounded-lg flex justify-between'>
                     <div className='flex flex-col justify-center'>
                         <span className='font-bold '>Studio</span>
+                    </div>
+                    <div>
+                        <button
+                            className='btn-wiingy-primary'
+                            onClick={() => toggleGetCode()}>
+                            Run
+                        </button>
                     </div>
                     <div
                         onClick={() =>
