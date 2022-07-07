@@ -22,30 +22,30 @@ const StudioToolBox: ToolBox = {
                     kind: 'block',
                     type: 'turn_right',
                 },
-                {
-                    kind: 'block',
-                    type: 'goto_1',
-                },
+                // {
+                //     kind: 'block',
+                //     type: 'goto_1',
+                // },
                 {
                     kind: 'block',
                     type: 'goto_2',
                 },
-                {
-                    kind: 'block',
-                    type: 'glide_1',
-                },
-                {
-                    kind: 'block',
-                    type: 'glide_2',
-                },
+                // {
+                //     kind: 'block',
+                //     type: 'glide_1',
+                // },
+                // {
+                //     kind: 'block',
+                //     type: 'glide_2',
+                // },
                 {
                     kind: 'block',
                     type: 'point_1',
                 },
-                {
-                    kind: 'block',
-                    type: 'point_2',
-                },
+                // {
+                //     kind: 'block',
+                //     type: 'point_2',
+                // },
                 {
                     kind: 'block',
                     type: 'change_x',

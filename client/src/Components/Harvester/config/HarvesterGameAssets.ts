@@ -2,7 +2,7 @@ import avatar from '../assets/avatar.png';
 import background from '../assets/background3.png';
 import corn from '../assets/corn.png';
 import tile from '../assets/tiles.png';
-import { GameAssetsType } from '../../../types/AssetType';
+import { GameAssetsType } from '../../../GameEngine/types/GameAssetType';
 
 var scale = 1;
 if (window.innerWidth < 1536) {

@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react';
 import shallow from 'zustand/shallow';
 import useGameStore from '../../Store/gameStore';
-import { CanvasPropsType } from '../../types/CanvasPropsTypes';
+import { CanvasPropsType } from '../../GameEngine/types/CanvasPropsTypes';
 import GameState from '../../types/GameState';
 import getPixelRatio from '../../utils/GetPixelRatio';
 import Sprite from '../../GameEngine/Sprite';
 import Object from '../../GameEngine/Object';
-import { SpriteType } from '../../types/SpriteType';
-import { actionType } from '../../types/GameType';
-import { ObjectType } from '../../types/ObjectType';
+import GameSpriteType from '../../GameEngine/types/GameSpriteType';
+import { actionType } from '../../GameEngine/types/GameType';
+import GameObjectType from '../../GameEngine/types/GameObjectType';
 import leaf from './assets/leaf.wav';
 import useAudio from '../../utils/useAudio';
 
@@ -74,7 +74,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
         img.src = properties.src;
         cords.forEach((cord) => {
             if (properties.type === 'sprite' || properties.type === 'goal') {
-                const sprite_obj: SpriteType = new Sprite(
+                const sprite_obj: GameSpriteType = new Sprite(
                     img,
                     properties.width,
                     properties.height,
@@ -96,7 +96,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                     });
                 };
             } else {
-                const obj: ObjectType = new Object(
+                const obj: GameObjectType = new Object(
                     img,
                     properties.width,
                     properties.height,
@@ -120,7 +120,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
         });
     }, []);
 
-    const move = (sprite: SpriteType) => {
+    const move = (sprite: GameSpriteType) => {
         return new Promise((resolve, reject) => {
             const canvas = canvasRef.current;
             if (!canvas) return;
@@ -183,7 +183,7 @@ const HarvesterCanvas: FunctionComponent<CanvasPropsType> = ({
                                           y: number;
                                       } = sprite?.getCords();
                                 if (!pos) return;
-                                const goal: SpriteType | undefined =
+                                const goal: GameSpriteType | undefined =
                                     game.getGoal(4, pos.x, pos.y);
                                 if (goal) {
                                     goal.erase();

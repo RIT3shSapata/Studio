@@ -1,9 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import Game from '../../../GameEngine/Game';
-import { AssetCords, GameAssetsType } from '../../../types/AssetType';
-import { CanvasPropsType } from '../../../types/CanvasPropsTypes';
-import { GameType } from '../../../types/GameType';
-import { SpriteType } from '../../../types/SpriteType';
+import {
+    AssetCords,
+    GameAssetsType,
+} from '../../../GameEngine/types/GameAssetType';
+import { CanvasPropsType } from '../../../GameEngine/types/CanvasPropsTypes';
+import { GameType } from '../../../GameEngine/types/GameType';
+import GameSpriteType from '../../../GameEngine/types/GameSpriteType';
 
 export interface HarvesterGameType extends GameType {}
 
@@ -65,7 +68,7 @@ class HarvesterGame extends Game implements HarvesterGame {
         return canvas;
     }
 
-    canMove(sprite: SpriteType) {
+    canMove(sprite: GameSpriteType) {
         const pos: { x: number; y: number } | undefined = sprite.checkPos();
         console.log(pos);
         if (!pos) return false;

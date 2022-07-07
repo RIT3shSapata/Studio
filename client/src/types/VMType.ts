@@ -1,15 +1,17 @@
-import React, { FunctionComponent } from 'react';
-import { actionType } from './GameType';
-import StudioSpriteType from './StudioSpriteType';
+import { ReactElement } from 'react';
+import { actionType } from '../GameEngine/types/GameType';
+import SpriteType from './SpriteType';
 
 export default interface VMType {
-    backdropID: number;
-    sprites: StudioSpriteType[];
+    sprites: SpriteType[];
+    blocks: string;
     queue: actionType[];
 
-    addSprite(sprite: StudioSpriteType): void;
+    addSprite(sprite: SpriteType): void;
+    initVM(): ReactElement[];
     updateBackdrop(backdropID: number): void;
-    getSprite(spriteID: number): StudioSpriteType | undefined;
-    addInstructions(spriteID: number, code: string): void;
-    execute(spriteID: number): void;
+    getSprite(spriteID: number): SpriteType | undefined;
+    addInstructions(code: string): void;
+    execute(): void;
+    save(): string;
 }

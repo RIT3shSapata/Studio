@@ -18,7 +18,6 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
     addColourBorder_(colour: string) {
         //@ts-ignore
         this.rowDiv_.style.backgroundColor = colour;
-        console.log(colour);
     }
 
     /**

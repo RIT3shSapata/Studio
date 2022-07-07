@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { GameAssetsType } from './AssetType';
+import { GameAssetsType } from './GameAssetType';
 import { CanvasPropsType } from './CanvasPropsTypes';
-import { ObjectType } from './ObjectType';
-import { SpriteType } from './SpriteType';
+import GameObjectType from './GameObjectType';
+import GameSpriteType from './GameSpriteType';
 
 export type actionType = {
     spriteID: number;
@@ -12,17 +12,17 @@ export type actionType = {
 export interface GameType {
     mazes: number[][][];
     level: number;
-    sprites: SpriteType[];
-    objects: ObjectType[];
+    sprites: GameSpriteType[];
+    objects: GameObjectType[];
     queue: actionType[];
     score: number;
     maxScore: number;
 
     addMazes(mazes: number[][][]): void;
-    addSprite(sprite: SpriteType): void;
-    addObject(object: ObjectType): void;
-    getSprite(spriteID: number): SpriteType | undefined;
-    getGoal(spriteID: number, x: number, y: number): SpriteType | undefined;
+    addSprite(sprite: GameSpriteType): void;
+    addObject(object: GameObjectType): void;
+    getSprite(spriteID: number): GameSpriteType | undefined;
+    getGoal(spriteID: number, x: number, y: number): GameSpriteType | undefined;
     initMaze(
         canvasElement: FunctionComponent<CanvasPropsType>,
         assets: GameAssetsType
@@ -30,7 +30,7 @@ export interface GameType {
     nextLevel(): void;
     clearLevel(): void;
     addInstructions(spriteID: number, code: string): void;
-    canMove(sprite: SpriteType): boolean;
+    canMove(sprite: GameSpriteType): boolean;
     didWin(): boolean;
     reset(): void;
     run(spriteID: number): actionType | undefined;

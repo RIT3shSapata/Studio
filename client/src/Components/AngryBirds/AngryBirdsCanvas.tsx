@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import shallow from 'zustand/shallow';
 import useGameStore from '../../Store/gameStore';
-import { CanvasPropsType } from '../../types/CanvasPropsTypes';
+import { CanvasPropsType } from '../../GameEngine/types/CanvasPropsTypes';
 import GameState from '../../types/GameState';
 import getPixelRatio from '../../utils/GetPixelRatio';
 import Sprite from '../../GameEngine/Sprite';
-import { SpriteType } from '../../types/SpriteType';
-import { actionType } from '../../types/GameType';
+import GameSpriteType from '../../GameEngine/types/GameSpriteType';
+import { actionType } from '../../GameEngine/types/GameType';
 import angry_birds_win from './assets/Angry_Birds_Level_Complete_Sound_Effect.mp3';
 import useAudio from '../../utils/useAudio';
 
@@ -66,7 +66,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
         let img = new Image();
         img.src = properties.src;
         cords.forEach((cord) => {
-            const sprite_obj: SpriteType = new Sprite(
+            const sprite_obj: GameSpriteType = new Sprite(
                 img,
                 properties.width,
                 properties.height,
@@ -92,7 +92,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
     }, []);
 
     //Animate Function
-    const move = (sprite: SpriteType) => {
+    const move = (sprite: GameSpriteType) => {
         return new Promise((resolve, reject) => {
             const canvas = canvasRef.current;
             if (!canvas) return;
@@ -133,7 +133,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
             if (!action) return;
             const id: number = action.spriteID;
             const instructions = action.instructions;
-            let sprite: SpriteType | undefined = game.getSprite(spriteID);
+            let sprite: GameSpriteType | undefined = game.getSprite(spriteID);
             let ins_count = 0;
             if (id === 7) {
                 const animate = async () => {
@@ -174,7 +174,7 @@ const AngryBirdsCanvas: FunctionComponent<CanvasPropsType> = ({
                                     toggleWin();
                                 });
                                 toggleRun();
-                                const goal: SpriteType | undefined =
+                                const goal: GameSpriteType | undefined =
                                     game.getSprite(8);
                                 goal?.erase();
                             }

@@ -7,7 +7,7 @@ import stone_square from '../assets/stone_square.png';
 import stone_triangle from '../assets/stone_square.png';
 import glass_triangle from '../assets/glass_triangle.png';
 import wooden_triangle from '../assets/wood_triangle.png';
-import { GameAssetsType } from '../../../types/AssetType';
+import { GameAssetsType } from '../../../GameEngine/types/GameAssetType';
 
 const GRID_SIZE = 64;
 const SPRITE_SIZE = 150;
