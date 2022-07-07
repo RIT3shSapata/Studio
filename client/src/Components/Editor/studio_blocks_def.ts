@@ -35,7 +35,7 @@ Blockly.Blocks['turn_left'] = {
         this.appendDummyInput()
             .appendField('turn')
             .appendField(new Blockly.FieldImage(left, 15, 15))
-            .appendField(new Blockly.FieldAngle(90), 'left')
+            .appendField(new Blockly.FieldAngle(15), 'left')
             .appendField('degrees');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -50,7 +50,7 @@ Blockly.Blocks['turn_right'] = {
         this.appendDummyInput()
             .appendField('turn')
             .appendField(new Blockly.FieldImage(right, 15, 15))
-            .appendField(new Blockly.FieldAngle(90), 'right')
+            .appendField(new Blockly.FieldAngle(15), 'right')
             .appendField('degrees');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);

@@ -79,6 +79,7 @@ export default class Sprite implements SpriteType {
         const ratio = getPixelRatio(this.context);
         let origin_x = Math.ceil(this.canvasWidth / 2 + this.x);
         let origin_y = Math.ceil(this.canvasHeight / 2 + this.y * -1);
+        console.log(origin_x, origin_y);
         const img = new Image();
         img.src = imagePath + this.costumes[this.currentCostume].md5ext;
         // img.style.transform = `rotate(${this.direction}deg)`;
@@ -114,7 +115,6 @@ export default class Sprite implements SpriteType {
         this.erase();
         this.x += Math.ceil(x);
         this.y += Math.ceil(y);
-        console.log(this.x, this.y);
         this.draw();
         // this.init();
     }
@@ -122,9 +122,6 @@ export default class Sprite implements SpriteType {
         this.erase();
         console.log(degrees);
         this.direction = this.direction + degrees;
-        this.context?.translate(this.width / 2, this.height / 2);
-        this.context?.rotate(((this.direction - 90) * Math.PI) / 180);
-        this.context?.translate(-this.width / 2, -this.height / 2);
         this.draw();
     }
 }
