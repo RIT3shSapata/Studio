@@ -39,4 +39,8 @@ export default interface SpriteType {
     //functions for sprite actions
     move(steps: number): void;
     rotate(degrees: number): void;
+    goto(x: number, y: number): void;
+    point(angle: number): void;
+    change(dx: number, dy: number): void;
+    set(x: number, y: number): void;
 }

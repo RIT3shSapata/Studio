@@ -50,7 +50,10 @@ Blockly.JavaScript['goto_2'] = function (block: Block) {
     var number_x = block.getFieldValue('x');
     var number_y = block.getFieldValue('y');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'goto,' + number_x + ',' + number_y + '\n';
+    }
     return code;
 };
 
@@ -74,41 +77,56 @@ Blockly.JavaScript['glide_2'] = function (block: Block) {
 Blockly.JavaScript['point_1'] = function (block: Block) {
     var angle_angle = block.getFieldValue('angle');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'point,' + angle_angle + '\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['point_2'] = function (block: Block) {
     var dropdown_goto = block.getFieldValue('goto');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
     return code;
 };
 
 Blockly.JavaScript['change_x'] = function (block: Block) {
     var number_x = block.getFieldValue('x');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'change_x,' + number_x + '\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['change_y'] = function (block: Block) {
     var number_y = block.getFieldValue('y');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'change_y,' + number_y + '\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['set_x'] = function (block: Block) {
     var number_x = block.getFieldValue('x');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'set_x,' + number_x + '\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['set_y'] = function (block: Block) {
     var number_y = block.getFieldValue('y');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'set_y,' + number_y + '\n';
+    }
     return code;
 };

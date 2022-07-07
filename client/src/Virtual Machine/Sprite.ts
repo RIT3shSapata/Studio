@@ -124,4 +124,27 @@ export default class Sprite implements SpriteType {
         this.direction = this.direction + degrees;
         this.draw();
     }
+    goto(x: number, y: number): void {
+        this.erase();
+        this.x = x;
+        this.y = y;
+        this.draw();
+    }
+    point(angle: number): void {
+        this.erase();
+        this.direction = angle;
+        this.draw();
+    }
+    change(dx: number, dy: number): void {
+        this.erase();
+        this.x += dx;
+        this.y += dy;
+        this.draw();
+    }
+    set(x: number, y: number): void {
+        this.erase();
+        this.x = x;
+        this.y = y;
+        this.draw();
+    }
 }

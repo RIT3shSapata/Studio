@@ -60,6 +60,31 @@ export default class VM implements VMType {
                         const degrees: number = parseInt(args[0]);
                         sprite.rotate(degrees);
                         break;
+                    case 'goto':
+                        const x: number = parseInt(args[0]);
+                        const y: number = parseInt(args[1]);
+                        sprite.goto(x, y);
+                        break;
+                    case 'point':
+                        const angle: number = parseInt(args[0]);
+                        sprite.point(angle);
+                        break;
+                    case 'change_x':
+                        const dx: number = parseInt(args[0]);
+                        sprite.change(dx, 0);
+                        break;
+                    case 'change_y':
+                        const dy: number = parseInt(args[0]);
+                        sprite.change(0, dy);
+                        break;
+                    case 'set_x':
+                        const sx: number = parseInt(args[0]);
+                        sprite.set(sx, sprite.y);
+                        break;
+                    case 'set_y':
+                        const sy: number = parseInt(args[0]);
+                        sprite.set(sprite.x, sy);
+                        break;
                     default:
                         console.log(command);
                 }
