@@ -29,13 +29,28 @@ export default class VM implements VMType {
         });
         return canvas;
     }
-    addInstructions(spriteID: number, code: string) {
+    addInstructions(code: string) {
         const instructions = code.split('\n');
-        const action: actionType = {
-            spriteID,
-            instructions,
-        };
-        this.queue.push(action);
+        let spriteID = -1;
+        let newIns: string[] = [];
+        instructions.forEach((instruction) => {
+            if (instruction.length === 0) {
+                const action: actionType = {
+                    spriteID,
+                    instructions: newIns,
+                };
+                this.queue.push(action);
+            }
+            const [command, ...args] = instruction.split(',');
+            if (command === 'start') {
+                var sprite_ind = parseInt(args[0]);
+                const sp = this.sprites[sprite_ind];
+                spriteID = sp.spriteID;
+                newIns = [];
+            } else {
+                newIns.push(instruction);
+            }
+        });
     }
     updateBackdrop(backdropID: number): void {
         console.log(backdropID);

@@ -11,7 +11,7 @@ export default interface VMType {
     initVM(): ReactElement[];
     updateBackdrop(backdropID: number): void;
     getSprite(spriteID: number): SpriteType | undefined;
-    addInstructions(spriteID: number, code: string): void;
+    addInstructions(code: string): void;
     execute(): void;
     save(): string;
 }

@@ -41,7 +41,7 @@ const Blank = (props: Props) => {
     useEffect(() => {
         if (getCode) {
             const id = vm.sprites[0].spriteID;
-            vm.addInstructions(id, code.current);
+            vm.addInstructions(code.current);
             vm.execute();
             toggleGetCode();
         }

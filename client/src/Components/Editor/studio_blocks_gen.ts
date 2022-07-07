@@ -1,10 +1,10 @@
 import Blockly, { Block } from 'blockly';
 
 Blockly.JavaScript['start_event'] = function (block: Block) {
-    // TODO: Assemble JavaScript into code variable.
+    var dropdown_sprite = block.getFieldValue('sprite');
     var code = 'not_connected\n';
     if (block.nextConnection.isConnected()) {
-        code = 'start\n';
+        code = 'start,' + dropdown_sprite + '\n';
     }
     return code;
 };

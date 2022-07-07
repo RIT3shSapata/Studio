@@ -2,15 +2,40 @@ import Blockly, { Block } from 'blockly';
 import play from '../../assets/play-button.png';
 import left from '../../assets/rotate-left.svg';
 import right from '../../assets/rotate-right.svg';
+import sprite1 from '../../assets/bcf454acf82e4504149f7ffe07081dbc.svg';
+import sprite2 from '../../assets/d92aaf6cf44921905d51ca4a10a4f3d6.svg';
 
 Blockly.Blocks['start_event'] = {
     init: function () {
         this.appendDummyInput()
             .appendField('When')
             .appendField(new Blockly.FieldImage(play, 20, 20))
-            .appendField('Clicked');
+            .appendField('Clicked for ')
+            .appendField(
+                new Blockly.FieldDropdown([
+                    [
+                        {
+                            src: sprite1,
+                            width: 15,
+                            height: 15,
+                            alt: '*',
+                        },
+                        '0',
+                    ],
+                    [
+                        {
+                            src: sprite2,
+                            width: 15,
+                            height: 15,
+                            alt: '*',
+                        },
+                        '1',
+                    ],
+                ]),
+                'sprite'
+            );
         this.setNextStatement(true, null);
-        this.setColour('#facc15');
+        this.setColour(60);
         this.setTooltip('');
         this.setHelpUrl('');
     },
