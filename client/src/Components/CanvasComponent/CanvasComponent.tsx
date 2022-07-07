@@ -46,11 +46,36 @@ const CanvasComponent: FunctionComponent<Props> = ({ sprite }: Props) => {
     useEffect(() => {
         if (renderOnce.current) return;
         renderOnce.current = true;
-        const canvas = canvasRef.current;
-        const context = canvas?.getContext('2d');
+        const canvas: HTMLCanvasElement | null = canvasRef.current;
+        if (!canvas) return;
+        const context: CanvasRenderingContext2D | null | undefined =
+            canvas.getContext('2d');
         if (!context) return;
+        let ratio = getPixelRatio(context);
+        const canvasEle = canvas ? canvas : document.createElement('canvas');
+
+        let width = getComputedStyle(canvasEle)
+            .getPropertyValue('width')
+            .slice(0, -2);
+        let height = getComputedStyle(canvasEle)
+            .getPropertyValue('height')
+            .slice(0, -2);
+
+        if (canvas) {
+            //@ts-ignore
+            canvas.width = width * ratio;
+            //@ts-ignore
+            canvas.height = height * ratio;
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+        }
+        if (!context) return;
+        sprite.canvasHeight = canvas.height;
+        sprite.canvasWidth = canvas.width;
         sprite.addContext(context);
+        // sprite.rotate(sprite.direction);
         sprite.draw();
+        // sprite.init();
     }, []);
 
     return (

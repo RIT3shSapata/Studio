@@ -16,6 +16,10 @@ export default interface SpriteType {
     isStage: boolean;
     context?: CanvasRenderingContext2D;
     spriteID: number;
+    width: number;
+    height: number;
+    canvasHeight: number;
+    canvasWidth: number;
     addCostume(costume: CostumeType): void;
     addSound(sound: SoundType): void;
     addContext(context: CanvasRenderingContext2D): void;
@@ -29,8 +33,10 @@ export default interface SpriteType {
         direction: number,
         size: number
     ): void;
-    move(steps: number): void;
     draw(): void;
     erase(): void;
     save(): string;
+    //functions for sprite actions
+    move(steps: number): void;
+    rotate(degrees: number): void;
 }

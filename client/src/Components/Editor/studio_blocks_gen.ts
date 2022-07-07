@@ -22,14 +22,20 @@ Blockly.JavaScript['move'] = function (block: Block) {
 Blockly.JavaScript['turn_left'] = function (block: Block) {
     var angle_left = block.getFieldValue('left');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'turn,-' + angle_left + '\n';
+    }
     return code;
 };
 
 Blockly.JavaScript['turn_right'] = function (block: Block) {
     var angle_right = block.getFieldValue('right');
     // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    var code = 'not_connected\n';
+    if (block.previousConnection.isConnected()) {
+        code = 'turn,' + angle_right + '\n';
+    }
     return code;
 };
 

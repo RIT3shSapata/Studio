@@ -20,6 +20,10 @@ export default class Sprite implements SpriteType {
     context?: CanvasRenderingContext2D;
     spriteID: number;
     isStage: boolean;
+    width: number;
+    height: number;
+    canvasHeight: number;
+    canvasWidth: number;
 
     constructor(name: string, layerOrder: number) {
         this.name = name;
@@ -35,6 +39,10 @@ export default class Sprite implements SpriteType {
         this.y = 0;
         this.direction = 90;
         this.spriteID = Math.floor(100000 + Math.random() * 900000);
+        this.height = 0;
+        this.width = 0;
+        this.canvasHeight = 0;
+        this.canvasWidth = 0;
     }
 
     loadSprite(
@@ -66,35 +74,57 @@ export default class Sprite implements SpriteType {
     addContext(context: CanvasRenderingContext2D): void {
         this.context = context;
     }
-    move(steps: number): void {
-        const x = Math.cos(((90 - this.direction) * Math.PI) / 180) * steps;
-        const y = Math.sin(((90 - this.direction) * Math.PI) / 180) * steps;
-        console.log(Math.ceil(x), Math.ceil(y));
-        this.erase();
-        this.x += x;
-        this.y += y;
-        this.draw();
-    }
     draw(): void {
-        // if (!this.context) return;
+        if (!this.context) return;
         const ratio = getPixelRatio(this.context);
+        let origin_x = Math.ceil(this.canvasWidth / 2 + this.x);
+        let origin_y = Math.ceil(this.canvasHeight / 2 + this.y * -1);
         const img = new Image();
         img.src = imagePath + this.costumes[this.currentCostume].md5ext;
+        // img.style.transform = `rotate(${this.direction}deg)`;
         img.onload = () => {
+            this.width = img.width;
+            this.height = img.height;
+            this.context?.save();
+            this.context?.translate(
+                origin_x + this.width / 2,
+                origin_y + this.height / 2
+            );
+            this.context?.rotate(((this.direction - 90) * Math.PI) / 180);
             this.context?.drawImage(
                 img,
-                this.x,
-                this.y,
-                25 * ratio,
-                25 * ratio
+                0,
+                0,
+                this.width * ratio,
+                this.height * ratio
             );
+            this.context?.restore();
         };
     }
     erase(): void {
-        const ratio = getPixelRatio(this.context);
-        this.context?.clearRect(this.x, this.y, 25 * ratio, 25 * ratio);
+        // this.context?.translate(-this.width / 2, -this.height / 2);
+        this.context?.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     }
     save(): string {
         return 'works';
+    }
+    move(steps: number): void {
+        const x = Math.cos(((90 - this.direction) * Math.PI) / 180) * steps;
+        const y = Math.sin(((90 - this.direction) * Math.PI) / 180) * steps;
+        this.erase();
+        this.x += Math.ceil(x);
+        this.y += Math.ceil(y);
+        console.log(this.x, this.y);
+        this.draw();
+        // this.init();
+    }
+    rotate(degrees: number): void {
+        this.erase();
+        console.log(degrees);
+        this.direction = this.direction + degrees;
+        this.context?.translate(this.width / 2, this.height / 2);
+        this.context?.rotate(((this.direction - 90) * Math.PI) / 180);
+        this.context?.translate(-this.width / 2, -this.height / 2);
+        this.draw();
     }
 }

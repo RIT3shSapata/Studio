@@ -8,9 +8,9 @@
                 {
                     "name": "Sprite1",
                     "bitmapResolution": 1,
-                    "dataFormat": "png",
+                    "dataFormat": "svg",
                     "assetID": "bcf454acf82e4504149f7ffe07081dbc",
-                    "md5ext": "bcf454acf82e4504149f7ffe07081dbc.png"
+                    "md5ext": "bcf454acf82e4504149f7ffe07081dbc.svg"
                 }
             ],
             "sounds": [],
@@ -20,7 +20,7 @@
             "x": 0,
             "y": 0,
             "size": 100,
-            "direction": 90
+            "direction": 135
         }
     ],
     "blocks": ""

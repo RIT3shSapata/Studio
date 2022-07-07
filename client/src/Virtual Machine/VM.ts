@@ -56,6 +56,10 @@ export default class VM implements VMType {
                         const steps: number = parseInt(args[0]);
                         sprite.move(steps);
                         break;
+                    case 'turn':
+                        const degrees: number = parseInt(args[0]);
+                        sprite.rotate(degrees);
+                        break;
                     default:
                         console.log(command);
                 }
