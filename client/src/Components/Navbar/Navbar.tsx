@@ -1,5 +1,4 @@
 import React from 'react';
-import Tippy from '@tippyjs/react';
 import VMState from '../../types/VMState';
 import useVMStore from '../../Store/vmStore';
 import shallow from 'zustand/shallow';
@@ -9,7 +8,7 @@ type Props = {
 };
 
 const Navbar = ({ className }: Props) => {
-    const { toggleGetCode }: VMState = useVMStore(
+    const { toggleGetCode, toggleSync, toggleExecute }: VMState = useVMStore(
         (state) => ({
             ...state,
         }),
@@ -25,8 +24,18 @@ const Navbar = ({ className }: Props) => {
                     <div>
                         <button
                             className='btn-wiingy-primary'
-                            onClick={() => toggleGetCode()}>
+                            onClick={() => {
+                                // toggleGetCode();
+                                toggleExecute();
+                            }}>
                             Run
+                        </button>
+                        <button
+                            className='btn-wiingy-primary'
+                            onClick={() => {
+                                toggleSync();
+                            }}>
+                            Sync
                         </button>
                     </div>
                     <div

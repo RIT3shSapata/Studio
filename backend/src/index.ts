@@ -28,16 +28,17 @@ const server = http.createServer(app);
 const io = new Server(server);
 io.on('connection', function (socket) {
     socket.on('CONNECT_ROOM', (projectID) => {
-        console.log('Connected user', projectID);
         socket.join(projectID);
         io.in(projectID).emit('ROOM_CONNECTED', projectID);
     });
     socket.on('CODE_CHANGED', ({ PROJECT_ID, xml }) => {
-        console.log('sending update');
         io.to(PROJECT_ID).emit('CODE_UPDATED', xml);
     });
     socket.on('RUN', (prop) => {
         io.to(prop.PROJECT_ID).emit('RUN_CODE', prop.code_);
+    });
+    socket.on('disconnect', (reason) => {
+        console.log(`disconnect ${socket.id} due to ${reason}`);
     });
 });
 // socket_init(app);

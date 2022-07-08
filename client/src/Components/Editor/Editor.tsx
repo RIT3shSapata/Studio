@@ -11,6 +11,8 @@ import './Editor.css';
 import useGameStore from '../../Store/gameStore';
 import shallow from 'zustand/shallow';
 import GameState from '../../types/GameState';
+import VMState from '../../types/VMState';
+import useVMStore from '../../Store/vmStore';
 
 type Props = {
     code: any;
@@ -19,7 +21,6 @@ type Props = {
 };
 
 const Editor = ({ code, toolBox, className }: Props) => {
-    const [xml, setXML] = useState<string>('');
     const [workspace, setWorkspace] = useState<WorkspaceSvg | null>(null);
 
     const { clearCanvas, toggleClearCanvas }: GameState = useGameStore(
@@ -28,6 +29,22 @@ const Editor = ({ code, toolBox, className }: Props) => {
         }),
         shallow
     );
+
+    const { update, setUpdate, xml, setXML }: VMState = useVMStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+
+    useEffect(() => {
+        if (update && workspace) {
+            const xmlElement = Blockly.Xml.textToDom(xml);
+            workspace.clear();
+            Blockly.Xml.domToWorkspace(xmlElement, workspace);
+            setUpdate(false);
+        }
+    }, [update]);
 
     useEffect(() => {
         if (clearCanvas) {
