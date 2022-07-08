@@ -8,11 +8,13 @@ export default class VM implements VMType {
     sprites;
     blocks;
     queue;
+    keyListener: any;
 
     constructor() {
         this.sprites = new Array<SpriteType>();
         this.blocks = '';
         this.queue = new Array<actionType>();
+        this.keyListener = {};
     }
     addSprite(sprite: SpriteType) {
         this.sprites.push(sprite);
@@ -29,7 +31,7 @@ export default class VM implements VMType {
         });
         return canvas;
     }
-    addInstructions(code: string) {
+    addAllInstructions(code: string) {
         const instructions = code.split('\n');
         let spriteID = -1;
         let newIns: string[] = [];
@@ -113,5 +115,16 @@ export default class VM implements VMType {
     }
     save(): string {
         return 'works';
+    }
+    addKeyListner(key: string): void {
+        if (!this.keyListener[key]) {
+            this.keyListener[key] = true;
+            document.addEventListener('keydown', (e: KeyboardEvent) => {
+                if (e.code === key) {
+                    const myEvent = new CustomEvent('start_event', {});
+                    document.dispatchEvent(myEvent);
+                }
+            });
+        }
     }
 }

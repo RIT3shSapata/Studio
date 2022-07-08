@@ -1,7 +1,7 @@
 import React, { Ref, RefObject, useEffect, useState } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
 import { ToolBox, INITIAL_XML } from '../../types/ToolBoxTypes';
-import Blockly, { WorkspaceSvg } from 'blockly';
+import Blockly, { Block, WorkspaceSvg } from 'blockly';
 import './CustomBlocks/Custom_Blocks_Def';
 import './CustomBlocks/Custom_Blocks_Gen';
 import './CustomBlocks/CustomCategory.ts';
@@ -30,7 +30,7 @@ const Editor = ({ code, toolBox, className }: Props) => {
         shallow
     );
 
-    const { update, setUpdate, xml, setXML }: VMState = useVMStore(
+    const { update, setUpdate, xml, setXML, vm, setVm }: VMState = useVMStore(
         (state) => ({
             ...state,
         }),
@@ -56,6 +56,15 @@ const Editor = ({ code, toolBox, className }: Props) => {
     const handleWorkspaceChange = (workspace: WorkspaceSvg) => {
         const co: string = Blockly.JavaScript.workspaceToCode(workspace);
         setWorkspace(workspace);
+        if (!workspace.isDragging()) {
+            const topBlocks: Block[] = workspace.getTopBlocks(true);
+            topBlocks.forEach((block: Block) => {
+                if (block.type === 'keyboard_event') {
+                    vm.addKeyListner(block.getFieldValue('key'));
+                    setVm(vm);
+                }
+            });
+        }
         code.current = co;
     };
     return (

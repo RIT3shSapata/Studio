@@ -48,6 +48,16 @@ const Blank = (props: Props) => {
         const newVM = JSONToObject(JSON.stringify(defaultGame));
         setEle(newVM.initVM());
         setVm(newVM);
+
+        document.addEventListener('start_event', (e) => {
+            // toggleGetCode();
+            toggleExecute();
+        });
+        return () => {
+            document.removeEventListener('start_event', (e) => {
+                console.log('removed');
+            });
+        };
     }, []);
 
     useEffect(() => {
@@ -58,7 +68,7 @@ const Blank = (props: Props) => {
                 setUpdate(true);
             });
             socket.on('RUN_CODE', (code_: string) => {
-                vm.addInstructions(code_);
+                vm.addAllInstructions(code_);
                 vm.execute();
                 setVm(vm);
             });
@@ -82,9 +92,9 @@ const Blank = (props: Props) => {
 
     useEffect(() => {
         if (getCode) {
-            const id = vm.sprites[0].spriteID;
-            vm.addInstructions(code.current);
+            vm.addAllInstructions(code.current);
             vm.execute();
+            setVm(vm);
             toggleGetCode();
         }
     }, [getCode]);

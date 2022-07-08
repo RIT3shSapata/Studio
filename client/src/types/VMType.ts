@@ -6,12 +6,14 @@ export default interface VMType {
     sprites: SpriteType[];
     blocks: string;
     queue: actionType[];
+    keyListener: any;
 
     addSprite(sprite: SpriteType): void;
     initVM(): ReactElement[];
     updateBackdrop(backdropID: number): void;
     getSprite(spriteID: number): SpriteType | undefined;
-    addInstructions(code: string): void;
+    addAllInstructions(code: string): void;
     execute(): void;
     save(): string;
+    addKeyListner(key: string): void;
 }

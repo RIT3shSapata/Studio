@@ -74,6 +74,10 @@ const StudioToolBox: ToolBox = {
                     kind: 'block',
                     type: 'start_event',
                 },
+                {
+                    kind: 'block',
+                    type: 'keyboard_event',
+                },
             ],
         },
     ],

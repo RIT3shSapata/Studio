@@ -237,3 +237,42 @@ Blockly.Blocks['set_y'] = {
         this.setHelpUrl('');
     },
 };
+
+Blockly.Blocks['keyboard_event'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField('When')
+            .appendField(
+                new Blockly.FieldDropdown([['spacebar', 'Space']]),
+                'key'
+            )
+            .appendField('pressed')
+            .appendField(
+                new Blockly.FieldDropdown([
+                    [
+                        {
+                            src: sprite1,
+                            width: 15,
+                            height: 15,
+                            alt: '*',
+                        },
+                        '0',
+                    ],
+                    [
+                        {
+                            src: sprite2,
+                            width: 15,
+                            height: 15,
+                            alt: '*',
+                        },
+                        '1',
+                    ],
+                ]),
+                'sprite'
+            );
+        this.setNextStatement(true, null);
+        this.setColour(60);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    },
+};
