@@ -35,6 +35,8 @@ const Blank = (props: Props) => {
         toggleSync,
         execute,
         toggleExecute,
+        event,
+        toggleEvent,
     }: VMState = useVMStore(
         (state) => ({
             ...state,
@@ -50,8 +52,7 @@ const Blank = (props: Props) => {
         setVm(newVM);
 
         document.addEventListener('start_event', (e) => {
-            // toggleGetCode();
-            toggleExecute();
+            toggleEvent();
         });
         return () => {
             document.removeEventListener('start_event', (e) => {
@@ -69,7 +70,7 @@ const Blank = (props: Props) => {
             });
             socket.on('RUN_CODE', (code_: string) => {
                 vm.addAllInstructions(code_);
-                vm.execute();
+                vm.executeStart();
                 setVm(vm);
             });
             socket.on('connect_error', (err) => {
@@ -93,7 +94,7 @@ const Blank = (props: Props) => {
     useEffect(() => {
         if (getCode) {
             vm.addAllInstructions(code.current);
-            vm.execute();
+            vm.executeStart();
             setVm(vm);
             toggleGetCode();
         }
@@ -113,6 +114,13 @@ const Blank = (props: Props) => {
             toggleExecute();
         }
     }, [execute]);
+
+    useEffect(() => {
+        if (event) {
+            vm.addAllInstructions(code.current);
+            vm.executeEvent();
+        }
+    }, [event]);
     return (
         <div className='h-screen w-screen'>
             <Navbar className='h-[10%] w-full' />

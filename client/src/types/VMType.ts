@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
-import { actionType } from '../GameEngine/types/GameType';
 import SpriteType from './SpriteType';
+import ActionType from './ActionType';
 
 export default interface VMType {
     sprites: SpriteType[];
     blocks: string;
-    queue: actionType[];
+    queue: ActionType[];
     keyListener: any;
 
     addSprite(sprite: SpriteType): void;
@@ -13,7 +13,9 @@ export default interface VMType {
     updateBackdrop(backdropID: number): void;
     getSprite(spriteID: number): SpriteType | undefined;
     addAllInstructions(code: string): void;
-    execute(): void;
+    execute(spriteID: number, instructions: string[]): void;
+    executeEvent(): void;
+    executeStart(): void;
     save(): string;
     addKeyListner(key: string): void;
 }

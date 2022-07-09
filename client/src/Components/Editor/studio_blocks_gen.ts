@@ -4,7 +4,7 @@ Blockly.JavaScript['start_event'] = function (block: Block) {
     var dropdown_sprite = block.getFieldValue('sprite');
     var code = 'not_connected\n';
     if (block.nextConnection.isConnected()) {
-        code = 'start,' + dropdown_sprite + '\n';
+        code = 'start,' + dropdown_sprite + ';';
     }
     return code;
 };
@@ -12,21 +12,7 @@ Blockly.JavaScript['start_event'] = function (block: Block) {
 Blockly.JavaScript['keyboard_event'] = function (block: Block) {
     var dropdown_key = block.getFieldValue('key');
     var dropdown_sprite = block.getFieldValue('sprite');
-    var code = 'start,' + dropdown_sprite + '\n';
-    // document.addEventListener(
-    //     'keydown',
-    //     (event) => {
-    //         var name = event.key;
-    //         var code = event.code;
-    //         if (code === dropdown_key) {
-    //             const myEvent = new CustomEvent('start', {});
-    //             document.dispatchEvent(myEvent);
-    //         }
-    //         // Alert the key name and key code on keydown
-    //     },
-    //     false
-    // );
-    // TODO: Assemble JavaScript into code variable.
+    var code = 'start_key,' + dropdown_sprite + ';';
     return code;
 };
 
@@ -34,7 +20,10 @@ Blockly.JavaScript['move'] = function (block: Block) {
     var number_steps = block.getFieldValue('steps');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'move,' + number_steps + '\n';
+        code = 'move,' + number_steps + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -43,7 +32,10 @@ Blockly.JavaScript['turn_left'] = function (block: Block) {
     var angle_left = block.getFieldValue('left');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'turn,-' + angle_left + '\n';
+        code = 'turn,-' + angle_left + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -52,7 +44,10 @@ Blockly.JavaScript['turn_right'] = function (block: Block) {
     var angle_right = block.getFieldValue('right');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'turn,' + angle_right + '\n';
+        code = 'turn,' + angle_right + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -69,7 +64,10 @@ Blockly.JavaScript['goto_2'] = function (block: Block) {
     var number_y = block.getFieldValue('y');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'goto,' + number_x + ',' + number_y + '\n';
+        code = 'goto,' + number_x + ',' + number_y + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -95,7 +93,10 @@ Blockly.JavaScript['point_1'] = function (block: Block) {
     var angle_angle = block.getFieldValue('angle');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'point,' + angle_angle + '\n';
+        code = 'point,' + angle_angle + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -111,7 +112,10 @@ Blockly.JavaScript['change_x'] = function (block: Block) {
     var number_x = block.getFieldValue('x');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'change_x,' + number_x + '\n';
+        code = 'change_x,' + number_x + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -120,7 +124,10 @@ Blockly.JavaScript['change_y'] = function (block: Block) {
     var number_y = block.getFieldValue('y');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'change_y,' + number_y + '\n';
+        code = 'change_y,' + number_y + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -129,7 +136,10 @@ Blockly.JavaScript['set_x'] = function (block: Block) {
     var number_x = block.getFieldValue('x');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'set_x,' + number_x + '\n';
+        code = 'set_x,' + number_x + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };
@@ -138,7 +148,10 @@ Blockly.JavaScript['set_y'] = function (block: Block) {
     var number_y = block.getFieldValue('y');
     var code = 'not_connected\n';
     if (block.previousConnection.isConnected()) {
-        code = 'set_y,' + number_y + '\n';
+        code = 'set_y,' + number_y + ';';
+    }
+    if (!block.nextConnection.isConnected()) {
+        code += '\n';
     }
     return code;
 };

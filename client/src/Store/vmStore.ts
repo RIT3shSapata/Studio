@@ -9,6 +9,7 @@ const useVMStore = create<VMState>()(
         getCode: false,
         update: false,
         sync: false,
+        event: false,
         vm: new VM(),
         xml: `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`,
         toggleExecute: () => {
@@ -24,6 +25,11 @@ const useVMStore = create<VMState>()(
         toggleGetCode: () => {
             set((state) => ({
                 getCode: !state.getCode,
+            }));
+        },
+        toggleEvent: () => {
+            set((state) => ({
+                event: !state.event,
             }));
         },
         setVm: (newVM) => {
