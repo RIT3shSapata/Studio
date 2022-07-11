@@ -54,11 +54,11 @@ const Blank = (props: Props) => {
         document.addEventListener('start_event', (e) => {
             toggleEvent();
         });
-        return () => {
-            document.removeEventListener('start_event', (e) => {
-                console.log('removed');
-            });
-        };
+        // return () => {
+        //     document.removeEventListener('start_event', (e) => {
+        //         console.log('removed');
+        //     });
+        // };
     }, []);
 
     useEffect(() => {
@@ -119,6 +119,8 @@ const Blank = (props: Props) => {
         if (event) {
             vm.addAllInstructions(code.current);
             vm.executeEvent();
+            setVm(vm);
+            toggleEvent();
         }
     }, [event]);
     return (

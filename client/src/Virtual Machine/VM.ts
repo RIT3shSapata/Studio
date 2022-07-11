@@ -36,7 +36,6 @@ export default class VM implements VMType {
         let spriteID = -1;
         let newIns: string[] = [];
         var eventType: 'start' | 'event' = 'start';
-        console.log(instructions);
         instructions.forEach((instruction) => {
             if (instruction.length === 0) {
                 const action: ActionType = {
@@ -126,6 +125,7 @@ export default class VM implements VMType {
                 this.execute(spriteID, instructions);
             }
         });
+        this.queue = [];
     }
 
     executeEvent(): void {
@@ -135,6 +135,7 @@ export default class VM implements VMType {
                 this.execute(spriteID, instructions);
             }
         });
+        this.queue = [];
     }
 
     getSprite(spriteID: number): SpriteType | undefined {
@@ -146,12 +147,18 @@ export default class VM implements VMType {
         return 'works';
     }
     addKeyListner(key: string): void {
+        console.log(this.keyListener);
         if (!this.keyListener[key]) {
             this.keyListener[key] = true;
             document.addEventListener('keydown', (e: KeyboardEvent) => {
                 if (e.code === key) {
                     const myEvent = new CustomEvent('start_event', {});
                     document.dispatchEvent(myEvent);
+                }
+            });
+            document.addEventListener('keyup', (e: KeyboardEvent) => {
+                if (e.code === key) {
+                    this.keyListener[e.code] = false;
                 }
             });
         }

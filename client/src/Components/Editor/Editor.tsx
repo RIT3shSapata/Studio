@@ -5,8 +5,10 @@ import Blockly, { Block, WorkspaceSvg } from 'blockly';
 import './CustomBlocks/Custom_Blocks_Def';
 import './CustomBlocks/Custom_Blocks_Gen';
 import './CustomBlocks/CustomCategory.ts';
-import './studio_blocks_def';
-import './studio_blocks_gen';
+// import './studio_blocks_def';
+// import './studio_blocks_gen';
+import './blocks/definitions';
+import './blocks/generators';
 import './Editor.css';
 import useGameStore from '../../Store/gameStore';
 import shallow from 'zustand/shallow';
@@ -56,7 +58,7 @@ const Editor = ({ code, toolBox, className }: Props) => {
     const handleWorkspaceChange = (workspace: WorkspaceSvg) => {
         const co: string = Blockly.JavaScript.workspaceToCode(workspace);
         setWorkspace(workspace);
-        if (!workspace.isDragging()) {
+        if (workspace.isDragging()) {
             const topBlocks: Block[] = workspace.getTopBlocks(true);
             topBlocks.forEach((block: Block) => {
                 if (block.type === 'keyboard_event') {
