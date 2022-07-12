@@ -2,13 +2,15 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import Editor from '../Components/Editor/Editor';
 import StudioToolBox from '../Components/Editor/config/Toolbox';
 import Navbar from '../Components/Navbar/Navbar';
-import CanvasComponent from '../Components/CanvasComponent/CanvasComponent';
 import defaultGame from '../Virtual Machine/config/DefaultProject.json';
 import JSONToObject from '../Virtual Machine/utils/JSONToObject';
 import useVMStore from '../Store/vmStore';
 import VMState from '../types/VMState';
 import shallow from 'zustand/shallow';
 import io from 'socket.io-client';
+import NavbarState from '../types/NavbarState';
+import useNavbarStore from '../Store/navbarStore';
+import CostumeEditor from '../Components/CostumeEditor';
 
 type Props = {};
 
@@ -38,6 +40,13 @@ const Blank = (props: Props) => {
         event,
         toggleEvent,
     }: VMState = useVMStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+
+    const { screen }: NavbarState = useNavbarStore(
         (state) => ({
             ...state,
         }),
@@ -126,22 +135,30 @@ const Blank = (props: Props) => {
     return (
         <div className='h-screen w-screen'>
             <Navbar className='h-[10%] w-full' />
-            <div className='h-[90%] w-full flex justify-between'>
-                <div id='Editor' className='h-full w-4/6'>
-                    <Editor
-                        toolBox={StudioToolBox}
-                        className='h-full w-full'
-                        code={code}
-                    />
-                </div>
-                <div className='w-2/6 h-full'>
-                    <div
-                        id='canvas_container'
-                        className='h-full w-full border-2 border-sky-300'>
-                        {ele}
+            {screen === 'editor' ? (
+                <div className='h-[90%] w-full flex justify-between'>
+                    <div id='Editor' className='h-full w-4/6'>
+                        <Editor
+                            toolBox={StudioToolBox}
+                            className='h-full w-full'
+                            code={code}
+                        />
+                    </div>
+                    <div className='w-2/6 h-full'>
+                        <div
+                            id='canvas_container'
+                            className='h-full w-full border-2 border-sky-300'>
+                            {ele}
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : screen === 'costume' ? (
+                <div className='h-[90%] w-full'>
+                    <CostumeEditor />
+                </div>
+            ) : (
+                ''
+            )}
         </div>
     );
 };

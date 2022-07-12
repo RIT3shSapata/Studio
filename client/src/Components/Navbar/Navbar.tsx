@@ -2,13 +2,21 @@ import React from 'react';
 import VMState from '../../types/VMState';
 import useVMStore from '../../Store/vmStore';
 import shallow from 'zustand/shallow';
+import NavbarState from '../../types/NavbarState';
+import useNavbarStore from '../../Store/navbarStore';
 
 type Props = {
     className: string;
 };
 
 const Navbar = ({ className }: Props) => {
-    const { toggleGetCode, toggleSync, toggleExecute }: VMState = useVMStore(
+    const { toggleSync, toggleExecute }: VMState = useVMStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+    const { setScreen }: NavbarState = useNavbarStore(
         (state) => ({
             ...state,
         }),
@@ -20,6 +28,22 @@ const Navbar = ({ className }: Props) => {
                 <div className='bg-white h-12 mr-20 w-11/12 ml-4 px-8 rounded-lg flex justify-between'>
                     <div className='flex flex-col justify-center'>
                         <span className='font-bold '>Studio</span>
+                    </div>
+                    <div className='flex justify-between'>
+                        <button
+                            className='btn-wiingy-primary'
+                            onClick={() => {
+                                setScreen('costume');
+                            }}>
+                            Design
+                        </button>
+                        <button
+                            className='btn-wiingy-primary'
+                            onClick={() => {
+                                setScreen('editor');
+                            }}>
+                            Code
+                        </button>
                     </div>
                     <div>
                         <button
