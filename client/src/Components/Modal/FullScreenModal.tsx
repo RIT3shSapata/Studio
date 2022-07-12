@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
     toggleModal: () => void;
     heading: string;
+    children?: ReactNode;
 };
 
-const FullScreenModal = ({ toggleModal, heading }: Props) => {
+const FullScreenModal = ({ toggleModal, heading, children }: Props) => {
     return (
         <div className='w-screen h-screen bg-wiingy-white-500 absolute top-0 left-0'>
             <div className='w-full h-14 2xl:h-20 bg-white flex items-center'>
@@ -20,10 +21,11 @@ const FullScreenModal = ({ toggleModal, heading }: Props) => {
                     </svg>
                     <p className='text-lg'>Back</p>
                 </div>
-                <div className='w-11/12 flex justify-around items-center'>
-                    <h1 className='text-2xl'>{heading}</h1>
+                <div className='w-11/12 flex justify-center items-center pr-20 2xl:pr-52'>
+                    <h1 className='text-lg'>{heading}</h1>
                 </div>
             </div>
+            {children}
         </div>
     );
 };

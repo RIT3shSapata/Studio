@@ -1,0 +1,99 @@
+[
+    {
+        "name": "Baseball",
+        "tags": ["baseball", "sports", "ball", "alex eben meyer"],
+        "isStage": false,
+        "costumes": [
+            {
+                "assetId": "74e08fc57820f925c7689e7b754c5848",
+                "name": "baseball",
+                "bitmapResolution": 1,
+                "md5ext": "74e08fc57820f925c7689e7b754c5848.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 28,
+                "rotationCenterY": 28
+            }
+        ],
+        "sounds": []
+    },
+    {
+        "name": "Bear-walking",
+        "tags": ["animals", "ipzy", "walking"],
+        "isStage": false,
+        "costumes": [
+            {
+                "assetId": "6d4d06e3f4cd0c9455b777b9a40782b6",
+                "name": "bear-walk-a",
+                "bitmapResolution": 1,
+                "md5ext": "6d4d06e3f4cd0c9455b777b9a40782b6.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "7453709bef16e33e6f989aee14d7fc07",
+                "name": "bear-walk-b",
+                "bitmapResolution": 1,
+                "md5ext": "7453709bef16e33e6f989aee14d7fc07.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "6d50c5fe63ab5f77d10144a68ca535a6",
+                "name": "bear-walk-c",
+                "bitmapResolution": 1,
+                "md5ext": "6d50c5fe63ab5f77d10144a68ca535a6.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "e531b307381c2aa148be4ccc36db0333",
+                "name": "bear-walk-d",
+                "bitmapResolution": 1,
+                "md5ext": "e531b307381c2aa148be4ccc36db0333.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "0a38a860f2e573b8dc5b09f390d30fbd",
+                "name": "bear-walk-e",
+                "bitmapResolution": 1,
+                "md5ext": "0a38a860f2e573b8dc5b09f390d30fbd.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "f36c80d2e731be95df7ec6d07f89fa00",
+                "name": "bear-walk-f",
+                "bitmapResolution": 1,
+                "md5ext": "f36c80d2e731be95df7ec6d07f89fa00.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "d2a5f124f988def1d214e6d0813a48f3",
+                "name": "bear-walk-g",
+                "bitmapResolution": 1,
+                "md5ext": "d2a5f124f988def1d214e6d0813a48f3.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            },
+            {
+                "assetId": "36d06aa23c684fc996952adb0e76e6b4",
+                "name": "bear-walk-h",
+                "bitmapResolution": 1,
+                "md5ext": "36d06aa23c684fc996952adb0e76e6b4.svg",
+                "dataFormat": "svg",
+                "rotationCenterX": 130,
+                "rotationCenterY": 94
+            }
+        ],
+        "sounds": []
+    }
+]
