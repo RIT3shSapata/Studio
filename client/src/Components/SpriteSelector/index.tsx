@@ -1,16 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import shallow from 'zustand/shallow';
+import useModalStore from '../../Store/modalStore';
 import useVMStore from '../../Store/vmStore';
+import ModalState from '../../types/ModalState';
 import SpriteType from '../../types/SpriteType';
 import VMState from '../../types/VMState';
 import AddSpriteMenu from './AddSpriteMenu';
+import SpriteSelectorModal from './SpriteSelectorModal';
 
 type Props = {};
 
-const CostumeEditor = (props: Props) => {
+const SpriteSelector = (props: Props) => {
     const renderOnce = useRef<boolean>(false);
     const [sprites, setSprites] = useState<SpriteType[]>(
         new Array<SpriteType>()
+    );
+    const { spriteModal, toggelSpriteModal }: ModalState = useModalStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
     );
     const { vm }: VMState = useVMStore(
         (state) => ({
@@ -46,9 +55,12 @@ const CostumeEditor = (props: Props) => {
                     })}
                 </div>
                 <AddSpriteMenu />
+                {spriteModal && (
+                    <SpriteSelectorModal toggleModal={toggelSpriteModal} />
+                )}
             </div>
         </div>
     );
 };
 
-export default CostumeEditor;
+export default SpriteSelector;
