@@ -8,8 +8,8 @@ export default class Costume implements CostumeType {
     md5ext: string;
     width?: number;
     height?: number;
-    rotationCenterX?: number;
-    rotationCenterY?: number;
+    rotationCenterX: number;
+    rotationCenterY: number;
 
     constructor(
         name: string,

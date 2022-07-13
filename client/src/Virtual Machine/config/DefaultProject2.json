@@ -1,0 +1,29 @@
+{
+    "sprites": [
+        {
+            "isStage": true,
+            "name": "Stage",
+            "currentCostume": 0,
+            "costumes": [
+                {
+                    "name": "Baseball 1",
+                    "bitmapResolution": 1,
+                    "dataFormat": "svg",
+                    "assetId": "825d9b54682c406215d9d1f98a819449",
+                    "md5ext": "825d9b54682c406215d9d1f98a819449.svg",
+                    "rotationCenterX": 343.83386,
+                    "rotationCenterY": 194.921615
+                }
+            ],
+            "sounds": [],
+            "volume": 100,
+            "layerOrder": 0,
+            "visible": true,
+            "x": 0,
+            "y": 0,
+            "size": 100,
+            "direction": 90
+        }
+    ],
+    "blocks": ""
+}

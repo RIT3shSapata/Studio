@@ -3,6 +3,7 @@ import Editor from '../Components/Editor/Editor';
 import StudioToolBox from '../Components/Editor/config/Toolbox';
 import Navbar from '../Components/Navbar/Navbar';
 import defaultGame from '../Virtual Machine/config/DefaultProject.json';
+// import defaultGame from '../Virtual Machine/config/DefaultProject2.json';
 import JSONToObject from '../utils/JSONToObject';
 import useVMStore from '../Store/vmStore';
 import VMState from '../types/VMState';

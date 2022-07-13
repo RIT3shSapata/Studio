@@ -48,7 +48,10 @@ const Editor = ({ code, toolBox, className }: Props) => {
     );
 
     useEffect(() => {
-        DefineEvents(SpriteToFieldDrop(vm.sprites));
+        const sprites = vm.sprites.filter((sprite, idx) => {
+            return idx > 0;
+        });
+        DefineEvents(SpriteToFieldDrop(sprites));
     }, [vm]);
 
     useEffect(() => {
