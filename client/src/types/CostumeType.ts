@@ -6,5 +6,7 @@ export default interface CostumeType {
     md5ext: string;
     width?: number;
     height?: number;
+    rotationCenterX?: number;
+    rotationCenterY?: number;
     save(): string;
 }

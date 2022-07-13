@@ -12,7 +12,13 @@ const SpriteSelectorModal = ({ toggleModal }: Props) => {
         <FullScreenModal toggleModal={toggleModal} heading='Choose a Sprite'>
             <div className='grid grid-cols-8 m-5 gap-4 2xl:gap-5'>
                 {spriteLibrary.map((sprite, idx) => {
-                    return <ModalMenuItem sprite={sprite} key={idx} />;
+                    return (
+                        <ModalMenuItem
+                            spritejson={JSON.stringify(sprite)}
+                            toggleModal={toggleModal}
+                            key={idx}
+                        />
+                    );
                 })}
             </div>
         </FullScreenModal>

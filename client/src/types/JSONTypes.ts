@@ -6,6 +6,8 @@ export type json_costume = {
     md5ext: string;
     width?: number;
     height?: number;
+    rotationCenterX?: number;
+    rotationCenterY?: number;
 };
 export type json_sound = {
     name: string;
@@ -30,4 +32,11 @@ export type json_sprite = {
 export type json_obj = {
     sprites: json_sprite[];
     blocks: string;
+};
+export type json_sprite_library = {
+    name: string;
+    tags: string[];
+    isStage: boolean;
+    costumes: json_costume[];
+    sounds: json_sound[];
 };

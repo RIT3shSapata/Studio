@@ -39,6 +39,8 @@ const Blank = (props: Props) => {
         toggleExecute,
         event,
         toggleEvent,
+        reset,
+        toggleReset,
     }: VMState = useVMStore(
         (state) => ({
             ...state,
@@ -132,6 +134,13 @@ const Blank = (props: Props) => {
             toggleEvent();
         }
     }, [event]);
+
+    useEffect(() => {
+        if (reset) {
+            setEle(vm.initVM());
+        }
+    }, [reset]);
+
     return (
         <div className='h-screen w-screen'>
             <Navbar className='h-[10%] w-full' />
