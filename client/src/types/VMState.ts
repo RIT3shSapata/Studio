@@ -1,3 +1,4 @@
+import { WorkspaceSvg } from 'blockly';
 import VMType from './VMType';
 
 export default interface VMState {
@@ -8,6 +9,7 @@ export default interface VMState {
     xml: string;
     sync: boolean;
     reset: boolean;
+    workspace: WorkspaceSvg | null;
     vm: VMType;
     toggleExecute: () => void;
     toggleGetCode: () => void;
@@ -17,4 +19,5 @@ export default interface VMState {
     setUpdate: (newUpdate: boolean) => void;
     setVm(vm: VMType): void;
     setXML: (xml: string) => void;
+    setWorkspace: (workspace: WorkspaceSvg) => void;
 }

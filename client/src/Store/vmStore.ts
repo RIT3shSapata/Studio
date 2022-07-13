@@ -12,6 +12,7 @@ const useVMStore = create<VMState>()(
         event: false,
         reset: false,
         vm: new VM(),
+        workspace: null,
         xml: `<xml xmlns="https://developers.google.com/blockly/xml"></xml>`,
         toggleExecute: () => {
             set((state) => ({
@@ -46,6 +47,9 @@ const useVMStore = create<VMState>()(
         },
         setXML: (newXml) => {
             set({ xml: newXml });
+        },
+        setWorkspace: (newWorkspace) => {
+            set({ workspace: newWorkspace });
         },
     }))
 );

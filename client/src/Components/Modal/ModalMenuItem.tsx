@@ -6,7 +6,7 @@ import { json_sprite_library } from '../../types/JSONTypes';
 import NavbarState from '../../types/NavbarState';
 import SpriteType from '../../types/SpriteType';
 import VMState from '../../types/VMState';
-import JSONtoSprite from '../../Virtual Machine/utils/JSONToSprite';
+import JSONtoSprite from '../../utils/JSONToSprite';
 
 type Props = {
     spritejson: string;

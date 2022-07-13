@@ -7,7 +7,7 @@ import './CustomBlocks/Custom_Blocks_Gen';
 import './CustomBlocks/CustomCategory.ts';
 // import './studio_blocks_def';
 // import './studio_blocks_gen';
-import './blocks/definitions';
+import DefineEvents from './blocks/definitions';
 import './blocks/generators';
 import './Editor.css';
 import useGameStore from '../../Store/gameStore';
@@ -15,6 +15,7 @@ import shallow from 'zustand/shallow';
 import GameState from '../../types/GameState';
 import VMState from '../../types/VMState';
 import useVMStore from '../../Store/vmStore';
+import SpriteToFieldDrop from '../../utils/SpriteToFieldDrop';
 
 type Props = {
     code: any;
@@ -23,8 +24,6 @@ type Props = {
 };
 
 const Editor = ({ code, toolBox, className }: Props) => {
-    const [workspace, setWorkspace] = useState<WorkspaceSvg | null>(null);
-
     const { clearCanvas, toggleClearCanvas }: GameState = useGameStore(
         (state) => ({
             ...state,
@@ -32,12 +31,25 @@ const Editor = ({ code, toolBox, className }: Props) => {
         shallow
     );
 
-    const { update, setUpdate, xml, setXML, vm, setVm }: VMState = useVMStore(
+    const {
+        update,
+        setUpdate,
+        xml,
+        setXML,
+        vm,
+        setVm,
+        workspace,
+        setWorkspace,
+    }: VMState = useVMStore(
         (state) => ({
             ...state,
         }),
         shallow
     );
+
+    useEffect(() => {
+        DefineEvents(SpriteToFieldDrop(vm.sprites));
+    }, [vm]);
 
     useEffect(() => {
         if (update && workspace) {
@@ -73,7 +85,7 @@ const Editor = ({ code, toolBox, className }: Props) => {
         <>
             <BlocklyWorkspace
                 toolboxConfiguration={toolBox}
-                initialXml={INITIAL_XML}
+                initialXml={xml}
                 workspaceConfiguration={{
                     renderer: 'zelos',
                 }}

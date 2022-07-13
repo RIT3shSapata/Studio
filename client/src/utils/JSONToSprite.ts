@@ -1,14 +1,14 @@
-import CostumeType from '../../types/CostumeType';
+import CostumeType from '../types/CostumeType';
 import {
     json_costume,
     json_sound,
     json_sprite_library,
-} from '../../types/JSONTypes';
-import SoundType from '../../types/SoundType';
-import SpriteType from '../../types/SpriteType';
-import Costume from '../Costume';
-import Sound from '../Sound';
-import Sprite from '../Sprite';
+} from '../types/JSONTypes';
+import SoundType from '../types/SoundType';
+import SpriteType from '../types/SpriteType';
+import Costume from '../Virtual Machine/Costume';
+import Sound from '../Virtual Machine/Sound';
+import Sprite from '../Virtual Machine/Sprite';
 
 const JSONtoSprite: (
     sprite: json_sprite_library,

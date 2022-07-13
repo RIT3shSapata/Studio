@@ -3,13 +3,13 @@ import {
     json_obj,
     json_sound,
     json_sprite,
-} from '../../types/JSONTypes';
-import SpriteType from '../../types/SpriteType';
-import VMType from '../../types/VMType';
-import Costume from '../Costume';
-import Sound from '../Sound';
-import Sprite from '../Sprite';
-import VM from '../VM';
+} from '../types/JSONTypes';
+import SpriteType from '../types/SpriteType';
+import VMType from '../types/VMType';
+import Costume from '../Virtual Machine/Costume';
+import Sound from '../Virtual Machine/Sound';
+import Sprite from '../Virtual Machine/Sprite';
+import VM from '../Virtual Machine/VM';
 
 const JSONToObject: (json: string) => VMType = (json) => {
     const { sprites, blocks }: json_obj = JSON.parse(json);

@@ -3,7 +3,7 @@ import Editor from '../Components/Editor/Editor';
 import StudioToolBox from '../Components/Editor/config/Toolbox';
 import Navbar from '../Components/Navbar/Navbar';
 import defaultGame from '../Virtual Machine/config/DefaultProject.json';
-import JSONToObject from '../Virtual Machine/utils/JSONToObject';
+import JSONToObject from '../utils/JSONToObject';
 import useVMStore from '../Store/vmStore';
 import VMState from '../types/VMState';
 import shallow from 'zustand/shallow';
@@ -41,6 +41,7 @@ const Blank = (props: Props) => {
         toggleEvent,
         reset,
         toggleReset,
+        workspace,
     }: VMState = useVMStore(
         (state) => ({
             ...state,
@@ -57,6 +58,7 @@ const Blank = (props: Props) => {
 
     useEffect(() => {
         if (renderOnce.current) return;
+        console.log('works');
         renderOnce.current = true;
         const newVM = JSONToObject(JSON.stringify(defaultGame));
         setEle(newVM.initVM());
@@ -137,7 +139,9 @@ const Blank = (props: Props) => {
 
     useEffect(() => {
         if (reset) {
+            console.log(workspace);
             setEle(vm.initVM());
+            toggleReset();
         }
     }, [reset]);
 
