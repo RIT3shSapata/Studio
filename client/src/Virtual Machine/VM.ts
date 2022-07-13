@@ -3,6 +3,7 @@ import SpriteType from '../types/SpriteType';
 import CanvasComponent from '../Components/CanvasComponent/CanvasComponent';
 import { createElement, ReactElement } from 'react';
 import ActionType from '../types/ActionType';
+import CostumeType from '../types/CostumeType';
 
 export default class VM implements VMType {
     sprites;
@@ -68,6 +69,11 @@ export default class VM implements VMType {
     }
     updateBackdrop(backdropID: number): void {
         console.log(backdropID);
+    }
+    addBackdrop(backdrop: CostumeType): void {
+        const backdropSprite: SpriteType = this.sprites[0];
+        backdropSprite.addCostume(backdrop);
+        backdropSprite.currentCostume += 1;
     }
     execute(spriteID: number, instructions: string[]): void {
         const sprite = this.getSprite(spriteID);

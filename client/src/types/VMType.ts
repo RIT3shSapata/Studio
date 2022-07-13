@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import SpriteType from './SpriteType';
 import ActionType from './ActionType';
+import CostumeType from './CostumeType';
 
 export default interface VMType {
     sprites: SpriteType[];
@@ -11,6 +12,7 @@ export default interface VMType {
     addSprite(sprite: SpriteType): void;
     initVM(): ReactElement[];
     updateBackdrop(backdropID: number): void;
+    addBackdrop(backdrop: CostumeType): void;
     getSprite(spriteID: number): SpriteType | undefined;
     addAllInstructions(code: string): void;
     execute(spriteID: number, instructions: string[]): void;
