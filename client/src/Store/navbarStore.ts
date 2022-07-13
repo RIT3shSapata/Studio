@@ -5,7 +5,7 @@ import NavbarState from '../types/NavbarState';
 const useNavbarStore = create<NavbarState>()(
     devtools((set) => ({
         screen: 'editor',
-        setScreen: (newScreen: 'editor' | 'costume') => {
+        setScreen: (newScreen: 'editor' | 'design') => {
             set({
                 screen: newScreen,
             });

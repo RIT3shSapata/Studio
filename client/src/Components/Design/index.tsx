@@ -5,17 +5,24 @@ import useVMStore from '../../Store/vmStore';
 import ModalState from '../../types/ModalState';
 import SpriteType from '../../types/SpriteType';
 import VMState from '../../types/VMState';
-import AddSpriteMenu from './AddSpriteMenu';
-import SpriteSelectorModal from './SpriteSelectorModal';
+import AddBackdropMenu from './Backdrops/AddBackdropMenu';
+import AddSpriteMenu from './Sprites/AddSpriteMenu';
+import BackdropSelectionModal from './Backdrops/BackdropSelectionModal';
+import SpriteSelectorModal from './Sprites/SpriteSelectorModal';
 
 type Props = {};
 
-const SpriteSelector = (props: Props) => {
+const Design = (props: Props) => {
     const renderOnce = useRef<boolean>(false);
     const [sprites, setSprites] = useState<SpriteType[]>(
         new Array<SpriteType>()
     );
-    const { spriteModal, toggelSpriteModal }: ModalState = useModalStore(
+    const {
+        spriteModal,
+        toggelSpriteModal,
+        backgroundModal,
+        toggelBackgroundModal,
+    }: ModalState = useModalStore(
         (state) => ({
             ...state,
         }),
@@ -54,13 +61,21 @@ const SpriteSelector = (props: Props) => {
                         );
                     })}
                 </div>
-                <AddSpriteMenu />
+                <div className='flex justify-between items-center absolute bottom-2 2xl:bottom-8 left-1/2 w-56 h-24 px-2 2xl:w-72 2xl:h-32 2xl:px-4'>
+                    <AddSpriteMenu />
+                    <AddBackdropMenu />
+                </div>
                 {spriteModal && (
                     <SpriteSelectorModal toggleModal={toggelSpriteModal} />
+                )}
+                {backgroundModal && (
+                    <BackdropSelectionModal
+                        toggleModal={toggelBackgroundModal}
+                    />
                 )}
             </div>
         </div>
     );
 };
 
-export default SpriteSelector;
+export default Design;

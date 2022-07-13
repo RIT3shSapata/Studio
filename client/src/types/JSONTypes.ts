@@ -40,3 +40,13 @@ export type json_sprite_library = {
     costumes: json_costume[];
     sounds: json_sound[];
 };
+export type json_backdrop = {
+    name: string;
+    tags: string[];
+    assetID: string;
+    md5ext: string;
+    dataFormat: string;
+    rotationCenterX?: number;
+    rotationCenterY?: number;
+    bitmapResolution?: number;
+};

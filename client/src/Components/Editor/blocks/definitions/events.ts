@@ -12,7 +12,7 @@ const DefineEvents: (fields: any[][]) => void = (fields) => {
                 .appendField('Clicked for ')
                 .appendField(new Blockly.FieldDropdown(fields), 'sprite');
             this.setNextStatement(true, null);
-            this.setColour(60);
+            this.setColour('#facc15');
             this.setTooltip('');
             this.setHelpUrl('');
         },
@@ -71,7 +71,7 @@ const DefineEvents: (fields: any[][]) => void = (fields) => {
                 .appendField('pressed')
                 .appendField(new Blockly.FieldDropdown(fields), 'sprite');
             this.setNextStatement(true, null);
-            this.setColour(60);
+            this.setColour('#facc15');
             this.setTooltip('');
             this.setHelpUrl('');
         },

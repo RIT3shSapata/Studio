@@ -33,7 +33,7 @@ const Navbar = ({ className }: Props) => {
                         <button
                             className='btn-wiingy-primary'
                             onClick={() => {
-                                setScreen('costume');
+                                setScreen('design');
                             }}>
                             Design
                         </button>

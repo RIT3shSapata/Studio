@@ -1,4 +1,4 @@
 export default interface NavbarState {
-    screen: 'editor' | 'costume';
-    setScreen: (screen: 'editor' | 'costume') => void;
+    screen: 'editor' | 'design';
+    setScreen: (screen: 'editor' | 'design') => void;
 }

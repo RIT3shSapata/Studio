@@ -10,7 +10,7 @@ import shallow from 'zustand/shallow';
 import io from 'socket.io-client';
 import NavbarState from '../types/NavbarState';
 import useNavbarStore from '../Store/navbarStore';
-import SpriteSelector from '../Components/SpriteSelector';
+import Design from '../Components/Design';
 
 type Props = {};
 
@@ -165,9 +165,9 @@ const Blank = (props: Props) => {
                         </div>
                     </div>
                 </div>
-            ) : screen === 'costume' ? (
+            ) : screen === 'design' ? (
                 <div className='h-[90%] w-full'>
-                    <SpriteSelector />
+                    <Design />
                 </div>
             ) : (
                 ''

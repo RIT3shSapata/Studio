@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import shallow from 'zustand/shallow';
-import useNavbarStore from '../../Store/navbarStore';
-import useVMStore from '../../Store/vmStore';
-import { json_sprite_library } from '../../types/JSONTypes';
-import NavbarState from '../../types/NavbarState';
-import SpriteType from '../../types/SpriteType';
-import VMState from '../../types/VMState';
-import JSONtoSprite from '../../utils/JSONToSprite';
+import useNavbarStore from '../../../Store/navbarStore';
+import useVMStore from '../../../Store/vmStore';
+import { json_sprite_library } from '../../../types/JSONTypes';
+import NavbarState from '../../../types/NavbarState';
+import SpriteType from '../../../types/SpriteType';
+import VMState from '../../../types/VMState';
+import JSONtoSprite from '../../../utils/JSONToSprite';
 
 type Props = {
-    spritejson: string;
+    json: string;
     toggleModal: () => void;
 };
 
-const ModalMenuItem = ({ spritejson, toggleModal }: Props) => {
+const SpriteModalMenuItem = ({ json, toggleModal }: Props) => {
     const [idx, setIdx] = useState(0);
-    const sprite: json_sprite_library = JSON.parse(spritejson);
+    const sprite: json_sprite_library = JSON.parse(json);
     const { vm, setVm, toggleReset }: VMState = useVMStore(
         (state) => ({
             ...state,
@@ -52,4 +52,4 @@ const ModalMenuItem = ({ spritejson, toggleModal }: Props) => {
     );
 };
 
-export default ModalMenuItem;
+export default SpriteModalMenuItem;
