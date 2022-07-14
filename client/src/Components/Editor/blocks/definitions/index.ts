@@ -1,4 +1,5 @@
 import DefineEvents from './events';
 import './motion';
+import DefineLooks from './looks';
 
-export default DefineEvents;
+export { DefineEvents, DefineLooks };

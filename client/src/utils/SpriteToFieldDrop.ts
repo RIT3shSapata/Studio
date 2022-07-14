@@ -11,7 +11,7 @@ const SpriteToFieldDrop: (sprites: SpriteType[]) => any = (sprites) => {
                 height: 15,
                 alt: '*',
             },
-            `${idx}`,
+            `${idx + 1}`,
         ];
     });
 };

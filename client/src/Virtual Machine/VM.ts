@@ -67,8 +67,32 @@ export default class VM implements VMType {
             });
         });
     }
-    updateBackdrop(backdropID: number): void {
-        console.log(backdropID);
+    updateBackdrop(backdrop: string): void {
+        const backdropSprite: SpriteType = this.sprites[0];
+        switch (backdrop) {
+            case 'next':
+                backdropSprite.currentCostume =
+                    (backdropSprite.currentCostume + 1) %
+                    backdropSprite.costumes.length;
+                break;
+            case 'prev':
+                backdropSprite.currentCostume =
+                    (backdropSprite.currentCostume -
+                        1 +
+                        backdropSprite.costumes.length) %
+                    backdropSprite.costumes.length;
+                break;
+            case 'rand':
+                const newCur = Math.floor(
+                    Math.random() * backdropSprite.costumes.length
+                );
+                backdropSprite.currentCostume = newCur;
+                break;
+            default:
+                backdropSprite.currentCostume = parseInt(backdrop);
+        }
+        backdropSprite.erase();
+        backdropSprite.draw();
     }
     addBackdrop(backdrop: CostumeType): void {
         const backdropSprite: SpriteType = this.sprites[0];
@@ -117,6 +141,9 @@ export default class VM implements VMType {
                 case 'set_y':
                     const sy: number = parseInt(args[0]);
                     sprite.set(sprite.x, sy);
+                    break;
+                case 'change_backdrop':
+                    this.updateBackdrop(args[0]);
                     break;
                 default:
                     console.log(command);

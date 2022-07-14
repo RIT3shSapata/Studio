@@ -84,6 +84,10 @@ export default class CustomCategory extends Blockly.ToolboxCategory {
                 div.className =
                     'bg-yellow-400 h-5 w-5 rounded-full border-2 border-yellow-500 mb-2';
                 break;
+            case 'Looks':
+                div.className =
+                    'bg-purple-400 h-5 w-5 rounded-full border-2 border-purple-500 mb-2';
+                break;
             default:
                 div.className =
                     'bg-blue-500 h-5 w-5 rounded-full border-2 border-blue-600 mb-2';

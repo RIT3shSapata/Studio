@@ -66,6 +66,22 @@ const StudioToolBox: ToolBox = {
         },
         {
             kind: 'category',
+            name: 'Looks',
+            color: '120',
+            expanded: 'true',
+            contents: [
+                {
+                    kind: 'block',
+                    type: 'backdrop_select',
+                },
+                {
+                    kind: 'block',
+                    type: 'next_backdrop',
+                },
+            ],
+        },
+        {
+            kind: 'category',
             name: 'Events',
             color: '300',
             expanded: 'true',
@@ -73,6 +89,10 @@ const StudioToolBox: ToolBox = {
                 {
                     kind: 'block',
                     type: 'start_event',
+                },
+                {
+                    kind: 'block',
+                    type: 'start_event2',
                 },
                 {
                     kind: 'block',

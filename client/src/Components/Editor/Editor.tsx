@@ -7,7 +7,7 @@ import './CustomBlocks/Custom_Blocks_Gen';
 import './CustomBlocks/CustomCategory.ts';
 // import './studio_blocks_def';
 // import './studio_blocks_gen';
-import DefineEvents from './blocks/definitions';
+import { DefineEvents, DefineLooks } from './blocks/definitions';
 import './blocks/generators';
 import './Editor.css';
 import useGameStore from '../../Store/gameStore';
@@ -16,6 +16,7 @@ import GameState from '../../types/GameState';
 import VMState from '../../types/VMState';
 import useVMStore from '../../Store/vmStore';
 import SpriteToFieldDrop from '../../utils/SpriteToFieldDrop';
+import BackdropField from '../../utils/BackdropField';
 
 type Props = {
     code: any;
@@ -52,6 +53,9 @@ const Editor = ({ code, toolBox, className }: Props) => {
             return idx > 0;
         });
         DefineEvents(SpriteToFieldDrop(sprites));
+        if (vm.sprites[0]) {
+            DefineLooks(BackdropField(vm.sprites[0].costumes));
+        }
     }, [vm]);
 
     useEffect(() => {

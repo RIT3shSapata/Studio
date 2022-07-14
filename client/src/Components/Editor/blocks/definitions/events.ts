@@ -17,7 +17,18 @@ const DefineEvents: (fields: any[][]) => void = (fields) => {
             this.setHelpUrl('');
         },
     };
-
+    Blockly.Blocks['start_event2'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField('When')
+                .appendField(new Blockly.FieldImage(play, 20, 20))
+                .appendField('Clicked ');
+            this.setNextStatement(true, null);
+            this.setColour('#facc15');
+            this.setTooltip('');
+            this.setHelpUrl('');
+        },
+    };
     Blockly.Blocks['keyboard_event'] = {
         init: function () {
             this.appendDummyInput()
