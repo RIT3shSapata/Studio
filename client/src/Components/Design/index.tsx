@@ -9,6 +9,7 @@ import AddBackdropMenu from './Backdrops/AddBackdropMenu';
 import AddSpriteMenu from './Sprites/AddSpriteMenu';
 import BackdropSelectionModal from './Backdrops/BackdropSelectionModal';
 import SpriteSelectorModal from './Sprites/SpriteSelectorModal';
+import SpritePaint from '../SpritePaint';
 
 type Props = {};
 
@@ -41,7 +42,7 @@ const Design = (props: Props) => {
     }, []);
 
     return (
-        <div className='h-full w-ful'>
+        <div className='h-full w-full flex'>
             <div className='w-40 2xl:w-52 bg-wiingy-white-500 h-full '>
                 <div className='w-full flex flex-col items-center justify-between min-h-max'>
                     {sprites.map((sprite: SpriteType) => {
@@ -74,6 +75,7 @@ const Design = (props: Props) => {
                     />
                 )}
             </div>
+            <SpritePaint />
         </div>
     );
 };
