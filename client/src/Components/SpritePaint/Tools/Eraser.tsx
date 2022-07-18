@@ -1,10 +1,23 @@
 import React from 'react';
+import shallow from 'zustand/shallow';
+import usePaintStore from '../../../Store/paintStore';
+import PaintState from '../../../types/PaintState';
 
 type Props = {};
 
 const Eraser = (props: Props) => {
+    const { mode, setMode }: PaintState = usePaintStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+    const className = mode === 'erase' ? 'selected-tool' : 'tool';
+    const handleClick = () => {
+        setMode('erase');
+    };
     return (
-        <div className=' w-10 h-10 flex justify-center items-center'>
+        <div className={className} onClick={handleClick}>
             <svg
                 className='h-6 w-6'
                 xmlns='http://www.w3.org/2000/svg'

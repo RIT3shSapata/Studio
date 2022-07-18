@@ -1,10 +1,23 @@
 import React from 'react';
+import shallow from 'zustand/shallow';
+import usePaintStore from '../../../Store/paintStore';
+import PaintState from '../../../types/PaintState';
 
 type Props = {};
 
 const Select = (props: Props) => {
+    const { mode, setMode }: PaintState = usePaintStore(
+        (state) => ({
+            ...state,
+        }),
+        shallow
+    );
+    const className = mode === 'select' ? 'selected-tool' : 'tool';
+    const handleClick = () => {
+        setMode('select');
+    };
     return (
-        <div className='bg-blue-500 w-10 h-10 flex justify-center items-center fill-white rounded-md'>
+        <div className={className} onClick={handleClick}>
             <svg
                 className='h-6 w-6'
                 viewBox='-96 0 512 512'

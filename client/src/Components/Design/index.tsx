@@ -10,6 +10,8 @@ import AddSpriteMenu from './Sprites/AddSpriteMenu';
 import BackdropSelectionModal from './Backdrops/BackdropSelectionModal';
 import SpriteSelectorModal from './Sprites/SpriteSelectorModal';
 import SpritePaint from '../SpritePaint';
+import PaintState from '../../types/PaintState';
+import usePaintStore from '../../Store/paintStore';
 
 type Props = {};
 
@@ -29,6 +31,10 @@ const Design = (props: Props) => {
         }),
         shallow
     );
+    const { setCurrentSprite }: PaintState = usePaintStore(
+        (state) => ({ ...state }),
+        shallow
+    );
     const { vm }: VMState = useVMStore(
         (state) => ({
             ...state,
@@ -45,10 +51,13 @@ const Design = (props: Props) => {
         <div className='h-full w-full flex'>
             <div className='w-40 2xl:w-52 bg-wiingy-white-500 h-full '>
                 <div className='w-full flex flex-col items-center justify-between min-h-max'>
-                    {sprites.map((sprite: SpriteType) => {
+                    {sprites.map((sprite: SpriteType, idx: number) => {
                         return (
                             <div
                                 key={sprite.spriteID}
+                                onClick={() => {
+                                    setCurrentSprite(idx);
+                                }}
                                 className='w-1/2 my-4 flex flex-col items-center justify-between '>
                                 <img
                                     className='w-16 2xl:w-24 object-fit mb-4'
